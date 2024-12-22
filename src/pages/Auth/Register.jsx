@@ -6,6 +6,7 @@ import { PiEyeClosedBold } from "react-icons/pi";
 import { useState } from "react";
 import { VscEyeClosed } from "react-icons/vsc";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const {registerNewUser,loginWithGoogle, setUser, updataUser} = useAuth();
