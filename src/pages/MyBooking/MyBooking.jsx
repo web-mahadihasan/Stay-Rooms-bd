@@ -1,23 +1,66 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import BookingTableRow from "./BookingTableRow";
 import useAxiosSecured from "../../hooks/useAxiosSecured";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
+import {  useQuery, useQueryClient } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import { differenceInDays } from "date-fns";
 
 const MyBooking = () => {
     const {user} = useAuth()
     const axiosSecured = useAxiosSecured()
-    const [bookedRoom, setBookedRoom] = useState([]);
+    const queryClient = useQueryClient()
+
+    const {data:bookedRoom, isLoading} = useQuery({ queryKey: ['mybooking'], queryFn: async() =>  {
+        const {data} = await axiosSecured.get(`${import.meta.env.VITE_BASE_URL}/booked-room/${user?.email}`)
+        return data
+    } })
+
     
-
-    // const openTableAction = () =>  {
-
-    // }
-    useEffect(()=>  {
-        axiosSecured.get(`/booked-room/${user?.email}`)
-        .then(res =>  setBookedRoom(res.data))
-    }, [])
-
+    const handleCancellation = async (id, startDate) => {
+        const currentDate = new Date();
+        const daysDifference = differenceInDays(new Date(startDate), new Date(currentDate));
+        if(daysDifference > 1){
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3c65f5",
+                confirmButtonText: "Confirm Cancel",
+                cancelButtonText: "Keep",
+              }).then(async (result) => {
+                if (result.isConfirmed) {
+                    try {
+                        const { data } = await axiosSecured.delete(
+                          `${import.meta.env.VITE_BASE_URL}/cancel-booking/${id}`
+                        );
+                        if(data.deletedCount > 0){
+                            queryClient.invalidateQueries({ queryKey: ['mybooking'] })
+                            Swal.fire({
+                                title: "Cancellation Done",
+                                text: "Your Booking has been Cancel.",
+                                icon: "success"
+                              });
+                        }
+                        
+                      } catch (error) {
+                        console.error('Error during cancellation:', error);
+                      }
+                }
+              });
+        }else{
+            Swal.fire({
+                icon: "error",
+                title: "Sorry! Can't Cancel",
+                text: "You're late!!  you must cancel before 1 day",
+            });
+        }
+        
+      };
+    //   Update Booking Date 
+    if(isLoading) return <LoadingSpinner/>
   
     return (    
         <div className="">
@@ -43,7 +86,7 @@ const MyBooking = () => {
                 </thead>
                 <tbody className="">
                     {
-                        bookedRoom?.map(room =>  <BookingTableRow key={room._id} bookedRoomData={room}/>)
+                        bookedRoom?.map(room =>  <BookingTableRow key={room._id} bookedRoomData={room} onCancellation={handleCancellation}/>)
                     }
                
                 </tbody>

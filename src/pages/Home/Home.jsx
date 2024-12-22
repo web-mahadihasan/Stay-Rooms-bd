@@ -7,13 +7,11 @@ import wifi from "../../assets/images/wifi.png"
 import laundry from "../../assets/images/laundry-service.png"
 import breakfast from "../../assets/images/breakfast.png"
 import parking from "../../assets/images/parking.png"
-import { useEffect, useState } from "react";
 import axios from "axios";
 import {useQuery} from '@tanstack/react-query'
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const Home = () => {
-    const [featuredRoom, setFeaturedRoom] = useState([])
-
     const Allfacilities = [
         {icon: pickup, title: "Airport Pick-up Service", des: "Start your journey stress-free with our reliable airport pick-up service, ensuring a seamless transition from terminal to your comfortable stay."},
         {icon: customer, title: "Housekeeper Services", des: "Enjoy a spotless and inviting environment every day with our attentive housekeeping, committed to your comfort and cleanliness."},
@@ -23,18 +21,13 @@ const Home = () => {
         {icon: parking, title: "Private Parking Space", des: "Rest easy knowing your vehicle is safe and secure with our dedicated private parking space, designed for your peace of mind."},
     ]
 
-    useEffect(() =>  {
-        axios.get(`${import.meta.env.VITE_BASE_URL}/api/rooms?limit=6`)
-        .then(res =>  setFeaturedRoom(res.data))
-    }, [])
-    // console.log(featuredRoom)
-
-    const getFeaturedRoom = useQuery({ queryKey: ['featuredRoom'], queryFn: async() =>  {
+    const {data:featuredRoom, isLoading, isPending} = useQuery({ queryKey: ['featuredRoom'], queryFn: async() =>  {
         const {data} = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/rooms?limit=6`)
         return data
     } })
-    console.log(getFeaturedRoom)
-    
+
+    if(isLoading) return <LoadingSpinner/>
+
     return (
         <div>
             {/* Banner */}

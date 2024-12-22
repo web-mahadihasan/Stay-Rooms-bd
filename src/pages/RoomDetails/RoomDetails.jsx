@@ -4,35 +4,71 @@ import saving from "../../assets/icons/saving.svg"
 import freeWifi from "../../assets/icons/feeWifi.svg"
 import landPhone from "../../assets/icons/landphone.svg"
 import aircondition from "../../assets/icons/airCondition.svg"
-import { useLoaderData, useParams } from "react-router"
+import { useLoaderData, useNavigate, useParams } from "react-router"
 import FAQ from "./FAQ"
 import { BsArrowUpRightCircle } from "react-icons/bs"
 import { RiCloseLargeLine } from "react-icons/ri"
 import RoomBookModal from "./RoomBookModal"
-import { useEffect, useRef, useState } from "react"
+import { useRef } from "react"
 import axios from "axios"
 import check from "../../assets/icons/check.svg"
 import { format } from "date-fns"
 import useAuth from "../../hooks/useAuth"
+import useAxiosSecured from "../../hooks/useAxiosSecured"
+import { useMutation, useQuery } from "@tanstack/react-query"
+import LoadingSpinner from "../../components/common/LoadingSpinner"
+import Swal from "sweetalert2"
 
 const RoomDetails = () => {
     const {user} = useAuth()
     const faq = useLoaderData()
     const modalRef = useRef();
     const {id} = useParams()
-    const [detailsData, setDetailsData] = useState({})
-    const {title, price, imgUrl, description,facilities, _id} = detailsData || {}
+    const axiosSecured = useAxiosSecured()
+    const navigate = useNavigate()
 
     const highlightFacilities = [
-            {icon: tv, name: "TV"},
-            {icon: heater, name: "Heater"},
-            {icon: aircondition, name: "Air Condition"},
-            {icon: saving, name: "Saving Safe"},
-            {icon: freeWifi, name: "Free Wifi"},
-            {icon: landPhone, name: "Phone"},
-        ]
-    const handleSubmitBooking = (date) =>  {
-        
+        {icon: tv, name: "TV"},
+        {icon: heater, name: "Heater"},
+        {icon: aircondition, name: "Air Condition"},
+        {icon: saving, name: "Saving Safe"},
+        {icon: freeWifi, name: "Free Wifi"},
+        {icon: landPhone, name: "Phone"},
+    ]
+    
+    // Room Details data 
+    const {data:detailsData, isLoading} = useQuery({ queryKey: ['roomDetails'], queryFn: async() =>  {
+        const {data} = await axiosSecured.get(`/api/rooms/${id}`)
+        return data
+    } })
+    const {title, price, imgUrl, description,facilities, _id, availability} = detailsData || {}
+
+    // Book room 
+    const {isPending ,mutateAsync} = useMutation({
+        mutationFn: async bookingData =>  {
+            await axiosSecured.post(`/booking`, bookingData)
+        },
+        onSuccess: () =>  {
+            modalRef.current.close()
+            Swal.fire({
+                title: "Success!",
+                icon: "success",
+                draggable: true,
+                text: "Successfully Booked this room",
+              });
+            
+        }, 
+        onError: (err) =>  {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong! Try again",
+              });
+        }
+    })
+    if(isLoading) return <LoadingSpinner/>
+
+    const handleSubmitBooking = async (date) =>  {
         const startDate = format(date[0].startDate, "PP")
         const endDate = format(date[0].endDate, "PP")
         const bookingData = {
@@ -45,17 +81,15 @@ const RoomDetails = () => {
             bookingName: user?.displayName,
             bookingEmail: user?.email,
         }
-        const {data} = axios.post(`${import.meta.env.VITE_BASE_URL}/booking`, bookingData)
-        .then(res =>  {
-            console.log(res)
-            modalRef.current.close()
-        })
+        try {
+            await mutateAsync(bookingData)
+            const {data} = await axiosSecured.patch(`/update-availablity/${_id}`, {"availability": false})
+            navigate("/my-bookings")
+        } catch (error) {
+            console.log(error)
+        }
     }
-    useEffect(() =>  {
-        axios.get(`${import.meta.env.VITE_BASE_URL}/api/rooms/${id}`)
-        .then(res =>  setDetailsData(res.data))
-    }, [])
-    // console.log(import.meta.env.VITE_BASE_URL)
+    
     return (
         <div>
             <div className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
