@@ -1,0 +1,43 @@
+[
+    {
+      "question": "What payment methods do you accept?",
+      "answer": "We accept various payment methods, including credit/debit cards, online payments, and select digital wallets. Some locations may also accept cash payments."
+    },
+    {
+      "question": "Can I modify or cancel my booking?",
+      "answer": "Yes, you can modify or cancel your booking through our website or by contacting our support team. Cancellation policies may apply."
+    },
+    {
+      "question": "What is your cancellation policy?",
+      "answer": "Our cancellation policy varies depending on the booking type. Some reservations are fully refundable if canceled within the specified period, while others may involve a cancellation fee."
+    },
+    {
+      "question": "Are there any additional charges or taxes on bookings?",
+      "answer": "Room rates may be subject to additional charges such as service fees or local taxes, which will be clearly mentioned during the booking process."
+    },
+    {
+      "question": "Do you offer airport transfers?",
+      "answer": "Yes, we provide airport pick-up and drop-off services. Please contact us in advance to arrange your transfer."
+    },
+    {
+      "question": "Is breakfast included in the room rate?",
+      "answer": "Breakfast options vary by room type. You can find details about breakfast inclusion on the booking page for each room."
+    },
+    {
+      "question": "What are the check-in and check-out times?",
+      "answer": "Standard check-in time is from 3:00 PM, and check-out time is by 11:00 AM. Early check-in or late check-out can be arranged upon request, subject to availability."
+    },
+    {
+      "question": "Do you have pet-friendly rooms?",
+      "answer": "Yes, we offer pet-friendly rooms at select properties. Please contact us in advance to confirm availability and any additional charges."
+    },
+    {
+      "question": "Is parking available at the hotel?",
+      "answer": "Yes, we provide private parking spaces for our guests. Parking availability and charges, if any, will be mentioned during the booking process."
+    },
+    {
+      "question": "What safety measures do you follow at your hotel?",
+      "answer": "We prioritize guest safety by implementing stringent hygiene protocols, regular sanitization, and 24/7 security surveillance."
+    }
+  ]
+  
