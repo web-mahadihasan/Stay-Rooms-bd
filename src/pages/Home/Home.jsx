@@ -9,6 +9,7 @@ import breakfast from "../../assets/images/breakfast.png"
 import parking from "../../assets/images/parking.png"
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {useQuery} from '@tanstack/react-query'
 
 const Home = () => {
     const [featuredRoom, setFeaturedRoom] = useState([])
@@ -26,7 +27,13 @@ const Home = () => {
         axios.get(`${import.meta.env.VITE_BASE_URL}/api/rooms?limit=6`)
         .then(res =>  setFeaturedRoom(res.data))
     }, [])
-    console.log(featuredRoom)
+    // console.log(featuredRoom)
+
+    const getFeaturedRoom = useQuery({ queryKey: ['featuredRoom'], queryFn: async() =>  {
+        const {data} = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/rooms?limit=6`)
+        return data
+    } })
+    console.log(getFeaturedRoom)
     
     return (
         <div>

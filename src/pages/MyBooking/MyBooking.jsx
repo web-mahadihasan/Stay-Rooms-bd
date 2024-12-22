@@ -2,9 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import BookingTableRow from "./BookingTableRow";
+import useAxiosSecured from "../../hooks/useAxiosSecured";
 
 const MyBooking = () => {
     const {user} = useAuth()
+    const axiosSecured = useAxiosSecured()
     const [bookedRoom, setBookedRoom] = useState([]);
     
 
@@ -12,7 +14,7 @@ const MyBooking = () => {
 
     // }
     useEffect(()=>  {
-        axios.get(`${import.meta.env.VITE_BASE_URL}/booked-room/${user?.email}`, {withCredentials: true})
+        axiosSecured.get(`/booked-room/${user?.email}`)
         .then(res =>  setBookedRoom(res.data))
     }, [])
 
