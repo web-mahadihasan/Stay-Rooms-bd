@@ -10,6 +10,7 @@ const AuthContext = ({children}) => {
     const google = new GoogleAuthProvider()
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [loginUser, setLoginUser] = useState(false);
 
     // Create user 
     const registerNewUser = (email, password) =>  {
@@ -41,12 +42,14 @@ const AuthContext = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, async currentUser =>  {
             if(currentUser?.email){
                 // Generate token 
-                const {data} = await axios.post(`${import.meta.env.VITE_BASE_URL}/jwt`, {email: currentUser?.email})
-                console.log(data)
+                const {data} = await axios.post(`${import.meta.env.VITE_BASE_URL}/jwt`, {email: currentUser?.email}, {withCredentials: true})
                 setUser(currentUser)
+                setLoginUser(true)
                 console.log(data)
             }else{
-                setUser(null)
+                const {data} = await axios.get(`${import.meta.env.VITE_BASE_URL}/logout`, {withCredentials: true})
+                setLoginUser(false)
+                setUser(currentUser)
             }
             setLoading(false)
         })
@@ -65,7 +68,8 @@ const AuthContext = ({children}) => {
         user, 
         setUser,
         loading, 
-        setLoading
+        setLoading,
+        loginUser
     }
     return (
         <AuthContextProvider.Provider value={authInfo}>

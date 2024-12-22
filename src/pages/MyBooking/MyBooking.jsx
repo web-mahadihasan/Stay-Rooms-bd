@@ -12,7 +12,7 @@ const MyBooking = () => {
 
     // }
     useEffect(()=>  {
-        axios.get(`${import.meta.env.VITE_BASE_URL}/booked-room/${user?.email}`)
+        axios.get(`${import.meta.env.VITE_BASE_URL}/booked-room/${user?.email}`, {withCredentials: true})
         .then(res =>  setBookedRoom(res.data))
     }, [])
 

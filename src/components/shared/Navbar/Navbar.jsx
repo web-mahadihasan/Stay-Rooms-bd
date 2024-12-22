@@ -10,7 +10,7 @@ import { IoIosArrowDown } from "react-icons/io";
 
 const Navbar = () => {
     
-    const {user} = useAuth()
+    const {user, loginUser} = useAuth()
     const {setOpenMenu} = useAppContext();
 
     const navLinks = <>
@@ -38,7 +38,7 @@ const Navbar = () => {
                 {/* Action button  */}
                 <div className="flex items-center gap-2">
                     {
-                        user ? <div className="flex items-center gap-3">
+                        loginUser ? <div className="flex items-center gap-3">
                             <span className="p-2 border bg-base-200 rounded-full cursor-pointer"><MdOutlineNotificationsActive size={23} className="text-primary"/></span>
                             {/* <img src="" alt="" className="w-10 h-10 rounded-full"/> */}
                             <details className="dropdown dropdown-end">
