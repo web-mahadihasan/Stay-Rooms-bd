@@ -10,6 +10,7 @@ import { RiCloseLargeLine } from "react-icons/ri";
 import logo from "../../assets/images/stayroom.png"
 import { DateRange } from "react-date-range";
 import { IoCalendarOutline } from "react-icons/io5";
+import ReviewModal from "../../components/common/ReviewModal";
 
 const MyBooking = () => {
     const {user} = useAuth()
@@ -18,6 +19,7 @@ const MyBooking = () => {
     const updateModalRef = useRef()
     const [openCalender, setOpenCalender] = useState(false)
     const [updateId, setUpdateId] = useState("")
+    const [modalOpen, setModalOpen] = useState(false)
     
     const [range, setRange] = useState([
         {
@@ -139,6 +141,7 @@ const MyBooking = () => {
                             bookedRoomData={room} 
                             onCancellation={handleCancellation}
                             onUpdate={updateDataModal}
+                            handleReviewModal={setModalOpen}
                             />)
                     }
                
@@ -171,7 +174,7 @@ const MyBooking = () => {
                             <RiCloseLargeLine size={20} />
                         </button>
                     </form>
-                        {/* Modal content  */}
+                    {/* Modal content  */}
                     <div className="flex items-center justify-center">
                         <img src={logo} alt="" className="h-12" />
                     </div>
@@ -210,6 +213,8 @@ const MyBooking = () => {
                 </dialog>
             </div>
             {/* Modal end  */}
+            {/* Review Modal  */}
+            {/* <ReviewModal modalOpen={modalOpen} setModalOpen={setModalOpen} onReviewSubmit={handleReviewSubmit}/> */}
         </div>
     );
 };

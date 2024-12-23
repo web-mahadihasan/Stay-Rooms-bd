@@ -83,17 +83,17 @@ const Rooms = () => {
                             </div>
                             <div className="p-6 my-4 lg:my-0 lg:flex-1 bg-base-100 border border-gray-100 rounded min-h-52">
                                 <div>
-                                <label className="block text-lg font-medium  text-secondary-black my-2">
-                                Sort By Price/Rating
-                                </label>
-                                <div className="divider my-3"></div>
-                                <Select
-                                options={options}
-                                name="visaType"
-                                onChange={optionOnChange}
-                                placeholder="Select a Sort Type"
-                                />
-                            </div>
+                                    <label className="block text-lg font-medium  text-secondary-black my-2">
+                                    Sort By Price/Rating
+                                    </label>
+                                    <div className="divider my-3"></div>
+                                    <Select
+                                    options={options}
+                                    name="visaType"
+                                    onChange={optionOnChange}
+                                    placeholder="Select a Sort Type"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </aside>
