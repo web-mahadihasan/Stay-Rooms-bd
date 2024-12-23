@@ -8,7 +8,7 @@ export const axiosSecured = axios.create({
     withCredentials: true,
 })
 
-const useAxiosSecured = () => {
+const useAxiosSecured = () => { 
     const {logOutUser} = useAuth()
     const navigate = useNavigate()
 

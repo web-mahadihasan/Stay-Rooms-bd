@@ -1,14 +1,13 @@
 import { useState } from "react";
 import logo from "../../assets/images/stayroom.png"
-import { DateRange, DateRangePicker } from "react-date-range";
-import { Calendar } from 'react-date-range';
-import { addDays, format, formatDistance } from 'date-fns';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import { DateRange } from "react-date-range";
+import { format, formatDistance } from 'date-fns';
+import 'react-date-range/dist/styles.css'; 
+import 'react-date-range/dist/theme/default.css'; 
 import { IoCalendarOutline } from "react-icons/io5";
 
 const RoomBookModal = ({roomData, onBooking}) => {
-    const {title, price, imgUrl, description, availability} = roomData || {}
+    const {title, price, imgUrl, description} = roomData || {}
     const [openCalender, setOpenCalender] = useState(false)
     const [range, setRange] = useState([
         {
@@ -53,15 +52,17 @@ const RoomBookModal = ({roomData, onBooking}) => {
                         direction="horizontal"
                         minDate={new Date()}
                     />
-                    <button className="px-4 py-1.5 bg-primary rounded-lg text-white ml-2" onClick={() =>  setOpenCalender(false)}>Apply</button>
                     </div>
                 }
             </div>
             {/* Quantity  */}
-
-            <div>
-                <button onClick={() =>  onBooking(range)} className=" px-5 py-2 bg-primary text-white rounded shadow-xl border border-primary hover:bg-secondary-black hover:border-secondary-black duration-500 flex items-center gap-2 font-medium tracking-wider">Submit Booking</button>
+            <div className="my-4">
+                {
+                    openCalender? <button onClick={() =>  setOpenCalender(false)} className=" px-5 py-2 bg-primary text-white rounded shadow-xl border border-primary hover:bg-secondary-black hover:border-secondary-black duration-500 flex items-center gap-2 font-medium tracking-wider">Apply Date</button> 
+                    : <button onClick={() =>  onBooking(range)} className=" px-5 py-2 bg-primary text-white rounded shadow-xl border border-primary hover:bg-secondary-black hover:border-secondary-black duration-500 flex items-center gap-2 font-medium tracking-wider">Submit Booking</button>
+                }
             </div>
+         
         </div>
     </div>
     );

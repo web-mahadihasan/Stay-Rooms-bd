@@ -2,10 +2,10 @@ import { useState } from "react";
 import { CgCloseO } from "react-icons/cg";
 import { CiMenuKebab } from "react-icons/ci";
 
-const BookingTableRow = ({bookedRoomData, onCancellation}) => {
+const BookingTableRow = ({bookedRoomData, onCancellation, onUpdate}) => {
     const [openActionRow, setOpenActionRow] = useState(null);
     const [openAction, setOpenAction] = useState(false)
-    const {_id, title, price, imgUrl, bookingName, bookingEmail, startDate, endDate} = bookedRoomData || {}
+    const {_id, title, price, imgUrl, bookingName, bookingEmail, startDate, endDate, room_id} = bookedRoomData || {}
     const handleActionClick = (id) => {
         setOpenActionRow(openActionRow ===   id ? null : id);
         setOpenAction(true)
@@ -55,8 +55,8 @@ const BookingTableRow = ({bookedRoomData, onCancellation}) => {
                     <button onClick={handleRowActionClose} className=""><CgCloseO size={20} /></button>
                 </div>
                 <div className="flex flex-col gap-1">
-                    <button onClick={() =>  onCancellation(_id, startDate)} className="text-base font-medium px-1 py-1 bg-red-500 text-white rounded">Cancel</button>
-                    <button className="text-base font-medium px-1 py-1 bg-primary/80 text-white rounded">Update Date</button>
+                    <button onClick={() =>  onCancellation(_id, room_id, startDate)} className="text-base font-medium px-1 py-1 bg-red-500 text-white rounded">Cancel</button>
+                    <button onClick={() =>  onUpdate(_id, startDate, endDate)} className="text-base font-medium px-1 py-1 bg-primary/80 text-white rounded">Update Date</button>
                     <button className="text-base font-medium px-1 py-1 bg-green-500 text-white rounded">Give Review</button>
                 </div>
             </div> 

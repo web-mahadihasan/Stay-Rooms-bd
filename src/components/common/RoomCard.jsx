@@ -18,11 +18,11 @@ const RoomCard = ({roomData}) => {
     ]
     return (
         <div className="rounded-md card-compact bg-base-100 shadow-sm border">
-            <div className="relative  overflow-hidden">
-            <figure>
+            <div className="relative  overflow-hidden rounded-t-md">
+            <figure className="rounded-t-md">
                 <img
                 src={imgUrl}
-                alt="Shoes" className="rounded-t-md h-[250px] w-full hover:scale-110 duration-500 cursor-pointer"/>
+                alt={title} className="rounded-t-md h-[250px] w-full hover:scale-110 duration-500 cursor-pointer"/>
             </figure>
             </div>
             <div>

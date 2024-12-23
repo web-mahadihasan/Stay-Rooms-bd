@@ -31,7 +31,6 @@ const AuthContext = ({children}) => {
     const updataUser = (updataData) =>  {
         return updateProfile(auth.currentUser, updataData)
     }
-    // Log out user
      // Log out user 
      const logOutUser = () => {
         return signOut(auth);
@@ -39,7 +38,7 @@ const AuthContext = ({children}) => {
 
     // on Auth state change 
     useEffect(() =>  {
-        const unsubscribe = onAuthStateChanged(auth, async currentUser =>  {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) =>  {
             if(currentUser?.email){
                 // Generate token 
                 const {data} = await axios.post(`${import.meta.env.VITE_BASE_URL}/jwt`, {email: currentUser?.email}, {withCredentials: true})

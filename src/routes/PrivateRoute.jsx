@@ -10,11 +10,11 @@ const PrivateRoute = ({children}) => {
         return <LoadingSpinner/>
     }
 
-    if(user && user.email) return children;
+    if(user) return children;
 
 
     return (
-        <Navigate to={"/auth/login"} state={pathname}></Navigate>
+        <Navigate to={"/auth/login"} state={pathname} replace></Navigate>
     );
 };
 

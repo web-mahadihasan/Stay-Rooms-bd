@@ -18,6 +18,7 @@ import useAxiosSecured from "../../hooks/useAxiosSecured"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import LoadingSpinner from "../../components/common/LoadingSpinner"
 import Swal from "sweetalert2"
+import { el } from "date-fns/locale"
 
 const RoomDetails = () => {
     const {user} = useAuth()
@@ -66,7 +67,6 @@ const RoomDetails = () => {
               });
         }
     })
-    if(isLoading) return <LoadingSpinner/>
 
     const handleSubmitBooking = async (date) =>  {
         const startDate = format(date[0].startDate, "PP")
@@ -81,15 +81,25 @@ const RoomDetails = () => {
             bookingName: user?.displayName,
             bookingEmail: user?.email,
         }
-        try {
-            await mutateAsync(bookingData)
-            const {data} = await axiosSecured.patch(`/update-availablity/${_id}`, {"availability": false})
-            navigate("/my-bookings")
-        } catch (error) {
-            console.log(error)
+        if(availability){
+            try {
+                await mutateAsync(bookingData)
+                const {data} = await axiosSecured.patch(`/update-availablity/${_id}`, {"availability": false})
+                navigate("/my-bookings")
+            } catch (error) {
+                console.log(error)
+            }
+        }else{
+            modalRef.current.close()
+            Swal.fire({
+                icon: "error",
+                title: "Room is not available now",
+                text: "This room alreay booked by another user",
+              });
         }
+        
     }
-    
+    if(isLoading) return <LoadingSpinner/>
     return (
         <div>
             <div className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
