@@ -13,7 +13,7 @@ const MainLayout = () => {
             </header>
 
             {/* Main content  */}
-            <main>
+            <main className="min-h-[calc(100vh-300px)]">
                 <Outlet/>
             </main>
             
