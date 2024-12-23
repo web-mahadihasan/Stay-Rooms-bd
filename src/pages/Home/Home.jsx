@@ -22,7 +22,7 @@ const Home = () => {
     ]
 
     const {data:featuredRoom, isLoading, isPending} = useQuery({ queryKey: ['featuredRoom'], queryFn: async() =>  {
-        const {data} = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/rooms?limit=6`)
+        const {data} = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/rooms`)
         return data
     } })
 

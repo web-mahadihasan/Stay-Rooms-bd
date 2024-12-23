@@ -3,7 +3,7 @@ import {  LiaSortNumericDownSolid, LiaSortNumericUpAltSolid } from "react-icons/
 import { useLocation } from "react-router";
 import Select from 'react-select'
 
-const RoomAsideTool = () => {
+const RoomAsideTool = ({onSearch}) => {
     const [searchText, setSearchText] = useState("")
     const {pathname} = useLocation()
     const [selectedValue, setSelectedValue] = useState(null);
@@ -17,7 +17,7 @@ const RoomAsideTool = () => {
       };
     return (
         <div className={`w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${pathname ===  "/all-visa" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-16" : "xl:my-0 xl:grid-cols-1"}`}>
-            <div className="p-6 rounded w-full bg-base-100">
+            <div className="p-6 rounded w-full bg-base-100 border border-gray-100">
                 <h3 className="text-lg font-medium  text-secondary-black">Search by Title</h3>
                 <div className="divider my-3"></div>
                 <div className="relative my-2">
@@ -30,9 +30,9 @@ const RoomAsideTool = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
                 </div>
-                <button className="px-5 mt-4 py-2 bg-primary text-white rounded shadow-xl border border-primary hover:bg-secondary-black hover:border-secondary-black duration-500 flex items-center gap-2 font-medium tracking-wide">Search </button>
+                <button onClick={() =>  onSearch(searchText)} className="px-5 mt-4 py-2 bg-primary text-white rounded shadow-xl border border-primary hover:bg-secondary-black hover:border-secondary-black duration-500 flex items-center gap-2 font-medium tracking-wide">Search </button>
             </div>
-            <div className="p-6 lg:my-0 lg:flex-1 bg-base-100">
+            <div className="p-6 lg:my-0 lg:flex-1 bg-base-100 border border-gray-100 rounded">
                 <h3 className="text-lg font-medium  text-secondary-black">Filter by Room Availablity</h3>
                 <div className="divider my-3"></div>
                 <div>
@@ -50,7 +50,7 @@ const RoomAsideTool = () => {
                 </div>
                 </div>
             </div>
-            <div className="p-6 my-4 lg:my-0 lg:flex-1 bg-base-100">
+            <div className="p-6 my-4 lg:my-0 lg:flex-1 bg-base-100 border border-gray-100 rounded min-h-52">
                 <div>
                 <label className="block text-lg font-medium  text-secondary-black my-2">
                   Sort By Price/Rating
