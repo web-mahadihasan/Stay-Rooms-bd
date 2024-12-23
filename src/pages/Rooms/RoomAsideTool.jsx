@@ -9,10 +9,8 @@ const RoomAsideTool = () => {
     const [selectedValue, setSelectedValue] = useState(null);
 
     const options = [
-        { value: "Price", label: "tourist visa" },
-        { value: "Student visa", label: "Student visa" },
-        { value: "Official visa", label: "Official visa" },
-        { value: "Business visa", label: "Business visa" },
+        { value: "asc", label: "Sort by Price Ascending" },
+        { value: "dsc", label: "Sort by price Descending" },
       ];
       const optionOnChange = (selectedOption) => {
         setSelectedValue(selectedOption.value);
