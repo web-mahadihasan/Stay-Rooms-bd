@@ -5,11 +5,13 @@ import freeWifi from "../../assets/icons/feeWifi.svg"
 import landPhone from "../../assets/icons/landphone.svg"
 import { BsArrowRight } from "react-icons/bs"
 import { Link, useLocation } from "react-router"
+import { useRef, useState } from "react"
 
 
 const RoomCard = ({roomData}) => {
-    const {title, price, imgUrl, description, _id} = roomData || {}
+    const {title, price, imgUrl, description, _id, availability} = roomData || {}
     const {pathname} = useLocation()
+
     const Extrafacilities = [
         {icon: tv, name: "TV"},
         {icon: heater, name: "Heater"},
@@ -17,15 +19,17 @@ const RoomCard = ({roomData}) => {
         {icon: freeWifi, name: "Free Wifi"},
         {icon: landPhone, name: "Phone"},
     ]
+
     return (
         <Link to={pathname ===   '/rooms' && `/room-details/${_id}`}>
-        <div className="rounded-md card-compact bg-base-100 shadow-sm border">
+        <div className="rounded-md card-compact bg-base-100 shadow-sm border hover:shadow-md hover:bg-[#F5F9FF]">
             <div className="relative  overflow-hidden rounded-t-md">
-            <figure className="rounded-t-md">
-                <img
-                src={imgUrl}
-                alt={title} className="rounded-t-md h-[250px] w-full hover:scale-110 duration-500 cursor-pointer"/>
-            </figure>
+                <figure className="rounded-t-md">
+                    <img
+                    src={imgUrl}
+                    alt={title} className="rounded-t-md h-[250px] w-full hover:scale-110 duration-500 cursor-pointer"/>
+                </figure>
+                <p className={`absolute top-0 left-0  p-1 rounded-sm font-medium text-white ${availability? "bg-green-600" : "bg-orange-600"}`}>{availability ? "Available" : "Unavailable"}</p>
             </div>
             <div>
                 <div className="card-body">
@@ -59,6 +63,7 @@ const RoomCard = ({roomData}) => {
                 </div>
             </div>
         </div>
+        {/* Card content  */}
         </Link>
     );
 };

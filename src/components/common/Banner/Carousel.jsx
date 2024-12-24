@@ -20,7 +20,7 @@ const bgimg3 = "https://i.ibb.co.com/qn5LpgZ/hero-home1-slider-4.webp";
 
 export default function Carousel() {
   return (
-    <div className='container px-6 py-6 mx-auto -z-0'>
+    <div className='container px-4 xl:px-0 py-6 mx-auto -z-0'>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

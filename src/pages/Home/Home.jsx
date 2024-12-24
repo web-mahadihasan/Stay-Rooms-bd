@@ -11,6 +11,8 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import LeafletMaps from "../../components/common/LeafletMaps";
+import { HiOutlineArrowRight } from "react-icons/hi";
+import { Link } from "react-router";
 
 const Home = () => {
   const Allfacilities = [
@@ -71,6 +73,20 @@ const Home = () => {
 
       {/* Featured Rooms  */}
       <div className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
+        <div className="my-8 flex justify-between items-center">
+          <h3 className="text-2xl font-bold text-primary-black">Explorer Top-rated Featured Rooms</h3>
+          <div>
+          <Link to={"/rooms"} className="px-8 py-3 relative shadow-lg before:absolute flex items-center gap-2
+            before:top-0 before:left-0 before:w-0 before:h-0 before:border-l-[4px] before:border-t-[4px] before:border-transparent 
+            hover:before:w-full hover:before:h-full hover:before:border-primary hover:before:transition-all hover:before:duration-500 
+            after:border-r-[4px] after:border-b-[4px] after:border-transparent hover:after:border-primary 
+            after:absolute after:bottom-0 after:right-0 after:w-0 
+            after:h-0 hover:after:w-full hover:after:h-full rounded hover:before:rounded hover:after:rounded border border-primary hover:after:transition-all hover:after:duration-500">
+              <span>Explorer More</span>
+              <span><HiOutlineArrowRight /></span>
+          </Link>
+          </div>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
           {featuredRoom?.map((room) => (
             <RoomCard key={room._id} roomData={room} />

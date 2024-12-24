@@ -8,6 +8,7 @@ import { AiOutlineAppstore } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import Select from 'react-select'
+import { HiOutlineArrowLeft, HiOutlineArrowRight } from "react-icons/hi";
 
 const Rooms = () => {
     const [searchText, setSearchText] = useState("")
@@ -100,7 +101,17 @@ const Rooms = () => {
                     <section className="col-span-2">
                         {/* Room Card Grid  */}
                         <div className="mb-4 p-3 rounded-md flex justify-between items-center bg-base-100">
-                            <Link to={"/"}><button className="px-5 py-1.5 bg-white text-primary rounded shadow-md border border-primary hover:bg-primary hover:text-white hover:border-primary duration-500 font-medium">Back</button></Link>
+                            <Link to={"/"}>
+                                <button className="px-8 py-3 relative shadow-lg before:absolute flex items-center gap-2
+                                    before:top-0 before:left-0 before:w-0 before:h-0 before:border-l-[4px] before:border-t-[4px] before:border-transparent 
+                                    hover:before:w-full hover:before:h-full hover:before:border-primary hover:before:transition-all hover:before:duration-500 
+                                    after:border-r-[4px] after:border-b-[4px] after:border-transparent hover:after:border-primary 
+                                    after:absolute after:bottom-0 after:right-0 after:w-0 
+                                    after:h-0 hover:after:w-full hover:after:h-full rounded hover:before:rounded hover:after:rounded border border-primary hover:after:transition-all hover:after:duration-500">
+                                    <span><HiOutlineArrowLeft /></span>
+                                    <span>Back</span>
+                                </button>
+                            </Link>
                             <div className="flex items-center gap-2">
                                 <button><FaListUl size={20} className="text-titleBlack/65"/></button>
                                 <button><AiOutlineAppstore size={24} className="text-primary"/></button>
