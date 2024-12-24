@@ -1,0 +1,47 @@
+[
+    {
+      "title": "Luxury Room",
+      "description": "Elegant, spacious, and truly luxurious experience with stunning decor.",
+      "rowSpan": true,
+      "colSpan": true,
+      "img": "https://i.ibb.co.com/JCXK7N4/banner3.png"
+    },
+    {
+      "title": "Cozy Suite",
+      "description": "Perfect for relaxation, comfort, and peace in a private space.",
+      "rowSpan": false,
+      "colSpan": true,
+      "img": "https://i.ibb.co.com/rvZjfXF/Room-06-650x450.webp"
+    },
+    {
+      "title": "Hotel Lobby",
+      "description": "Welcoming ambiance with modern stylish decor and cozy seating.",
+      "rowSpan": false,
+      "colSpan": false,
+      "img": "https://i.ibb.co.com/sPjf4c3/gallary2.png"
+    },
+    {
+      "title": "Deluxe Room",
+      "description": "Premium comfort for ultimate relaxation and rest after a busy day.",
+      "rowSpan": true,
+      "colSpan": false,
+      "img": "https://i.ibb.co.com/qB9MVkB/Room-04-1-650x450.webp"
+    },
+    {
+      "title": "Special Offers",
+      "description": "Exciting discounts for your perfect stay experience and more savings.",
+      "rowSpan": false,
+      "colSpan": false,
+      "img": "https://i.ibb.co.com/r7JzHWc/Beautiful-Hotels-Designs-Ulaman-Bali-Destination-Deluxe.jpg"
+    },
+    
+    {
+        "title": "Poolside",
+        "description": "Relax and unwind by the serene poolside view under the sun.",
+        "rowSpan": false,
+        "colSpan": true,
+        "img": "https://i.ibb.co.com/7tmP5qk/luxury-hotel.jpg"
+    }
+  
+  ]
+  

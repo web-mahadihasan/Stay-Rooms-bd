@@ -7,6 +7,9 @@ import { useState } from "react";
 import { VscEyeClosed } from "react-icons/vsc";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import axios from "axios";
+import Swal from "sweetalert2";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const Register = () => {
     const {registerNewUser,loginWithGoogle, setUser, updataUser} = useAuth();
@@ -17,25 +20,34 @@ const Register = () => {
     const [imageUrl, setImageUrl] = useState("");
     const location = useLocation()
     const from = location?.state ? location.state : "/"
+    const [loading, setLoading] = useState({})
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     const navigate = useNavigate()
 
      //    Handle Image upload
-    const handleImageUpload = (e) => {
+    const handleImageUpload = async (e) => {
+        setLoading({
+            ...loading,
+            imgUpload: true
+        })
         const imageLink = e.target.files[0];
         const imageData = new FormData();
         imageData.append("image", imageLink);
-        fetch("https://api.imgbb.com/1/upload?key=176775b308da684d8b761f7bdfe641cd",
-        {
-            method: "POST",
-            body: imageData,
-        })
-        .then((res) => res.json())
-        .then((data) => setImageUrl(data.data?.display_url));
+        try {
+            const {data} = await axios.post(`https://api.imgbb.com/1/upload?key=176775b308da684d8b761f7bdfe641cd`, imageData)
+            setImageUrl(data?.data?.display_url)
+            setLoading({
+                ...loading,
+                imgUpload: false
+            })
+        } catch (error) {
+            toast.error('Image upload failed')
+        }
+        
     };
     
-    const handleUserRegister = (e) =>  {
+    const handleUserRegister = async (e) =>  {
         e.preventDefault()
 
         const form = e.target;
@@ -57,20 +69,28 @@ const Register = () => {
         }
 
         setError({...error, wrongRePass: null, wrongPass: null})
-        
-        registerNewUser(email, password)
-        .then((result) =>  {
-            setUser(result.user)
-            updataUser(updateData)
-            .then(() => {
-                console.log('update done')
-                navigate(from)
-            }).catch(err =>  {
-                console.log("Failed to update")
+        try {
+            setLoading({
+                ...loading, 
+                registration: true
             })
-        }).catch(err =>  {
-            console.log(err)
-        })
+            const result = await registerNewUser(email, password)
+            setUser(result.user)
+            console.log(result.user)
+            const update = await updataUser(updateData)
+            toast.success("Successfully registration done")
+            navigate(from)
+            setLoading({
+                ...loading, 
+                registration: false
+            })
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Registration Failed",
+                text: "Something went wrong! Try again",
+            });
+        }
     }
     const handleGoogleLogin = async () =>  {
         try {
@@ -84,6 +104,7 @@ const Register = () => {
             console.log(err)
         }
     }
+    if(loading?.registration) return <LoadingSpinner/>
     return (
         <div className="w-full min-h-screen">
             <div className="max-w-6xl mx-auto px-4 xl:px-0 flex items-center justify-between flex-col md:flex-row min-h-screen gap-8">
@@ -160,7 +181,11 @@ const Register = () => {
                                 </label>
                             </div>
                             <div className="w-full lg:w-3/4 mx-auto">
-                                <button type="submit" disabled={!checked} className="w-full p-2 border border-primary bg-primary rounded-md font-medium text-white hover:bg-secondary-black hover:border-secondary-black focus:bg-secondary-black focus:border-secondary-black duration-300 ">Continue with Email</button>
+                                {
+                                    loading?.imgUpload ? <button type="submit" disabled className="w-full p-2 border border-primary bg-primary rounded-md font-medium text-white hover:bg-secondary-black hover:border-secondary-black focus:bg-secondary-black focus:border-secondary-black duration-300 flex items-center gap-2 justify-center"><span className="loading loading-spinner text-neutral"></span> Image uploading...</button>
+                                    : <button type="submit" disabled={!checked} className="w-full p-2 border border-primary bg-primary rounded-md font-medium text-white hover:bg-secondary-black hover:border-secondary-black focus:bg-secondary-black focus:border-secondary-black duration-300 ">Continue with Email</button>
+                                }
+                                
                             </div>
                         </form>
                         <div className="my-4">

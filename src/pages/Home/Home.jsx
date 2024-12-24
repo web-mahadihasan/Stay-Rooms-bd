@@ -13,6 +13,8 @@ import LoadingSpinner from "../../components/common/LoadingSpinner";
 import LeafletMaps from "../../components/common/LeafletMaps";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { Link } from "react-router";
+import LeafletContent from "../../components/common/LeafletContent";
+import HomeGallary from "../../components/common/HomeGallary";
 
 const Home = () => {
   const Allfacilities = [
@@ -62,6 +64,11 @@ const Home = () => {
     },
   });
 
+  const {data:gallaryData} = useQuery({queryKey: ["gallary"], queryFn: async () =>  {
+    const {data} = await axios.get("/gallary.json")
+    return data
+  }})
+
   if (isLoading) return <LoadingSpinner />;
 
   return (
@@ -72,7 +79,7 @@ const Home = () => {
       </div>
 
       {/* Featured Rooms  */}
-      <div className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
+      <section className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
         <div className="my-8 flex justify-between items-center">
           <h3 className="text-2xl font-bold text-primary-black">Explorer Top-rated Featured Rooms</h3>
           <div>
@@ -92,10 +99,10 @@ const Home = () => {
             <RoomCard key={room._id} roomData={room} />
           ))}
         </div>
-      </div>
+      </section>
 
       {/* Facilities */}
-      <div>
+      <section>
         <h3 className="text-center font-extrabold text-4xl text-primary-black my-3">
           Hotel Facilities
         </h3>
@@ -107,34 +114,34 @@ const Home = () => {
           ))}
           {/* <Facilities/> */}
         </div>
-      </div>
+      </section>
 
-      {/* Leaflet maps  */}
-      <div className="bg-[#f9fbfe] p-6 grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto gap-8 my-24">
-        <div>
-          <h3 className="text-2xl font-bold my-4 leading-9">
-            Cheapest Deals on Budget & Luxury Rooms are Available at StayRooms
-            BD
-          </h3>
-          <p className="text-light-black">
-            Due to the huge influx of tourists in World, StayRooms offers a
-            wide range of luxury, deluxe and budget hotels to them. Choose to
-            stay in luxury and comfort with the greatest discounts available on
-            hotel bookings. We list the classiest budget hotels on our site
-            along with some of the prominent international hotel chains of India
-            including Oberoi Group, ITC Group, Taj Group, Le Meridian Group and
-            many others. Ranging from class hotels to luxury beach resorts, each
-            hotel on our site gives you a memorable staying experience. Along
-            with deluxe, budget and luxury hotels, EaseMyTrip also displays a
-            number of heritage hotels that offer you a royal stay. Enjoy cheap
-            hotel deals for any destination with great savings.
-          </p>
+      {/* Leaflet maps/Locaions  */}
+      <section className="my-24">
+        <h3 className="text-center font-extrabold text-4xl text-primary-black my-3">
+          Our Location - Find Us
+        </h3>
+        <p className="text-center text-light-black max-w-2xl mx-auto my-5 mb-10">Discover our location with ease and find us effortlessly. We're here to welcome you—plan your visit today!</p>
+
+        <div className="bg-[#f9fbfe] px-8 py-10 grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto gap-8">
+          <div>
+            <LeafletContent/>
+          </div>
+          {/* Maps  */}
+          <div className="h-full min-h-[350px]">
+              <LeafletMaps  />
+          </div>
         </div>
-        {/* Maps  */}
-        <div className="h-full min-h-[350px]">
-            <LeafletMaps  />
-        </div>
-      </div>
+      </section>
+
+      {/* Photo Gallary  */}
+      <section className="max-w-7xl mx-auto px-4 xl:px-0">
+        <h3 className="font-extrabold text-4xl text-primary-black my-3">
+          Gallary
+        </h3>
+        <p className=" text-light-black max-w-2xl my-5 mb-10">Browse our gallery of luxurious rooms, cozy spaces, exclusive offers, and stunning hotel views. Your perfect stay awaits!</p>
+        <HomeGallary gallaryData={gallaryData}/>
+      </section>
     </div>
   );
 };

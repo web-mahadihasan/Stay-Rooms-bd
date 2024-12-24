@@ -23,11 +23,11 @@ const MainLayout = () => {
             </header>
 
             {/* Auto Show Modal  */}
-            <div>
+            {/* <div>
                 {
                     pathname ===   "/" && <AutoShowModal autoShowModal={autoShowModal} setAutoShowModal={setAutoShowModal}/>
                 }
-            </div>
+            </div> */}
             {/* Main content  */}
             <main className="min-h-[calc(100vh-300px)]">
                 <Outlet/>
