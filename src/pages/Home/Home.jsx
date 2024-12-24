@@ -10,6 +10,7 @@ import parking from "../../assets/images/parking.png";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
+import LeafletMaps from "../../components/common/LeafletMaps";
 
 const Home = () => {
   const Allfacilities = [
@@ -82,6 +83,8 @@ const Home = () => {
         <h3 className="text-center font-extrabold text-4xl text-primary-black my-3">
           Hotel Facilities
         </h3>
+        <p className="text-center text-light-black max-w-2xl mx-auto my-5 mb-10">Experience a variety of thoughtfully designed amenities to ensure your stay is both comfortable and memorable, including swimming pools, fitness centers, exquisite dining options, high-speed Wi-Fi, and personalized services.</p>
+
         <div className="max-w-7xl mx-auto px-4 xl:px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {Allfacilities.map((facilites, idx) => (
             <Facilities key={idx} facilites={facilites} />
@@ -91,14 +94,14 @@ const Home = () => {
       </div>
 
       {/* Leaflet maps  */}
-      <div>
+      <div className="bg-[#f9fbfe] p-6 grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto gap-8 my-24">
         <div>
-          <h3>
-            Cheapest Deals on Budget & Luxury Hotels are Available at StayRooms
+          <h3 className="text-2xl font-bold my-4 leading-9">
+            Cheapest Deals on Budget & Luxury Rooms are Available at StayRooms
             BD
           </h3>
-          <p>
-            Due to the huge influx of tourists in India, EaseMyTrip offers a
+          <p className="text-light-black">
+            Due to the huge influx of tourists in World, StayRooms offers a
             wide range of luxury, deluxe and budget hotels to them. Choose to
             stay in luxury and comfort with the greatest discounts available on
             hotel bookings. We list the classiest budget hotels on our site
@@ -112,8 +115,8 @@ const Home = () => {
           </p>
         </div>
         {/* Maps  */}
-        <div>
-            {/* <LeafletMaps/> */}
+        <div className="h-full min-h-[350px]">
+            <LeafletMaps  />
         </div>
       </div>
     </div>

@@ -12,8 +12,8 @@ const MobileMenuAside = () => {
 
     const navLinks = [
         { "path": "/", "element": "Home" },
-        { "path": "/all-rooms", "element": "Rooms" },
-        { "path": "/my-booking", "element": "My Bookings" },
+        { "path": "/rooms", "element": "Rooms" },
+        { "path": "/my-bookings", "element": "My Bookings" },
         { "path": "/about-us", "element": "About Us" },
         { "path": "/contact", "element": "Contact" }
       ]

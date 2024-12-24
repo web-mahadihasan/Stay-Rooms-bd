@@ -9,7 +9,7 @@ import FAQ from "./FAQ"
 import { BsArrowUpRightCircle } from "react-icons/bs"
 import { RiCloseLargeLine } from "react-icons/ri"
 import RoomBookModal from "./RoomBookModal"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import axios from "axios"
 import check from "../../assets/icons/check.svg"
 import { format } from "date-fns"
@@ -18,7 +18,8 @@ import useAxiosSecured from "../../hooks/useAxiosSecured"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import LoadingSpinner from "../../components/common/LoadingSpinner"
 import Swal from "sweetalert2"
-import { el } from "date-fns/locale"
+import { IoCalendarOutline } from "react-icons/io5"
+import Select from 'react-select'
 
 const RoomDetails = () => {
     const {user} = useAuth()
@@ -27,6 +28,17 @@ const RoomDetails = () => {
     const {id} = useParams()
     const axiosSecured = useAxiosSecured()
     const navigate = useNavigate()
+    const [selectedValue, setSelectedValue] = useState(null);
+
+    const options = [
+        { value: "top", label: "Top Rating" },
+        { value: "low", label: "Low Rating" },
+        { value: "asc", label: "Date Ascending" },
+        { value: "dsc", label: "Date Descending" },
+      ];
+      const optionOnChange = (selectedOption) => {
+        setSelectedValue(selectedOption.value);
+      };
 
     const highlightFacilities = [
         {icon: tv, name: "TV"},
@@ -137,6 +149,41 @@ const RoomDetails = () => {
                                         <p className="text-secondary-black">{facilities.name}</p>
                                     </div> )
                                 }
+                            </div>
+                        </div>
+
+                        {/* User Review  */}
+                        <div>
+                            <div className="flex items-center justify-between p-4 bg-[#f5f6f9] rounded mt-8">
+                                <div>
+                                    <h5 className="text-lg font-medium">By 04 reviewer(s)</h5>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <h5 className="font-medium">Sort by</h5>
+                                    <div>
+                                        <Select
+                                        options={options}
+                                        name="visaType"
+                                        onChange={optionOnChange}
+                                        placeholder="Sort type"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-[#f5f6f9] px-6 py-8 rounded my-6 flex items-center gap-6">
+                                <div className="w-[25%]">
+                                    <img src="https://i.ibb.co.com/c8mWGpH/profile-img-2.jpg" alt="" className="border border-gray-400  mx-auto w-20 h-20 rounded-full"/>
+                                    <h6 className="text-lg font-bold text-light-black my-2 text-center">Mehedi hasan</h6>
+                                </div>
+                                <div className="space-y-3">
+                                    <p>⭐⭐⭐⭐⭐</p>
+                                    <h4 className="text-xl font-bold text-primary-black">Awesome Experience</h4>
+                                    <p className="max-w-[90%]  text-light-black">Hotel is veryes elementum sesue the aucan vestibulum aliquam justo in sapien on thi rutrum volutpat. Donec in quis the pellentesque velit</p>
+                                    <p className="flex items-center gap-2 text-lg text-light-black">
+                                        <span><IoCalendarOutline size={22} className="text-primary"/></span>
+                                        <span>Dec 24, 2024</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

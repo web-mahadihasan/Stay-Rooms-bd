@@ -44,10 +44,10 @@ const Rooms = () => {
             {/* Card  */}
             <div className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
                 
-                <div className="grid grid-cols-3 gap-6 py-6">
-                    <aside className="col-span-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-6">
+                    <aside className="col-span-1 md:col-span-2 lg:col-span-1">
                         {/* Tool Bar  */}
-                        <div className={`w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${pathname ===  "/all-visa" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-16" : "xl:my-0 xl:grid-cols-1"}`}>
+                        <div className={`w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 gap-6 lg:space-y-4"}`}>
                             <div className="p-6 rounded w-full bg-base-100 border border-gray-100">
                                 <h3 className="text-lg font-medium  text-secondary-black">Search by Title</h3>
                                 <div className="divider my-3"></div>
@@ -81,7 +81,7 @@ const Rooms = () => {
                                 </div>
                                 </div>
                             </div>
-                            <div className="p-6 my-4 lg:my-0 lg:flex-1 bg-base-100 border border-gray-100 rounded min-h-52">
+                            <div className="p-6 h-full lg:my-0 lg:flex-1 bg-base-100 border border-gray-100 rounded min-h-52">
                                 <div>
                                     <label className="block text-lg font-medium  text-secondary-black my-2">
                                     Sort By Price/Rating
@@ -91,7 +91,7 @@ const Rooms = () => {
                                     options={options}
                                     name="visaType"
                                     onChange={optionOnChange}
-                                    placeholder="Select a Sort Type"
+                                    placeholder="Sort Type"
                                     />
                                 </div>
                             </div>

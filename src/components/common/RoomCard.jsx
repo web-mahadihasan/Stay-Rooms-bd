@@ -4,11 +4,12 @@ import saving from "../../assets/icons/saving.svg"
 import freeWifi from "../../assets/icons/feeWifi.svg"
 import landPhone from "../../assets/icons/landphone.svg"
 import { BsArrowRight } from "react-icons/bs"
-import { Link } from "react-router"
+import { Link, useLocation } from "react-router"
 
 
 const RoomCard = ({roomData}) => {
     const {title, price, imgUrl, description, _id} = roomData || {}
+    const {pathname} = useLocation()
     const Extrafacilities = [
         {icon: tv, name: "TV"},
         {icon: heater, name: "Heater"},
@@ -17,6 +18,7 @@ const RoomCard = ({roomData}) => {
         {icon: landPhone, name: "Phone"},
     ]
     return (
+        <Link to={pathname ===   '/rooms' && `/room-details/${_id}`}>
         <div className="rounded-md card-compact bg-base-100 shadow-sm border">
             <div className="relative  overflow-hidden rounded-t-md">
             <figure className="rounded-t-md">
@@ -57,6 +59,7 @@ const RoomCard = ({roomData}) => {
                 </div>
             </div>
         </div>
+        </Link>
     );
 };
 
