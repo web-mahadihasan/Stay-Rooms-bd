@@ -16,6 +16,7 @@ import LeafletContent from "../../components/common/LeafletContent";
 import HomeGallary from "../../components/common/HomeGallary";
 import Carousel from "../../components/common/Banner/Carousel";
 import OurSuccess from "../../components/common/OurSuccess";
+import Promotions from "../../components/common/Promotions";
 
 const Home = () => {
   const Allfacilities = [
@@ -102,6 +103,15 @@ const Home = () => {
         </div>
       </section>
       
+      {/* Offers and promotion section  */}
+      <section className="my-24 bg-[#f9fbfe] py-6">
+        <h3 className="text-center font-extrabold text-4xl text-primary-black my-3">
+        Exclusive Offers Promotional Deals
+        </h3>
+        <div className="my-12">
+          <Promotions/>
+        </div>
+      </section>
       
       {/* Facilities */}
       <section className="max-w-7xl mx-auto px-4 xl:px-0 ">
@@ -139,15 +149,19 @@ const Home = () => {
           </div>
         </div>
       </section>
-
+        {/* User Review  */}
+        <section>
+          
+        </section>
       {/* Photo Gallary  */}
-      <section className="max-w-7xl mx-auto px-4 xl:px-0">
+      <section className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
         <h3 className="font-extrabold text-4xl text-primary-black my-3">
           Gallary
         </h3>
         <p className=" text-light-black max-w-2xl my-5 mb-10">Browse our gallery of luxurious rooms, cozy spaces, exclusive offers, and stunning hotel views. Your perfect stay awaits!</p>
         <HomeGallary gallaryData={gallaryData}/>
       </section>
+
     </div>
   );
 };

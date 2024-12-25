@@ -30,13 +30,6 @@ const HomeGallary = ({gallaryData}) => {
                     </div>
                 </div>)
             }
-              {/* // {
-    //   "title": "Exclusive Deals",
-    //   "description": "Save on stays with amazing offers, discounts, and exclusive perks.",
-    //   "rowSpan": false,
-    //   "colSpan": false,
-    //   "img": "https://example.com/images/exclusive-deals.jpg"
-    // } */}
 
         </div>
     );
