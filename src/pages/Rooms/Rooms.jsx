@@ -9,28 +9,32 @@ import { useState } from "react";
 import { useLocation } from "react-router";
 import Select from 'react-select'
 import { HiOutlineArrowLeft } from "react-icons/hi";
+import PriceRange from "./PriceRange";
 
 const Rooms = () => {
     const [searchText, setSearchText] = useState("")
     const {pathname} = useLocation()
     const [selectedValue, setSelectedValue] = useState(null);
+    const [priceRange, setPriceRange] = useState(null)
     // const [isLoading, setIsLoading] = useState(false)
     // const [allRooms, setAllRooms] = useState([])
 
     const options = [
         { value: "asc", label: "Sort by Price Ascending" },
         { value: "dsc", label: "Sort by price Descending" },
+        { value: "top", label: "Sort by Top Rating" },
+        { value: "low", label: "Sort by Low Rating" },
       ];
       const optionOnChange = (selectedOption) => {
         setSelectedValue(selectedOption.value);
       };
 
-    const {data:allRooms, isLoading} = useQuery({ queryKey: ['featuredRoom', searchText, selectedValue], queryFn: async() =>  {
-        const {data} = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/all-rooms?search=${searchText}&sort=${selectedValue}`)
+    const {data:allRooms, isLoading} = useQuery({ queryKey: ['featuredRoom', searchText, selectedValue, priceRange], queryFn: async() =>  {
+        const {data} = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/all-rooms?search=${searchText}&sort=${selectedValue}&range=${priceRange}`)
         return data
     } })
 
-    
+    // console.log(priceRange)
     if(isLoading) return <LoadingSpinner/>
 
     return (
@@ -62,7 +66,7 @@ const Rooms = () => {
                                 <h3 className="text-lg font-medium  text-secondary-black">Filter by Room Availablity</h3>
                                 <div className="divider my-3"></div>
                                 <div>
-                                <div className={` text-lg ${pathname ===  "/all-visa"? "flex flex-wrap": "flex gap-1 flex-wrap xl:flex-col xl:flex-nowrap"}`}>
+                                <div className={` text-lg flex gap-1 flex-wrap xl:flex-col xl:flex-nowrap`}>
                                     <div className="cursor-pointer my-4 space-y-4">
                                         <label className="flex gap-2 items-center">
                                             <input type="checkbox" className="checkbox checkbox-info" />
@@ -73,6 +77,7 @@ const Rooms = () => {
                                             <span className="label-text">Featured Room</span>
                                         </label>
                                     </div>
+                                    
                                 </div>
                                 </div>
                             </div>
@@ -88,6 +93,17 @@ const Rooms = () => {
                                     onChange={optionOnChange}
                                     placeholder="Sort Type"
                                     />
+                                </div>
+                            </div>
+                            <div className="p-6 h-full lg:my-0 lg:flex-1 bg-base-100 border border-gray-100 rounded min-h-52">
+                                <div>
+                                    <label className="block text-lg font-medium  text-secondary-black my-2">
+                                    Sort By Price/Rating
+                                    </label>
+                                </div>
+                                <div className="divider my-3"></div>
+                                <div className="max-w-full">
+                                    <PriceRange setPriceRange={setPriceRange}/>
                                 </div>
                             </div>
                         </div>

@@ -7,7 +7,7 @@ const HomeGallary = ({gallaryData}) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[15px] w-full  min-h-[400px]">
             {
                 gallaryData?.map((gallary, idx) =>  <div key={idx}
-                    className={`col-span-1  overflow-hidden flex justify-between flex-col rounded-sm row-span-1 bg-no-repeat bg-cover object-cover min-h-[200px] bg-black relative ${gallary.rowSpan && "lg:row-span-2 md:row-span-2 md:col-span-2 lg:col-span-1"} ${gallary.colSpan && " lg:col-span-2"}`}
+                    className={`col-span-1 rounded overflow-hidden flex justify-between flex-col row-span-1 bg-no-repeat bg-cover object-cover min-h-[200px] bg-black relative ${gallary.rowSpan && "lg:row-span-2 md:row-span-2 md:col-span-2 lg:col-span-1"} ${gallary.colSpan && " lg:col-span-2"}`}
                     style={{  backgroundImage: `url(${gallary?.img})`,}}
                     >
                     <div className={`w-full bg-gray-900/50 h-full py-8 duration-300

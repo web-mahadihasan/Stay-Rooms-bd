@@ -21,6 +21,7 @@ const RoomCard = ({roomData}) => {
         {icon: freeWifi, name: "Free Wifi"},
         {icon: landPhone, name: "Phone"},
     ]
+
     useEffect(()=>  {
             if (totalReview && totalReview.length > 0) {
                 const sum = totalReview.reduce((acc, curr) => acc + curr, 0);
@@ -89,3 +90,6 @@ const RoomCard = ({roomData}) => {
 };
 
 export default RoomCard;
+
+
+

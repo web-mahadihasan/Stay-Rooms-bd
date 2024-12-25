@@ -21,6 +21,7 @@ import Swal from "sweetalert2"
 import { IoCalendarOutline } from "react-icons/io5"
 import Select from 'react-select'
 import { Rating } from "@smastrom/react-rating"
+import LeafletMaps from "../../components/common/LeafletMaps"
 
 const RoomDetails = () => {
     const {user} = useAuth()
@@ -57,6 +58,13 @@ const RoomDetails = () => {
     } })
     const {title, price, imgUrl, description,facilities, _id, availability, totalReview} = detailsData || {}
 
+    const {data:reviewData} = useQuery({queryKey: ['reviewData',_id, selectedValue], queryFn: async () =>  {
+        const {data} = await axiosSecured.get(`/rooms-review/${_id}?sort=${selectedValue}`)
+        return data;  
+    },
+    enabled: !!_id,
+    })
+    console.log(selectedValue)
     useEffect(()=>  {
         if (totalReview && totalReview.length > 0) {
             const sum = totalReview.reduce((acc, curr) => acc + curr, 0);
@@ -122,6 +130,7 @@ const RoomDetails = () => {
         }
         
     }
+    console.log(reviewData)
     if(isLoading) return <LoadingSpinner/>
     return (
         <div>
@@ -175,12 +184,18 @@ const RoomDetails = () => {
                                 }
                             </div>
                         </div>
+                        {/* Google map location  */}
+                        <section className="h-[300px] my-12 rounded-md">
+                            <div className=" w-full h-full rounded-md">
+                                    <LeafletMaps/>
+                            </div>
+                        </section>
 
                         {/* User Review  */}
                         <div>
                             <div className="flex items-center justify-between p-4 bg-[#f5f6f9] rounded mt-8">
                                 <div>
-                                    <h5 className="text-lg font-medium">By 04 reviewer(s)</h5>
+                                    <h5 className="text-lg font-medium">By {reviewData?.length} reviewer(s)</h5>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <h5 className="font-medium">Sort by</h5>
@@ -194,21 +209,30 @@ const RoomDetails = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-[#f5f6f9] px-6 py-8 rounded my-6 flex items-center gap-6">
-                                <div className="w-[25%]">
-                                    <img src="https://i.ibb.co.com/c8mWGpH/profile-img-2.jpg" alt="" className="border border-gray-400  mx-auto w-20 h-20 rounded-full"/>
-                                    <h6 className="text-lg font-bold text-light-black my-2 text-center">Mehedi hasan</h6>
-                                </div>
-                                <div className="space-y-3">
-                                    <p>⭐⭐⭐⭐⭐</p>
-                                    <h4 className="text-xl font-bold text-primary-black">Awesome Experience</h4>
-                                    <p className="max-w-[90%]  text-light-black">Hotel is veryes elementum sesue the aucan vestibulum aliquam justo in sapien on thi rutrum volutpat. Donec in quis the pellentesque velit</p>
-                                    <p className="flex items-center gap-2 text-lg text-light-black">
-                                        <span><IoCalendarOutline size={22} className="text-primary"/></span>
-                                        <span>Dec 24, 2024</span>
-                                    </p>
-                                </div>
-                            </div>
+                            {/* Review content */}
+                            {
+                                reviewData?.map(review =>  <div key={review?._id} className="bg-[#f5f6f9] px-6 py-8 rounded my-6 flex items-center gap-6">
+                                    <div className="w-[25%]">
+                                        <img src={review?.img} alt="" className="border border-gray-400  mx-auto w-20 h-20 rounded-full"/>
+                                        <h6 className="text-lg font-bold text-light-black my-2 text-center">{review?.userName}</h6>
+                                    </div>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center gap-2">
+                                            <div style={{ maxWidth: 150, width: '100%' }} className="">
+                                                <Rating readOnly value={review?.rating} key={review?.rating} />
+                                            </div>
+                                                <p className="text-xl font-bold">{review?.rating} / <span className="text-lg text-light-black">5</span></p>
+                                        </div>
+                                        <h4 className="text-xl font-bold text-primary-black">{review?.reviewTitle}</h4>
+                                        <p className="max-w-[90%]  text-light-black">{review?.feedback}</p>
+                                        <p className="flex items-center gap-2 text-lg text-light-black">
+                                            <span><IoCalendarOutline size={22} className="text-primary"/></span>
+                                            <span>{review?.reviewTime}</span>
+                                        </p>
+                                    </div>
+                                </div>)
+                            }
+
                         </div>
                     </div>
 
