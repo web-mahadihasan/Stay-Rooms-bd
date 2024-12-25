@@ -8,6 +8,7 @@ import support from "../../assets/icons/support.svg"
 import flexibility from "../../assets/icons/flexibility.svg"
 import OurSuccess from "../../components/common/OurSuccess";
 import TeamCard from "./TeamCard";
+import { Helmet } from "react-helmet";
 
 const About = () => {
     const WhyChoose = [
@@ -20,6 +21,13 @@ const About = () => {
     ]
     return (
         <div>
+            {/* Helmet  */}
+            <Helmet>
+                <title>StayRooms | About us </title>
+                <meta name="description" content="Browse through our selection of premium rooms designed to suit every traveler's needs. From luxurious suites to cozy budget-friendly options, book your ideal stay today." />
+                <meta name="keywords" content="hotel booking, travel destinations, affordable stays, luxurious rooms, vacation packages, best travel deals" />
+                <meta name="author" content="https://stay-rooms-bd.web.app" />
+            </Helmet>
             {/* About  */}
             <section className="max-w-7xl mx-auto px-4 xl:px-0">
             <section className="bg-base-100 shadow-md border border-gray-100 gap-6 my-24 flex flex-col lg:flex-row items-center justify-between rounded-md">
@@ -81,6 +89,9 @@ const About = () => {
                     </div>
                 </section>
             </section>
+            <div>
+                
+            </div>
         </div>
     );
 };

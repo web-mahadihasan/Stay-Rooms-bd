@@ -11,6 +11,8 @@ import logo from "../../assets/images/stayroom.png"
 import { DateRange } from "react-date-range";
 import { IoCalendarOutline } from "react-icons/io5";
 import ReviewModal from "../../components/common/ReviewModal";
+import PromotionCrousel from "../../components/common/PromotionCrousel";
+import { Helmet } from "react-helmet";
 
 const MyBooking = () => {
     const {user} = useAuth()
@@ -116,7 +118,13 @@ const MyBooking = () => {
   
     return (    
         <div className="">
-
+            {/* Helmet  */}
+            <Helmet>
+                <title>StayRooms | Your booking details </title>
+                <meta name="description" content="Browse through our selection of premium rooms designed to suit every traveler's needs. From luxurious suites to cozy budget-friendly options, book your ideal stay today." />
+                <meta name="keywords" content="hotel booking, travel destinations, affordable stays, luxurious rooms, vacation packages, best travel deals" />
+                <meta name="author" content="https://stay-rooms-bd.web.app" />
+            </Helmet>
             {/* Table data  */}
             <div className="overflow-x-auto">
             <div className="overflow-x-auto min-w-[950px] max-w-7xl mx-auto px-4 xl:px-0 my-24">
@@ -159,10 +167,27 @@ const MyBooking = () => {
             </table>
             </div>
             </div>
-
-            <div>
-                <p>another div</p>
-            </div>
+                    {/* Table end  */}
+            <section>
+                {/* promotional offer in booking section  */}
+                <section className="my-24 py-6">
+                        <h3 className="text-left max-w-7xl mx-auto px-4 xl:px-0 font-extrabold text-2xl md:text-3xl text-primary-black my-3">
+                        Checkout Exclusive Offers Available for You
+                        </h3>
+                        <div className="my-12">
+                          <PromotionCrousel/>
+                        </div>
+                </section>
+                {/* Room booking suggestion  */}
+                <section className="my-24 py-6 ">
+                        <h3 className=" text-left capitalize max-w-7xl mx-auto px-4 xl:px-0 font-extrabold text-2xl md:text-3xl text-primary-black my-3">
+                            Recommended room only for You
+                        </h3>
+                        {/* <div className="my-12">
+                          <PromotionCrousel/>
+                        </div> */}
+                </section>
+            </section>
 
             {/* Update date Modal  */}
             <div className="modal">

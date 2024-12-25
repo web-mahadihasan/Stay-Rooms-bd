@@ -10,12 +10,15 @@ import { useLocation } from "react-router";
 import Select from 'react-select'
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import PriceRange from "./PriceRange";
+import RoomCardTableView from "../../components/common/RoomCardTableView";
+import { Helmet } from "react-helmet";
 
 const Rooms = () => {
     const [searchText, setSearchText] = useState("")
     const {pathname} = useLocation()
     const [selectedValue, setSelectedValue] = useState(null);
     const [priceRange, setPriceRange] = useState(null)
+    const [tableView, setTableView] = useState(false)
     // const [isLoading, setIsLoading] = useState(false)
     // const [allRooms, setAllRooms] = useState([])
 
@@ -39,7 +42,13 @@ const Rooms = () => {
 
     return (
         <div className="min-h-screen bg-[#f2f4f8]">
-            
+            {/* Helmet  */}
+            <Helmet>
+                <title>StayRooms | All Rooms </title>
+                <meta name="description" content="Browse through our selection of premium rooms designed to suit every traveler's needs. From luxurious suites to cozy budget-friendly options, book your ideal stay today." />
+                <meta name="keywords" content="hotel booking, travel destinations, affordable stays, luxurious rooms, vacation packages, best travel deals" />
+                <meta name="author" content="https://stay-rooms-bd.web.app" />
+            </Helmet>
             {/* Card  */}
             <div className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
                 
@@ -123,17 +132,27 @@ const Rooms = () => {
                                 </button>
                             </Link>
                             <div className="flex items-center gap-2">
-                                <button><FaListUl size={20} className="text-titleBlack/65"/></button>
-                                <button><AiOutlineAppstore size={24} className="text-primary"/></button>
+                                <button onClick={() => setTableView(true)}><FaListUl size={20} className={`${tableView? "text-primary": "text-light-black"}`}/></button>
+                                <button onClick={() => setTableView(false)}><AiOutlineAppstore size={24} className={`${!tableView? "text-primary": "text-light-black"}`}/></button>
                             </div>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
+                        {
+                            tableView ? <div className="grid grid-cols-1 gap-7">
+                            {
+                               allRooms.length > 0 ? allRooms?.map(room =>  <RoomCardTableView key={room._id} roomData = {room}/>)
+                               : <h3 className="text-3xl font-semibold col-span-2 text-red-500 my-6">No Rooms found in your query</h3>  
+                            }
+            
+                        </div> : <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                             {
                                allRooms.length > 0 ? allRooms?.map(room =>  <RoomCard key={room._id} roomData = {room}/>)
                                : <h3 className="text-3xl font-semibold col-span-2 text-red-500 my-6">No Rooms found in your query</h3>  
                             }
             
                         </div>
+                        }
+                        
+                        
                     </section>
                 </div>
             </div>

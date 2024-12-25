@@ -22,6 +22,7 @@ import { IoCalendarOutline } from "react-icons/io5"
 import Select from 'react-select'
 import { Rating } from "@smastrom/react-rating"
 import LeafletMaps from "../../components/common/LeafletMaps"
+import { Helmet } from "react-helmet"
 
 const RoomDetails = () => {
     const {user} = useAuth()
@@ -134,6 +135,13 @@ const RoomDetails = () => {
     if(isLoading) return <LoadingSpinner/>
     return (
         <div>
+            {/* Helmet  */}
+            <Helmet>
+                <title>StayRooms | Room Details </title>
+                <meta name="description" content="Browse through our selection of premium rooms designed to suit every traveler's needs. From luxurious suites to cozy budget-friendly options, book your ideal stay today." />
+                <meta name="keywords" content="hotel booking, travel destinations, affordable stays, luxurious rooms, vacation packages, best travel deals" />
+                <meta name="author" content="https://stay-rooms-bd.web.app" />
+            </Helmet>
             <div className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
                 <div className="md:grid grid-cols-3 grid-rows-2 gap-6 h-auto md:h-[500px]">
                     <div className="col-span-2 row-span-2 h-full w-full relative">

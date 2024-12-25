@@ -1,28 +1,32 @@
 import React, { useEffect } from "react"
 import Glide from "@glidejs/glide"
-import { GoArrowLeft, GoArrowRight } from "react-icons/go"
 import PromotionCard from "./PromotionCard"
+import { GoArrowLeft, GoArrowRight } from "react-icons/go"
 
-export default function Promotions() {
+export default function PromotionCrousel() {
   useEffect(() => {
-    const slider = new Glide(".glide-06", {
+    const slider = new Glide(".glide-09", {
       type: "carousel",
-      focusAt: "center",
+      autoplay: 500,
+      animationDuration: 20000,
+      hoverpause:true,
+      animationTimingFunc: "linear",
       perView: 4,
-    //   autoplay: 3000,
-      animationDuration: 700,
-      gap: 24,
-      classNames: {
+      classes: {
         nav: {
           active: "[&>*]:bg-wuiSlate-700",
         },
       },
       breakpoints: {
+        1140: {
+          perView: 3,
+        },
         1024: {
           perView: 2,
         },
         640: {
           perView: 1,
+          gap: 36,
         },
       },
     }).mount()
@@ -34,15 +38,15 @@ export default function Promotions() {
 
   return (
     <>
-      {/*<!-- Component: Card Carousel --> */}
-      <div className="glide-06 relative w-full overflow-hidden rounded">
-        {/*    <!-- Slides --> */}
-        <div className="w-[250px] bg-gradient-to-r from-white/40 to-white/80 h-full absolute min-h-[350px] top-0 right-0 z-10 hidden lg:block"></div>
-        <div className="w-[250px] bg-gradient-to-r to-white/30 from-white/70 h-full absolute min-h-[350px] top-0 left-0 z-10 hidden lg:block"></div>
-        <div className="overflow-hidden" data-glide-el="track">
-            
-          <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0">
+      {/*<!-- Component: Testimonial carousel --> */}
+      <div className="glide-09 overflow-hidden relative w-full">
+        {/* <!-- Slides --> */}
+        <div className="w-[200px] bg-gradient-to-r from-white/10 to-white/80 h-full absolute min-h-[350px] top-0 right-0 z-10 hidden lg:block"></div>
+        <div className="w-[200px] bg-gradient-to-r to-white/10 from-white/70 h-full absolute min-h-[350px] top-0 left-0 z-10 hidden lg:block"></div>
+        <div data-glide-el="track">
+        <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0">
           <li className="h-[250px]">
+            
               <PromotionCard heading={"New User Offer on"}
                 offtext={"15% OFF"} coupon={"STAYNEW"}
                 des={"Register & Enjoy Great Discount on first booking"} date={"31 dec, 2024(T&C apply)"}
@@ -83,26 +87,25 @@ export default function Promotions() {
             </li>
           </ul>
         </div>
-        {/*    <!-- Controls --> */}
-        <div
-          className="absolute left-0 top-1/2 flex h-0 w-full items-center justify-between px-4 "
-          data-glide-el="controls"
-        >
-          <button
-            className="inline-flex z-40 h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-white/20 text-slate-700 transition duration-300 hover:border-slate-900 hover:text-slate-900 focus-visible:outline-none lg:h-12 lg:w-12"
-            data-glide-dir="<"
-            aria-label="prev slide"
-          >  <GoArrowLeft />
-          </button>
-          <button
-            className="inline-flex z-40 h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-white/20 text-slate-700 transition duration-300 hover:border-slate-900 hover:text-slate-900 focus-visible:outline-none lg:h-12 lg:w-12"
-            data-glide-dir=">"
-            aria-label="next slide"
-          >  <GoArrowRight />
-          </button>
-        </div>
+        {/* <div
+                  className="absolute left-0 top-1/2 flex h-0 w-full items-center justify-between px-4 "
+                  data-glide-el="controls"
+                >
+                  <button
+                    className="inline-flex z-40 h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-white/20 text-slate-700 transition duration-300 hover:border-slate-900 hover:text-slate-900 focus-visible:outline-none lg:h-12 lg:w-12"
+                    data-glide-dir="<"
+                    aria-label="prev slide"
+                  >  <GoArrowLeft />
+                  </button>
+                  <button
+                    className="inline-flex z-40 h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-white/20 text-slate-700 transition duration-300 hover:border-slate-900 hover:text-slate-900 focus-visible:outline-none lg:h-12 lg:w-12"
+                    data-glide-dir=">"
+                    aria-label="next slide"
+                  >  <GoArrowRight />
+                  </button>
+                </div> */}
       </div>
-      {/*<!-- End Card Carousel --> */}
+      {/*<!-- End Testimonial carousel --> */}
     </>
   )
 }

@@ -11,3 +11,19 @@ body{
 .promotion-shadow{
     box-shadow: 0 0 7px rgb(0 -1 6 / 6%) inset;
 }
+
+.review-card{
+    content: "";
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-clip-path: polygon(100% 0, 0 0, 0 100%);
+    clip-path: polygon(100% 0, 0 0, 0 100%);
+    background-color: #000;
+    border-left: 1px solid rgba(34, 34, 34, 0.1);
+    border-right: 1px solid rgba(34, 34, 34, 0.1);
+    width: 23px;
+    height: 80px;
+    z-index: 40;
+}
