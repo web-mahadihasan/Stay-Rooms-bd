@@ -15,7 +15,6 @@ const BookingTableRow = ({bookedRoomData, onCancellation, onUpdate}) => {
     const [openActionRow, setOpenActionRow] = useState(null);
     const [openAction, setOpenAction] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
-    const [freedback, setFreedback] = useState("")
     const {user} = useAuth()
 
     const {_id, title, price, imgUrl, bookingName, bookingEmail, startDate, endDate, room_id} = bookedRoomData || {}
@@ -28,14 +27,15 @@ const BookingTableRow = ({bookedRoomData, onCancellation, onUpdate}) => {
         setOpenActionRow(null)
         setOpenAction(false)
     }
-    const handleReviewSubmit = async (rating) =>  {
+    const handleReviewSubmit = async (rating, title, feedback) =>  {
         const timestamp = format(new Date(), "Pp")
         const reviewData = {
             userName: user?.displayName,
             userEmail: user?.email,
+            reviewTitle: title,
             reviewTime: timestamp,
             img: user?.photoURL,
-            freedback,
+            feedback,
             rating,
             room_id
         }
@@ -43,7 +43,6 @@ const BookingTableRow = ({bookedRoomData, onCancellation, onUpdate}) => {
             const {data} = await axiosSecured.post(`/reviews`, reviewData)
             if(data.insertedId){
                 setModalOpen(false)
-                setFreedback("")
                 Swal.fire({
                     title: "Review Submitted",
                     text: "Your review has been submit.",
@@ -106,7 +105,6 @@ const BookingTableRow = ({bookedRoomData, onCancellation, onUpdate}) => {
            <ReviewModal modalOpen={modalOpen} 
            setModalOpen={setModalOpen} 
            onReviewSubmit={handleReviewSubmit}
-           setFreedback={setFreedback}
            />
         </th>
     </tr>

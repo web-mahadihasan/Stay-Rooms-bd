@@ -5,12 +5,14 @@ import freeWifi from "../../assets/icons/feeWifi.svg"
 import landPhone from "../../assets/icons/landphone.svg"
 import { BsArrowRight } from "react-icons/bs"
 import { Link, useLocation } from "react-router"
-import { useRef, useState } from "react"
+import { useEffect, useState } from "react"
+import { Rating } from "@smastrom/react-rating"
 
 
 const RoomCard = ({roomData}) => {
-    const {title, price, imgUrl, description, _id, availability} = roomData || {}
+    const {title, price, imgUrl, description, _id, availability, totalReview} = roomData || {}
     const {pathname} = useLocation()
+    const [averageReview, setAverageReview] = useState([]);
 
     const Extrafacilities = [
         {icon: tv, name: "TV"},
@@ -19,7 +21,15 @@ const RoomCard = ({roomData}) => {
         {icon: freeWifi, name: "Free Wifi"},
         {icon: landPhone, name: "Phone"},
     ]
-
+    useEffect(()=>  {
+            if (totalReview && totalReview.length > 0) {
+                const sum = totalReview.reduce((acc, curr) => acc + curr, 0);
+                const avg = sum / totalReview.length;
+                setAverageReview([avg.toFixed(1)]); 
+            } else {
+                setAverageReview([]);
+            }
+    },[totalReview])
     return (
         <Link to={pathname ===   '/rooms' && `/room-details/${_id}`}>
         <div className="rounded-md card-compact bg-base-100 shadow-sm border hover:shadow-md hover:bg-[#F5F9FF]">
@@ -33,7 +43,17 @@ const RoomCard = ({roomData}) => {
             </div>
             <div>
                 <div className="card-body">
-                    <h2 className="card-title">{title}</h2>
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-2xl font-extrabold my-6 text-primary-black tracking-wide">{title}</h2>
+                        {
+                            averageReview?.length > 0 && <div className="flex items-center gap-2"> 
+                                <div style={{ maxWidth: 90, width: '100%' }} className="">
+                                    <Rating readOnly value={averageReview} key={averageReview} />
+                                </div>
+                                <h3 className="text-lg font-bold text-secondary-black">{averageReview?.length > 0 && averageReview}</h3>
+                            </div>
+                        }
+                    </div>
                     <p className="line-clamp-2">{description}</p>
                     <div className="flex items-center flex-wrap gap-4 mt-4">
                         {

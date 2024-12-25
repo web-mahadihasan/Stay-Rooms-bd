@@ -9,7 +9,7 @@ import FAQ from "./FAQ"
 import { BsArrowUpRightCircle } from "react-icons/bs"
 import { RiCloseLargeLine } from "react-icons/ri"
 import RoomBookModal from "./RoomBookModal"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import axios from "axios"
 import check from "../../assets/icons/check.svg"
 import { format } from "date-fns"
@@ -20,6 +20,7 @@ import LoadingSpinner from "../../components/common/LoadingSpinner"
 import Swal from "sweetalert2"
 import { IoCalendarOutline } from "react-icons/io5"
 import Select from 'react-select'
+import { Rating } from "@smastrom/react-rating"
 
 const RoomDetails = () => {
     const {user} = useAuth()
@@ -29,17 +30,14 @@ const RoomDetails = () => {
     const axiosSecured = useAxiosSecured()
     const navigate = useNavigate()
     const [selectedValue, setSelectedValue] = useState(null);
-
+    const [averageReview, setAverageReview] = useState([]);
+    
     const options = [
         { value: "top", label: "Top Rating" },
         { value: "low", label: "Low Rating" },
         { value: "asc", label: "Date Ascending" },
         { value: "dsc", label: "Date Descending" },
       ];
-      const optionOnChange = (selectedOption) => {
-        setSelectedValue(selectedOption.value);
-      };
-
     const highlightFacilities = [
         {icon: tv, name: "TV"},
         {icon: heater, name: "Heater"},
@@ -48,14 +46,27 @@ const RoomDetails = () => {
         {icon: freeWifi, name: "Free Wifi"},
         {icon: landPhone, name: "Phone"},
     ]
+    const optionOnChange = (selectedOption) => {
+        setSelectedValue(selectedOption.value);
+      };
     
     // Room Details data 
     const {data:detailsData, isLoading} = useQuery({ queryKey: ['roomDetails'], queryFn: async() =>  {
         const {data} = await axiosSecured.get(`/api/rooms/${id}`)
         return data
     } })
-    const {title, price, imgUrl, description,facilities, _id, availability} = detailsData || {}
+    const {title, price, imgUrl, description,facilities, _id, availability, totalReview} = detailsData || {}
 
+    useEffect(()=>  {
+        if (totalReview && totalReview.length > 0) {
+            const sum = totalReview.reduce((acc, curr) => acc + curr, 0);
+            const avg = sum / totalReview.length;
+            setAverageReview([avg.toFixed(1)]); 
+        } else {
+            setAverageReview([]);
+        }
+    },[totalReview])
+    
     // Book room 
     const {isPending ,mutateAsync} = useMutation({
         mutationFn: async bookingData =>  {
@@ -116,13 +127,26 @@ const RoomDetails = () => {
         <div>
             <div className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
                 <div className="md:grid grid-cols-3 grid-rows-2 gap-6 h-auto md:h-[500px]">
-                    <img src={imgUrl} alt="" className="col-span-2 row-span-2 h-full w-full rounded-md" />
+                    <div className="col-span-2 row-span-2 h-full w-full relative">
+                        <img src={imgUrl} alt="" className="h-full w-full rounded-md" />
+                        <p className={`absolute text-lg top-0 left-0  py-1 px-4 rounded-md font-medium text-white ${availability? "bg-green-600" : "bg-orange-600"}`}>{availability ? "Available" : "Unavailable"}</p>
+                    </div>
                     <img src="https://triprex.b-cdn.net/wp-content/uploads/2024/02/Room-02-1.webp" alt="" className="col-span-1 w-full h-full rounded-lg" />
                     <img src="https://triprex.b-cdn.net/wp-content/uploads/2024/02/room-05.webp" alt="" className="col-span-1 w-full h-full rounded-lg" />
                 </div>
                 <div className="lg:grid grid-cols-3 gap-4">
                     <div className="col-span-2">
-                        <h2 className="text-3xl font-extrabold my-6 text-primary-black tracking-wide">{title}</h2>
+                        <div className="flex items-center justify-between">
+                            <h2 className="text-3xl font-extrabold my-6 text-primary-black tracking-wide">{title}</h2>
+                            {
+                                averageReview?.length > 0 ? <div className="flex items-center gap-2 px-4"> 
+                                    <div style={{ maxWidth: 120, width: '100%' }} className="">
+                                        <Rating readOnly value={averageReview} key={averageReview} />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-secondary-black">{averageReview?.length > 0 && averageReview}</h3>
+                            </div> : <p className="px-6 text-xl font-medium text-red-500">No review yet 😣</p>
+                            }
+                        </div>
                         <h3 className="text-2xl font-extrabold text-primary">$ {price} / <span className="text-lg font-medium">Per Night</span></h3>
                         <p className="text-light-black leading-8 my-6">{description}</p>
                         <div className="my-6">

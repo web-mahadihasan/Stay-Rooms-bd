@@ -17,8 +17,8 @@ const Slider2 = ({ image }) => {
 
   return (
     <motion.div key={sliderKey}
-      initial={{ backgroundSize: "100%" }}
-      animate={{ backgroundSize: "110%" }}
+      initial={{ backgroundSize: "100% 100%" }}
+      animate={{ backgroundSize: "120% 120%" }} 
       transition={{
         duration: 8,
         ease: "easeInOut",
@@ -26,21 +26,21 @@ const Slider2 = ({ image }) => {
         repeatType: "reverse",
       }}
 
-      className='w-full bg-center bg-cover h-[700px] rounded-xl bg-no-repeat'
+      className='w-full bg-center bg-cover bg-no-repeat h-full rounded-xl'
       style={{
         backgroundImage: `url(${image})`,
       }}
     >
       <div className='rounded-xl flex flex-col md:flex-row items-center justify-center w-full h-full bg-gray-900/70 p-8'>
         <div className='text-left flex-1 ml-8'>
-          <motion.h1 animate={{ y: [-40, 0],  transition: { duration: 1, ease: "linear", } }}
+          <motion.h1 animate={{ y: [-50, 0],  transition: { duration: 1, ease: "linear", } }}
           className='text-3xl max-w-5xl font-bold text-white lg:text-4xl xl:text-[40px] tracking-wide'>
             For Luxury, Find Your  <span className="inline-block my-4">Perfect Room Anytime</span>
           </motion.h1>
-          <motion.p animate={{ y: [30, 0],  transition: { duration: 1, ease: "linear",} }} 
+          <motion.p animate={{ y: [40, 0],  transition: { duration: 1, ease: "linear",} }} 
           className="text-white/80 text-lg max-w-2xl  my-4">Save time and money with StayRooms. Book your dream room now and enjoy your stay, stress-free.</motion.p>
           <br />
-          <motion.div animate={{ y: [40, 0],  transition: { duration: 1, ease: "linear",} }} 
+          <motion.div animate={{ y: [50, 0],  transition: { duration: 1, ease: "linear",} }} 
           className="flex">
               <Link to={"/rooms"} className="px-8 bg-base-100 py-3 relative shadow-lg before:absolute flex items-center gap-2
                 before:top-0 before:left-0 before:w-0 before:h-0 before:border-l-[4px] before:border-t-[4px] before:border-transparent 

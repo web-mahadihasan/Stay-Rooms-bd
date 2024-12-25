@@ -5,10 +5,10 @@ import RoomCard from "../../components/common/RoomCard";
 import { Link } from "react-router";
 import { FaListUl } from "react-icons/fa6";
 import { AiOutlineAppstore } from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router";
 import Select from 'react-select'
-import { HiOutlineArrowLeft, HiOutlineArrowRight } from "react-icons/hi";
+import { HiOutlineArrowLeft } from "react-icons/hi";
 
 const Rooms = () => {
     const [searchText, setSearchText] = useState("")
@@ -25,18 +25,12 @@ const Rooms = () => {
         setSelectedValue(selectedOption.value);
       };
 
-    //   useEffect(()=>  {
-    //     const getRoom =  async() =>  {
-    //         const {data} = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/all-rooms?search=${searchText}`)
-    //         setAllRooms(data)
-    //     }
-    //     getRoom()
-    //   }, [searchText])
     const {data:allRooms, isLoading} = useQuery({ queryKey: ['featuredRoom', searchText, selectedValue], queryFn: async() =>  {
         const {data} = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/all-rooms?search=${searchText}&sort=${selectedValue}`)
         return data
     } })
 
+    
     if(isLoading) return <LoadingSpinner/>
 
     return (

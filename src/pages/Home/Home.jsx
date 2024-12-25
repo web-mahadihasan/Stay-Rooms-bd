@@ -1,4 +1,3 @@
-import Carousel from "../../components/common/Banner/Carousel";
 import RoomCard from "../../components/common/RoomCard";
 import Facilities from "./Facilities";
 import pickup from "../../assets/images/car.png";
@@ -15,6 +14,8 @@ import { HiOutlineArrowRight } from "react-icons/hi";
 import { Link } from "react-router";
 import LeafletContent from "../../components/common/LeafletContent";
 import HomeGallary from "../../components/common/HomeGallary";
+import Carousel from "../../components/common/Banner/Carousel";
+import OurSuccess from "../../components/common/OurSuccess";
 
 const Home = () => {
   const Allfacilities = [
@@ -100,20 +101,25 @@ const Home = () => {
           ))}
         </div>
       </section>
-
+      
+      
       {/* Facilities */}
-      <section>
+      <section className="max-w-7xl mx-auto px-4 xl:px-0 ">
         <h3 className="text-center font-extrabold text-4xl text-primary-black my-3">
           Hotel Facilities
         </h3>
         <p className="text-center text-light-black max-w-2xl mx-auto my-5 mb-10">Experience a variety of thoughtfully designed amenities to ensure your stay is both comfortable and memorable, including swimming pools, fitness centers, exquisite dining options, high-speed Wi-Fi, and personalized services.</p>
 
-        <div className="max-w-7xl mx-auto px-4 xl:px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {Allfacilities.map((facilites, idx) => (
             <Facilities key={idx} facilites={facilites} />
           ))}
           {/* <Facilities/> */}
         </div>
+        {/* our success  */}
+        <section className="my-16">
+          <OurSuccess/>
+        </section>
       </section>
 
       {/* Leaflet maps/Locaions  */}

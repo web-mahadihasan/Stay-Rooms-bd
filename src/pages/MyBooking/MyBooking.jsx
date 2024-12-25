@@ -102,6 +102,7 @@ const MyBooking = () => {
             startDate: format(range[0].startDate, "PP"), 
             endDate: format(range[0].endDate, "PP")
         }
+        
         try {
             await mutateAsync(update)
             queryClient.invalidateQueries({ queryKey: ['mybooking'] })

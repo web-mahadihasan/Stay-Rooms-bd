@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { useEffect, useState } from "react";
 
-const Slider1 = ({ image}) => {
+const Slider1 = ({ image, title, subtitle, description}) => {
   const [sliderKey, setSliderKey] = useState(0); 
 
     
@@ -17,30 +17,29 @@ const Slider1 = ({ image}) => {
 
   return (
     <motion.div key={sliderKey}
-      initial={{ backgroundSize: "100%" }}
-      animate={{ backgroundSize: "110%" }}
+      initial={{ backgroundSize: "100% 100%" }}
+      animate={{ backgroundSize: "120% 120%" }}  
       transition={{
         duration: 8,
         ease: "easeInOut",
         repeat: Infinity,
         repeatType: "reverse",
       }}
-
-      className='w-full bg-center bg-cover h-[700px] rounded-xl'
+      className='w-full bg-center bg-cover bg-no-repeat h-full rounded-xl'
       style={{
         backgroundImage: `url(${image})`,
       }}
     >
       <div className='rounded-xl flex items-center justify-center w-full h-full bg-gray-900/50'>
         <div className='text-center'>
-          <motion.h1 animate={{ y: [-40, 0],  transition: { duration: 1, ease: "linear", } }}
+          <motion.h1 animate={{ y: [-50, 0],  transition: { duration: 1, ease: "linear", } }}
           className='text-3xl max-w-5xl font-bold text-white lg:text-4xl xl:text-[40px]'>
-            Stay in Comfort, Book with Confidence <span className="inline-block my-4">Welcome to StayRooms!</span>
+            {title} <br /> <span className="inline-block my-4">{subtitle}</span>
           </motion.h1>
-          <motion.p animate={{ y: [30, 0],  transition: { duration: 1, ease: "linear",} }} 
-          className="text-white/80 text-lg max-w-2xl text-center mx-auto my-4">Need a room? StayRooms has you covered! Quick, easy, and stress-free bookings for all types of stays.</motion.p>
+          <motion.p animate={{ y: [40, 0],  transition: { duration: 1, ease: "linear",} }} 
+          className="text-white/80 text-lg max-w-2xl text-center mx-auto my-4">{description}</motion.p>
           <br />
-          <motion.div animate={{ y: [40, 0],  transition: { duration: 1, ease: "linear",} }} 
+          <motion.div animate={{ y: [50, 0],  transition: { duration: 1, ease: "linear",} }} 
           className="flex justify-center">
               <Link to={"/rooms"} className="px-8 bg-base-100 py-3 relative shadow-lg before:absolute flex items-center gap-2
                 before:top-0 before:left-0 before:w-0 before:h-0 before:border-l-[4px] before:border-t-[4px] before:border-transparent 

@@ -6,6 +6,7 @@ import Router from './routes/Router'
 import AuthContext from './context/AuthContext'
 import AppContext from './context/AppContext'
 import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
+import '@smastrom/react-rating/style.css'
 
 // Create a client
 const queryClient = new QueryClient()
