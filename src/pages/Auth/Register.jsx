@@ -76,7 +76,6 @@ const Register = () => {
             })
             const result = await registerNewUser(email, password)
             setUser(result.user)
-            console.log(result.user)
             const update = await updataUser(updateData)
             toast.success("Successfully registration done")
             navigate(from)

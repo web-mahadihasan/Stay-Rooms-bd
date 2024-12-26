@@ -2,9 +2,6 @@ import React, { useEffect } from "react"
 import Glide from "@glidejs/glide"
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import Slider1 from "./Slider1";
-import Slider3 from "./Slider3";
-import Slider2 from "./Slider2";
-import { motion } from "framer-motion";
 
 const Carousel = () =>  {
   useEffect(() => {

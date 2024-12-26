@@ -7,7 +7,7 @@ const AppContext = ({children}) => {
     const [openMenu, setOpenMenu] = useState(false);
     const [isDark, setIsDark] = useState(false);
 
-    // Apply default theme on mount
+    
     useEffect(() => {
         // Default to light theme
         if(isDark){

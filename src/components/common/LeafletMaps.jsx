@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Map, Marker } from "pigeon-maps"
-import { FaLocationDot } from 'react-icons/fa6';
 
 
 const LeafletMaps = () => {
     const [hue, setHue] = useState(0)
     const color = `hsl(218deg 94% 61%)`
-    // 25.749402250789693, 89.26108640089947
+
     return (
        <div className='h-full w-full rounded-md'>
             <Map defaultCenter={[25.749402250789693, 89.26108640089947]} defaultZoom={11}>

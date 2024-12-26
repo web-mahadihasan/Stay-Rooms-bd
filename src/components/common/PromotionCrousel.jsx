@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
 import Glide from "@glidejs/glide"
 import PromotionCard from "./PromotionCard"
-import { GoArrowLeft, GoArrowRight } from "react-icons/go"
 
 export default function PromotionCrousel() {
   useEffect(() => {
@@ -87,23 +86,7 @@ export default function PromotionCrousel() {
             </li>
           </ul>
         </div>
-        {/* <div
-                  className="absolute left-0 top-1/2 flex h-0 w-full items-center justify-between px-4 "
-                  data-glide-el="controls"
-                >
-                  <button
-                    className="inline-flex z-40 h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-white/20 text-slate-700 transition duration-300 hover:border-slate-900 hover:text-slate-900 focus-visible:outline-none lg:h-12 lg:w-12"
-                    data-glide-dir="<"
-                    aria-label="prev slide"
-                  >  <GoArrowLeft />
-                  </button>
-                  <button
-                    className="inline-flex z-40 h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-white/20 text-slate-700 transition duration-300 hover:border-slate-900 hover:text-slate-900 focus-visible:outline-none lg:h-12 lg:w-12"
-                    data-glide-dir=">"
-                    aria-label="next slide"
-                  >  <GoArrowRight />
-                  </button>
-                </div> */}
+     
       </div>
       {/*<!-- End Testimonial carousel --> */}
     </>

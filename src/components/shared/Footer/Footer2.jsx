@@ -1,4 +1,3 @@
-import { CgFacebook } from "react-icons/cg";
 import {IoLocationOutline} from "react-icons/io5";
 import {MdOutlineEmail, MdOutlineLocalPhone} from "react-icons/md";
 import logo from '../../../assets/images/stayroom.png'

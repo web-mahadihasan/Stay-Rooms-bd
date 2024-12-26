@@ -70,15 +70,3 @@ const Navbar = () => {
 
 export default Navbar;
 
-
-
-
-// {/* <img src="" alt="" className="w-10 h-10 rounded-full"/> */}
-// <details className="dropdown dropdown-end">
-// <summary className="btn p-0 w-12 h-10 rounded-full">
-//     <img src="" alt="" className="w-full h-full rounded-full"/>
-// </summary>
-// <ul className="menu dropdown-content bg-base-100 z-[1] p-2 w-56 space-y-2 border shadow-md rounded-md border-t-4 border-t-primary mt-3">
-// <CurrentUser/>
-// </ul>
-// </details>

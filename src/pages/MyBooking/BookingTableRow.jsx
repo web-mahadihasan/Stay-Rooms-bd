@@ -1,10 +1,3 @@
-import { useRef, useState } from "react";
-import { CgCloseO } from "react-icons/cg";
-import { CiMenuKebab } from "react-icons/ci";
-import { RiCloseLargeLine } from "react-icons/ri";
-import logo from "../../assets/images/stayroom.png"
-import { RxCross1 } from "react-icons/rx";
-import { FaStar } from "react-icons/fa6";
 import useAuth from "../../hooks/useAuth";
 import ReviewModal from "../../components/common/ReviewModal";
 import { format } from "date-fns";
@@ -46,11 +39,7 @@ const BookingTableRow = ({bookedRoomData, onCancellation, onUpdate}) => {
 
     return (
         <tr data-aos="fade-up" className=" rounded-md dark:text-white border-gray-200">
-        {/* <th>
-        <label>
-            <input type="checkbox" className="checkbox" />
-        </label>
-        </th> */}
+     
         <td>
         <div className="flex items-center gap-4 ">
             <div className="avatar">

@@ -269,8 +269,6 @@ const RoomDetails = () => {
                         </section>
                     </aside>
 
-
-                    {/* Modal  */}
                      {/* // modal  */}
                 <div className="modal">
                     <dialog

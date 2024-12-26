@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
 import Glide from "@glidejs/glide"
 import { GoArrowLeft, GoArrowRight } from "react-icons/go"
-import PromotionCard from "../../components/common/PromotionCard"
 import ReviewCard from "./ReviewCard"
 
 
