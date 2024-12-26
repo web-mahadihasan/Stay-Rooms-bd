@@ -9,6 +9,7 @@ import flexibility from "../../assets/icons/flexibility.svg"
 import OurSuccess from "../../components/common/OurSuccess";
 import TeamCard from "./TeamCard";
 import { Helmet } from "react-helmet";
+import PageTitleSection from "../../components/common/PageTitleSection";
 
 const About = () => {
     const WhyChoose = [
@@ -29,13 +30,16 @@ const About = () => {
                 <meta name="author" content="https://stay-rooms-bd.web.app" />
             </Helmet>
             {/* About  */}
+            <div>
+                <PageTitleSection title={"About us - Our Story, Your Comfort"} path={"about us"}/>
+            </div>
             <section className="max-w-7xl mx-auto px-4 xl:px-0">
-            <section className="bg-base-100 shadow-md border border-gray-100 gap-6 my-24 flex flex-col lg:flex-row items-center justify-between rounded-md">
+            <section className="shadow-md border bg-white border-gray-100 gap-6 my-24 flex flex-col lg:flex-row items-center justify-between rounded-md">
                 <div className="flex-1 h-full">
                     <img src="https://i.ibb.co.com/7tmP5qk/luxury-hotel.jpg" alt="About bg"className="rounded-md h-full min-h-[470px] w-full" />
                 </div>
                 <div className="flex-1 py-8 px-4">
-                    <h3 className="text-3xl my-6 font-bold ">About Us</h3>
+                    <h3 className="text-3xl my-6 font-bold text-primary-black">About Us</h3>
                     <p className="text-lg mb-4 text-light-black leading-8">
                     Welcome to StayRooms, your trusted partner for hassle-free hotel room bookings. We specialize in connecting travelers with their perfect stay, offering a seamless, secure, and personalized booking experience.
                     <br />
@@ -47,7 +51,7 @@ const About = () => {
                             hover:before:w-full hover:before:h-full hover:before:border-primary hover:before:transition-all hover:before:duration-500 
                             after:border-r-[4px] after:border-b-[4px] after:border-transparent hover:after:border-primary 
                             after:absolute after:bottom-0 after:right-0 after:w-0 
-                            after:h-0 hover:after:w-full hover:after:h-full rounded hover:before:rounded hover:after:rounded border border-primary hover:after:transition-all hover:after:duration-500">
+                            after:h-0 hover:after:w-full bg-white text-secondary-black font-medium hover:after:h-full rounded hover:before:rounded hover:after:rounded border border-primary hover:after:transition-all hover:after:duration-500">
                             <span>Book Now</span>
                             <span><HiOutlineArrowRight /></span>
                         </button>
@@ -61,7 +65,7 @@ const About = () => {
             </section>
             {/* Why chooose us  */}
                 <section className="my-24">
-                    <h3 className="text-2xl md:text-3xl font-bold text-primary-black text-center my-10">Why Book Hotels with StayRooms?</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold text-primary-black text-center my-10 dark:text-white">Why Book Hotels with StayRooms?</h3>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {
@@ -70,8 +74,8 @@ const About = () => {
                                     <img src={choose.icon} alt="" className="mx-auto" />
                                 </div>
                                 <div>
-                                    <h4 className="text-lg font-bold text-secondary-black my-2">{choose.title}</h4>
-                                    <p className="text-light-black text-base">{choose.description}</p>
+                                    <h4 className="text-lg font-bold text-secondary-black my-2 dark:text-white">{choose.title}</h4>
+                                    <p className="text-light-black text-base dark:text-white/85">{choose.description}</p>
                                 </div>
                             </div>)
                         }
@@ -80,7 +84,7 @@ const About = () => {
 
                 {/* Our Team section  */}
                 <section className="my-24">
-                <h3 className="text-2xl md:text-3xl font-bold text-primary-black  my-14">Meet Our Expert Team</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-primary-black  my-14 dark:text-white">Meet Our Expert Team</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
                         <TeamCard name={"Mehedi Hasan"} title={"CEO"} img={"https://i.ibb.co.com/NZm1B4x/1618911604887-1.jpg"}/>
                         <TeamCard name={"David Carter"} title={"Managing Director"} img={"https://i.ibb.co.com/c8mWGpH/profile-img-2.jpg"}/>

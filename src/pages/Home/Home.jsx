@@ -64,7 +64,7 @@ const Home = () => {
     queryKey: ["featuredRoom"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/api/rooms`
+        `${import.meta.env.VITE_BASE_URL}/api/rooms?limit=6`
       );
       return data;
     },
@@ -98,14 +98,14 @@ const Home = () => {
       {/* Featured Rooms  */}
       <section className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
         <div className="my-8 flex justify-between items-center">
-          <h3 className="text-2xl font-bold text-primary-black">Explorer Top-rated Featured Rooms</h3>
+          <h3 className="text-2xl font-bold text-primary-black dark:text-white">Explorer Top-rated Featured Rooms</h3>
           <div>
           <Link to={"/rooms"} className="px-8 py-3 relative shadow-lg before:absolute flex items-center gap-2
             before:top-0 before:left-0 before:w-0 before:h-0 before:border-l-[4px] before:border-t-[4px] before:border-transparent 
             hover:before:w-full hover:before:h-full hover:before:border-primary hover:before:transition-all hover:before:duration-500 
             after:border-r-[4px] after:border-b-[4px] after:border-transparent hover:after:border-primary 
             after:absolute after:bottom-0 after:right-0 after:w-0 
-            after:h-0 hover:after:w-full hover:after:h-full rounded hover:before:rounded hover:after:rounded border border-primary hover:after:transition-all hover:after:duration-500">
+            after:h-0 hover:after:w-full hover:after:h-full dark:bg-white dark:text-primary-black font-medium rounded hover:before:rounded hover:after:rounded border border-primary hover:after:transition-all hover:after:duration-500">
               <span>Explorer More</span>
               <span><HiOutlineArrowRight /></span>
           </Link>
@@ -116,16 +116,11 @@ const Home = () => {
             <RoomCard key={room._id} roomData={room} />
           ))}
         </div>
-        {/* <div className="grid grid-cols-1 md:grid-cols-2  gap-7">
-          {featuredRoom?.map((room) => (
-            <RoomCardTableView key={room._id} roomData={room} />
-          ))}
-        </div> */}
       </section>
       
       {/* Offers and promotion section  */}
       <section className="my-24 bg-[#f9fbfe] py-6">
-        <h3 className="text-center font-extrabold text-4xl text-primary-black my-3">
+        <h3 className="text-center font-extrabold text-4xl text-primary-black my-3 dark:text-white">
         Exclusive Offers Promotional Deals
         </h3>
         <div className="my-12">
@@ -135,10 +130,10 @@ const Home = () => {
       
       {/* Facilities */}
       <section className="max-w-7xl mx-auto px-4 xl:px-0 ">
-        <h3 className="text-center font-extrabold text-4xl text-primary-black my-3">
+        <h3 className="text-center font-extrabold text-4xl text-primary-black my-3 dark:text-white">
           Hotel Facilities
         </h3>
-        <p className="text-center text-light-black max-w-2xl mx-auto my-5 mb-10">Experience a variety of thoughtfully designed amenities to ensure your stay is both comfortable and memorable, including swimming pools, fitness centers, exquisite dining options, high-speed Wi-Fi, and personalized services.</p>
+        <p className="text-center text-light-black max-w-2xl mx-auto my-5 mb-10 dark:text-white/80">Experience a variety of thoughtfully designed amenities to ensure your stay is both comfortable and memorable, including swimming pools, fitness centers, exquisite dining options, high-speed Wi-Fi, and personalized services.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {Allfacilities.map((facilites, idx) => (
@@ -154,12 +149,12 @@ const Home = () => {
 
       {/* Leaflet maps/Locaions  */}
       <section className="my-24">
-        <h3 className="text-center font-extrabold text-4xl text-primary-black my-3">
+        <h3 className="text-center font-extrabold text-4xl text-primary-black my-3 dark:text-white">
           Our Location - Find Us
         </h3>
-        <p className="text-center text-light-black max-w-2xl mx-auto my-5 mb-10">Discover our location with ease and find us effortlessly. We're here to welcome you—plan your visit today!</p>
+        <p className="text-center text-light-black max-w-2xl mx-auto my-5 mb-10 dark:text-white/85">Discover our location with ease and find us effortlessly. We're here to welcome you—plan your visit today!</p>
 
-        <div className="bg-[#f9fbfe] px-8 py-10 grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto gap-8">
+        <div className="bg-[#f9fbfe] px-8 py-10 grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto gap-8 rounded-md">
           <div>
             <LeafletContent/>
           </div>
@@ -177,12 +172,12 @@ const Home = () => {
           }}
         >
                 <div className="container mx-auto px-4 xl:px-0">
-                    <h3 data-aos="fade-up" className="text-2xl md:text-3xl xl:text-4xl font-bold text-primary-black my-4 text-center capitalize">Regards From form Our Customer </h3>
-                    <p data-aos="fade-up" className="text-lg text-light-black mb-4 text-center max-w-3xl mx-auto"> what our clients have to say about our exceptional services. Honest and insightful reviews from real customers showcase their experiences, satisfaction, and trust in our expertise.</p>
+                    <h3 data-aos="fade-up" className="text-2xl md:text-3xl xl:text-4xl font-bold text-primary-black dark:text-white my-4 text-center capitalize">Regards From form Our Customer </h3>
+                    <p data-aos="fade-up" className="text-lg text-light-black mb-4 text-center max-w-3xl mx-auto dark:text-white/85"> what our clients have to say about our exceptional services. Honest and insightful reviews from real customers showcase their experiences, satisfaction, and trust in our expertise.</p>
                     
                 </div>
                 <div className="container mx-auto px-4 xl:px-0">
-                  <div className="py-1 flex items-center gap-8 bg-base-100 shadow-md rounded-md px-6 border">
+                  <div className="py-1 flex items-center gap-8 bg-white shadow-md rounded-md px-6 border dark:bg-white">
                     <button onClick={() => setReviews(false)} className={`py-2 text-base font-medium ${reviews===  false ? 'border-b-2 border-primary text-primary': 'border-b-2 border-gray-400 text-light-black'}`}>Lasted Review</button>
                     <button onClick={() => setReviews(true)} className={`border-b-2 py-2 text-base font-medium ${reviews? 'border-b-2 border-primary text-primary': 'border-b-2 border-gray-400 text-light-black'}`}>All Review</button>
                   </div>
@@ -196,10 +191,10 @@ const Home = () => {
 
       {/* Photo Gallary  */}
       <section className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
-        <h3 className="font-extrabold text-4xl text-primary-black my-3">
+        <h3 className="font-extrabold text-4xl text-primary-black my-3 dark:text-white">
           Gallary
         </h3>
-        <p className=" text-light-black max-w-2xl my-5 mb-10">Browse our gallery of luxurious rooms, cozy spaces, exclusive offers, and stunning hotel views. Your perfect stay awaits!</p>
+        <p className=" text-light-black max-w-2xl my-5 mb-10 dark:text-white/85">Browse our gallery of luxurious rooms, cozy spaces, exclusive offers, and stunning hotel views. Your perfect stay awaits!</p>
         <HomeGallary gallaryData={gallaryData}/>
       </section>
 

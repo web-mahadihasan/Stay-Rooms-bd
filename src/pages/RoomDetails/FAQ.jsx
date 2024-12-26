@@ -13,7 +13,7 @@ const FAQ = ({faqData}) => {
                 How can I make a hotel reservation?
             </div>
             <div className="collapse-content">
-            <p className=" text-black/65 text-lg">
+            <p className=" text-black/65 text-lg dark:text-gray-400">
                 You can make a reservation directly on our website by selecting your preferred room, dates, and completing the booking process.
             </p>
             </div>
@@ -28,7 +28,7 @@ const FAQ = ({faqData}) => {
                         <span>{faq?.question}</span>
                     </div>
                     <div className="collapse-content">
-                    <p className=" text-black/65 text-lg">
+                    <p className=" text-black/65 text-lg dark:text-gray-400">
                         {faq.answer}
                     </p>
                     </div>

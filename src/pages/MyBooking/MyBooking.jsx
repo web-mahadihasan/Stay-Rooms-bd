@@ -13,6 +13,7 @@ import { IoCalendarOutline } from "react-icons/io5";
 import ReviewModal from "../../components/common/ReviewModal";
 import PromotionCrousel from "../../components/common/PromotionCrousel";
 import { Helmet } from "react-helmet";
+import PageTitleSection from "../../components/common/PageTitleSection";
 
 const MyBooking = () => {
     const {user} = useAuth()
@@ -125,13 +126,16 @@ const MyBooking = () => {
                 <meta name="keywords" content="hotel booking, travel destinations, affordable stays, luxurious rooms, vacation packages, best travel deals" />
                 <meta name="author" content="https://stay-rooms-bd.web.app" />
             </Helmet>
+            <div>
+                <PageTitleSection title={"Your Booking - Manage Your Stay"} path={"my booking"}/>
+            </div>
             {/* Table data  */}
             <div className="overflow-x-auto">
             <div className="overflow-x-auto min-w-[950px] max-w-7xl mx-auto px-4 xl:px-0 my-24">
             <table className="table">
                 {/* head */}
                 <thead>
-                <tr>
+                <tr className="text-light-black dark:text-white/85">
                     <th>
                         Room Info
                     {/* <label>
@@ -171,7 +175,7 @@ const MyBooking = () => {
             <section>
                 {/* promotional offer in booking section  */}
                 <section className="my-24 py-6">
-                        <h3 className="text-left max-w-7xl mx-auto px-4 xl:px-0 font-extrabold text-2xl md:text-3xl text-primary-black my-3">
+                        <h3 className="text-left max-w-7xl mx-auto px-4 xl:px-0 font-extrabold text-2xl md:text-3xl text-primary-black dark:text-white my-3">
                         Checkout Exclusive Offers Available for You
                         </h3>
                         <div className="my-12">
@@ -180,7 +184,7 @@ const MyBooking = () => {
                 </section>
                 {/* Room booking suggestion  */}
                 <section className="my-24 py-6 ">
-                        <h3 className=" text-left capitalize max-w-7xl mx-auto px-4 xl:px-0 font-extrabold text-2xl md:text-3xl text-primary-black my-3">
+                        <h3 className=" text-left capitalize max-w-7xl mx-auto px-4 xl:px-0 font-extrabold text-2xl md:text-3xl text-primary-black my-3 dark:text-white">
                             Recommended room only for You
                         </h3>
                         {/* <div className="my-12">
@@ -190,13 +194,13 @@ const MyBooking = () => {
             </section>
 
             {/* Update date Modal  */}
-            <div className="modal">
+            <div className="modal ">
                 <dialog ref={updateModalRef} id="my_modal_4"
-                    className={`modal`} style={{ background:
+                    className={`modal bg-white`} style={{ background:
                         "linear-gradient(125deg, rgba(99, 171, 69, 0.1) 0%, rgba(251, 176, 59, 0.1) 100%)",}}>
-                <div className="modal-box max-w-2xl">
+                <div className="modal-box max-w-2xl bg-white">
                     <form method="dialog">
-                        <button className="btn btn-sm md:btn-md border border-primary btn-circle right-5 absolute top-4">
+                        <button className="btn btn-sm md:btn-md border border-primary btn-circle right-5 absolute top-4 bg-white hover:bg-gray-300 duration-300">
                             <RiCloseLargeLine size={20} />
                         </button>
                     </form>
@@ -208,15 +212,15 @@ const MyBooking = () => {
                         <h3 className="text-2xl font-bold text-center text-secondary-black my-8">Update Booking date</h3>
                         <div className="text-center my-8">
                             <h3 className="text-xl my-6 font-bold text-secondary-black">Select Your Booking Date:</h3>
-                            <div onClick={() =>  setOpenCalender(true)} className="flex justify-between border items-center px-3 w-full md:w-1/2 mx-auto my-4 py-2 rounded-md">
+                            <div onClick={() =>  setOpenCalender(true)} className="flex  justify-between border items-center px-3 w-full md:w-1/2 mx-auto my-4 py-2 rounded-md">
                                 <input 
                                 value={`${format(range[0].startDate, "PP")} - ${format(range[0].endDate, "PP") || ""}`}
                                 readOnly
-                                className="border-none outline-none flex-1 cursor-pointer" 
+                                className="border-none outline-none flex-1 cursor-pointer bg-white text-secondary-black" 
                                 />
                                 <IoCalendarOutline size={22} className="text-primary" />
                             </div>
-                            {openCalender && <div>
+                            {openCalender && <div className="bg-white">
                                 <DateRange
                                     editableDateInputs={true}
                                     onChange={item => setRange([item.selection])}
@@ -224,6 +228,7 @@ const MyBooking = () => {
                                     ranges={range}
                                     direction="horizontal"
                                     minDate={new Date()}
+                                    className="bg-white"
                                 />
                                 </div>
                             }

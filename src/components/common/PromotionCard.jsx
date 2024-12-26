@@ -3,7 +3,7 @@ import { GrCopy } from "react-icons/gr";
 
 const PromotionCard = ({heading, offtext, coupon, des, date, bgTo, bgFrom}) => {
     return (
-        <div className='h-full border-2 border-base-200 rounded-md promotion-shadow flex flex-col p-3 bg-base-200'>
+        <div className='h-full border-2 border-gray-200 rounded-md promotion-shadow flex flex-col p-3 bg-white dark:bg-gray-200 dark:border-gray-200'>
             <div className={`flex-1 flex flex-col p-3 justify-between rounded-md text-white h-full`}
                 style={{ background: `linear-gradient(to right, ${bgFrom}, ${bgTo})` }}
             >

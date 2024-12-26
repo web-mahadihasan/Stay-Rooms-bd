@@ -4,7 +4,7 @@ import saving from "../../assets/icons/saving.svg"
 import freeWifi from "../../assets/icons/feeWifi.svg"
 import landPhone from "../../assets/icons/landphone.svg"
 import { BsArrowRight } from "react-icons/bs"
-import { Link, useLocation } from "react-router"
+import { Link, useLocation, useNavigate } from "react-router"
 import { useEffect, useState } from "react"
 import { Rating } from "@smastrom/react-rating"
 
@@ -13,6 +13,7 @@ const RoomCard = ({roomData}) => {
     const {title, price, imgUrl, description, _id, availability, totalReview} = roomData || {}
     const {pathname} = useLocation()
     const [averageReview, setAverageReview] = useState([]);
+    const navigate = useNavigate()
 
     const Extrafacilities = [
         {icon: tv, name: "TV"},
@@ -32,8 +33,8 @@ const RoomCard = ({roomData}) => {
             }
     },[totalReview])
     return (
-        <Link to={pathname ===   '/rooms' && `/room-details/${_id}`}>
-        <div className="rounded-md card-compact bg-base-100 shadow-sm border hover:shadow-md hover:bg-[#F5F9FF]">
+        <Link to={pathname ===  "/rooms" && `/room-details/${_id}`}>
+        <div className="rounded-md card-compact bg-white shadow-sm border hover:shadow-md hover:bg-[#F5F9FF] dark:hover:bg-[#F5F9FF] dark:bg-white">
             <div className="relative  overflow-hidden rounded-t-md">
                 <figure className="rounded-t-md">
                     <img
@@ -55,7 +56,7 @@ const RoomCard = ({roomData}) => {
                             </div>
                         }
                     </div>
-                    <p className="line-clamp-2">{description}</p>
+                    <p className="line-clamp-2 text-light-black text-base">{description}</p>
                     <div className="flex items-center flex-wrap gap-4 mt-4">
                         {
                             Extrafacilities.map((facilities, idx) =>  
@@ -77,9 +78,7 @@ const RoomCard = ({roomData}) => {
                         </h3>
                     </div>
                     <div>
-                        <Link to={`/room-details/${_id}`}>                   
-                            <button className="px-5 py-2 bg-primary text-white rounded shadow-xl border border-primary hover:bg-secondary-black hover:border-secondary-black duration-500 flex items-center gap-2">Book Now <BsArrowRight /> </button>
-                        </Link>
+                        <Link to={`/room-details/${_id}`} className="px-5 cursor-pointer py-2 bg-primary text-white rounded shadow-xl border border-primary hover:bg-secondary-black hover:border-secondary-black duration-500 flex items-center gap-2">Book Now <BsArrowRight /> </Link>
                     </div>
                 </div>
             </div>

@@ -8,11 +8,14 @@ import MyBooking from "../pages/MyBooking/MyBooking";
 import Rooms from "../pages/Rooms/Rooms";
 import PrivateRoute from "./PrivateRoute";
 import About from "../pages/AboutUs/About";
+import Contact from "../pages/Contact/Contact";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const Router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout/>,
+        errorElement: <ErrorPage/>,
         children: [
             {
                 path: "/",
@@ -29,7 +32,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/rooms",
-                element: <Rooms/>,
+                element: <Rooms/>
             },
             {
                 path: "/auth/login",
@@ -42,6 +45,10 @@ const Router = createBrowserRouter([
             {
                 path: "/about-us",
                 element: <About/>
+            },
+            {
+                path: "/contact-us",
+                element: <Contact/>
             }
         ]
     }

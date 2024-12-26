@@ -5,7 +5,7 @@ import { BiSolidPhoneCall } from "react-icons/bi";
 const LeafletContent = () => {
     return (
         <div>
-            <h3 className="text-2xl font-bold my-4 leading-9">
+            <h3 className="text-2xl font-bold my-4 leading-9 text-primary-black">
             Cheapest Deals on Budget & Luxury Rooms are Available at StayRooms
             BD
           </h3>

@@ -14,11 +14,11 @@ const Navbar = () => {
     const {setOpenMenu} = useAppContext();
 
     const navLinks = <>
-        <li> <Link to={"/"}>Home</Link> </li>
-        <li><Link to={"/rooms"}>Rooms</Link></li>
-        <li><Link to={"/my-bookings"}>My Bookings</Link></li>
-        <li><Link to={"/about-us"}>About Us</Link></li>
-        <li><Link>Contact Us</Link></li>
+        <li> <NavLink to={"/"}>Home</NavLink> </li>
+        <li><NavLink to={"/rooms"}>Rooms</NavLink></li>
+        <li><NavLink to={"/my-bookings"}>My Bookings</NavLink></li>
+        <li><NavLink to={"/about-us"}>About Us</NavLink></li>
+        <li><NavLink to={"/contact-us"}>Contact Us</NavLink></li>
     </>
     return (
         <div className="py-3 border-b shadow">
@@ -39,14 +39,14 @@ const Navbar = () => {
                 <div className="flex items-center gap-2">
                     {
                         loginUser ? <div className="flex items-center gap-3">
-                            <span className="p-2 border bg-base-200 rounded-full cursor-pointer"><MdOutlineNotificationsActive size={23} className="text-primary"/></span>
+                            <span className="p-2 border bg-white rounded-full cursor-pointer"><MdOutlineNotificationsActive size={23} className="text-primary"/></span>
                             {/* <img src="" alt="" className="w-10 h-10 rounded-full"/> */}
                             <details className="dropdown dropdown-end">
-                                <summary className="btn p-0 bg-transparent hover:bg-transparent rounded-full flex items-center gap-2 px-2">
-                                    <img src={user?.photoURL} alt="" className="w-9 h-9 rounded-full ring-2 ring-offset-2 ring-[#a38ffd]"/>
+                                <summary className="btn p-0 bg-transparent hover:bg-transparent rounded-full flex items-center gap-2 border-gray-300 px-2">
+                                    <img src={user?.photoURL} alt="" className="w-9 h-9 rounded-full ring-2 ring-offset-2 ring-gray-100"/>
                                     <IoIosArrowDown size={20} />
                                 </summary>
-                                <ul className="menu dropdown-content bg-base-100 z-[1] p-2 min-w-60 space-y-2 border shadow-md rounded-md border-t-4 border-t-primary mt-3">
+                                <ul className="menu dropdown-content bg-white z-[1] p-2 min-w-60 space-y-2 border shadow-md rounded-md border-t-4 border-t-primary mt-3">
                                     <CurrentUser/>
                                 </ul>
                             </details>

@@ -85,7 +85,7 @@ const ReviewModal = ({modalOpen, setModalOpen, onReviewSubmit}) => {
 
                     <label className="text-gray-500 ">Your feedback</label>
                     <textarea name="feedback" placeholder="My feedback!!"
-                        className="w-full border-gray-400 font-medium text-base text-light-black resize-none outline-none focus:border-primary border rounded-md p-2 min-h-[100px]">
+                        className="w-full border-gray-400 bg-white font-medium text-base text-light-black resize-none outline-none focus:border-primary border rounded-md p-2 min-h-[100px]">
                     </textarea>
                     <button type="submit" className="py-2 text-base px-4 border bg-primary text-white font-medium hover:bg-secondary-black duration-300 rounded-md w-full mt-[10px]">Submit Review</button>
                 </div>

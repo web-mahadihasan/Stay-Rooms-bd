@@ -109,28 +109,28 @@ const Register = () => {
         <div className="w-full min-h-screen">
             <div className="max-w-6xl mx-auto px-4 xl:px-0 flex items-center justify-between flex-col md:flex-row min-h-screen gap-8">
                 <div className="flex-1 text-center space-y-2 order-2 md:order-1">
-                    <p className="font-semibold text-primary-dark">Register</p>
-                    <h3 className="text-4xl font-bold text-primary-black">Start Journey Today</h3>
-                    <p className="font-medium text-light-black">Access to all features. No credit card required.</p>
+                    <p className="font-semibold text-primary-dark dark:text-white dark:text-white">Register</p>
+                    <h3 className="text-4xl font-bold text-primary-black dark:text-white">Start Journey Today</h3>
+                    <p className="font-medium text-light-black dark:text-white/85 dark:text-white/85">Access to all features. No credit card required.</p>
 
                     <div className="pt-6">
-                        <button onClick={handleGoogleLogin} className="w-full lg:w-3/4 mx-auto flex items-center justify-center p-2 border border-primary rounded-md gap-3 font-medium text-primary-black">
+                        <button onClick={handleGoogleLogin} className="w-full lg:w-3/4 mx-auto flex items-center justify-center p-2 border border-primary rounded-md gap-3 font-medium text-primary-black dark:text-white">
                             <span><FcGoogle size={22} /></span>
                             <span>Register With Google</span>
                         </button>
-                        <div className="divider w-full lg:w-3/4 mx-auto my-5 text-sm text-light-black">OR Login With Email</div>
+                        <div className="divider w-full lg:w-3/4 mx-auto my-5 text-sm text-light-black dark:text-white/85 dark:text-white/85">OR Login With Email</div>
                         {/* Form  */}
                         <form onSubmit={handleUserRegister} className="space-y-2">
                             {/* Name */}
                             <div className="w-full lg:w-3/4 mx-auto">
-                                <label className="block text-base text-left mb-1 font-medium text-light-black">Full Name</label>
+                                <label className="block text-base text-left mb-1 font-medium text-light-black dark:text-white/85 dark:text-white/85">Full Name</label>
                                 <input
                                 id="name" type="text" name="name" required placeholder="John Doe"
                                 className="w-full h-11 px-4 text-base transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white focus:border-primary/40 focus:outline-none bg-white bg-opacity-90"/>
                             </div>
                             {/* Email  */}
                             <div className="w-full lg:w-3/4 mx-auto">
-                                <label className="block text-base text-left mb-1 font-medium text-light-black">Email</label>
+                                <label className="block text-base text-left mb-1 font-medium text-light-black dark:text-white/85 dark:text-white/85">Email</label>
                                 <input
                                 id="email" type="email" name="email" required placeholder="john@example.com"
                                 className="w-full h-11 px-4 text-base transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white focus:border-primary/40 focus:outline-none bg-white bg-opacity-90"/>
@@ -140,7 +140,7 @@ const Register = () => {
                             } */}
                             {/* UserName */}
                             <div className="w-full lg:w-3/4 mx-auto">
-                                <label className="block text-base text-left mb-1 font-medium text-light-black">Profile Photo</label>
+                                <label className="block text-base text-left mb-1 font-medium text-light-black dark:text-white/85 dark:text-white/85">Profile Photo</label>
                                 <input
                                 onChange={handleImageUpload}
                                 id="image" type="file" name="username" required placeholder="john_doe1234"
@@ -148,7 +148,7 @@ const Register = () => {
                             </div>
                             {/* Password  */}
                             <div className="w-full lg:w-3/4 mx-auto relative">
-                                <label className="block text-base text-left mb-1 font-medium text-light-black">Password</label>
+                                <label className="block text-base text-left mb-1 font-medium text-light-black dark:text-white/85 dark:text-white/85">Password</label>
                                 <input
                                 id="password" type={showPassword? "text": "password"} name="password" required placeholder="●●●●●●"
                                 className="w-full h-11 px-4 text-base transition-all  border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white focus:border-primary/40 focus:outline-none bg-white bg-opacity-90"/>
@@ -161,7 +161,7 @@ const Register = () => {
                             }
                             {/* Repeat Password  */}
                             <div className="w-full lg:w-3/4 mx-auto relative">
-                                <label className="block text-base text-left mb-1 font-medium text-light-black">Repeat Password</label>
+                                <label className="block text-base text-left mb-1 font-medium text-light-black dark:text-white/85 dark:text-white/85">Repeat Password</label>
                                 <input
                                 id="repassword" type={showRePassword? "text": "password"} name="repassword" required placeholder="●●●●●●"
                                 className="w-full h-11 px-4 text-base transition-all  border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white focus:border-primary/40 focus:outline-none bg-white bg-opacity-90"/>
@@ -177,7 +177,7 @@ const Register = () => {
                             <div className="w-full lg:w-3/4 mx-auto flex items-center">
                                 <label onChange={() =>  setChecked(!checked)} className="label cursor-pointer">
                                     <input type="checkbox" className="checkbox checkbox-sm mr-2" />
-                                    <span className="text-light-black">Agree with our <span className="text-primary">terms and policy</span></span>
+                                    <span className="text-light-black dark:text-white/85 dark:text-white/85">Agree with our <span className="text-primary">terms and policy</span></span>
                                 </label>
                             </div>
                             <div className="w-full lg:w-3/4 mx-auto">
@@ -189,7 +189,7 @@ const Register = () => {
                             </div>
                         </form>
                         <div className="my-4">
-                            <p className="font-medium text-light-black">Already have an Account? <Link to={"/auth/login"} className="text-blue-600 hover:text-primary-black duration-300">Login here</Link></p>
+                            <p className="font-medium text-light-black dark:text-white/85 dark:text-white/85">Already have an Account? <Link to={"/auth/login"} className="text-blue-600 hover:text-primary-black duration-300">Login here</Link></p>
                         </div>
                     </div>
                 </div>

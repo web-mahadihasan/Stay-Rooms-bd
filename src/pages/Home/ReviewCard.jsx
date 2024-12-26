@@ -8,7 +8,7 @@ const ReviewCard = ({review}) => {
     const {userName, reviewTitle, img, feedback, rating, reviewTime} = review || {}
   return (
     <>
-      <div className="w-full border border-base-200 bg-base-100 text-secondary shadow-2xl rounded-lg p-6 relative">
+      <div className="w-full border border-gray-200 bg-white text-secondary shadow-2xl rounded-lg p-6 relative dark:bg-white dark:border-gray-200">
         <FaQuoteRight className="text-[4rem] text-[#e9e9e959] absolute top-[10%] right-[10%] " />
         <div className="flex items-center gap-4 mt-4">
           <img

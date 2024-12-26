@@ -33,7 +33,7 @@ const RoomCardTableView = ({roomData}) => {
     },[totalReview])
     return (
         <Link to={pathname ===   '/rooms' && `/room-details/${_id}`}>
-        <div className="rounded-md grid grid-cols-1 md:grid-cols-5 bg-base-100 shadow-sm border hover:shadow-md hover:bg-[#F5F9FF]">
+        <div className="rounded-md grid grid-cols-1 md:grid-cols-5 bg-white shadow-sm border hover:shadow-md hover:bg-[#F5F9FF] dark:hover:bg-[#F5F9FF] dark:bg-white">
             <div className="relative col-span-2  overflow-hidden rounded-t-md min-h-full">
                     <img
                     src={imgUrl}
@@ -53,7 +53,7 @@ const RoomCardTableView = ({roomData}) => {
                             </div>
                         }
                     </div>
-                    <p className="line-clamp-2">{description}</p>
+                    <p className="line-clamp-2 text-secondary-black text-base">{description}</p>
                     <div className="flex items-center flex-wrap gap-4 mt-2">
                         {
                             Extrafacilities.map((facilities, idx) =>  

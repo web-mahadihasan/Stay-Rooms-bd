@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import RoomCard from "../../components/common/RoomCard";
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { FaListUl } from "react-icons/fa6";
-import { AiOutlineAppstore } from "react-icons/ai";
+import { AiOutlineAppstore, AiOutlineArrowLeft } from "react-icons/ai";
 import { useState } from "react";
 import { useLocation } from "react-router";
 import Select from 'react-select'
@@ -12,6 +12,8 @@ import { HiOutlineArrowLeft } from "react-icons/hi";
 import PriceRange from "./PriceRange";
 import RoomCardTableView from "../../components/common/RoomCardTableView";
 import { Helmet } from "react-helmet";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import PageTitleSection from "../../components/common/PageTitleSection";
 
 const Rooms = () => {
     const [searchText, setSearchText] = useState("")
@@ -19,6 +21,7 @@ const Rooms = () => {
     const [selectedValue, setSelectedValue] = useState(null);
     const [priceRange, setPriceRange] = useState(null)
     const [tableView, setTableView] = useState(false)
+    const [currentPage, setCurrentPage] = useState(0)
     // const [isLoading, setIsLoading] = useState(false)
     // const [allRooms, setAllRooms] = useState([])
 
@@ -31,17 +34,39 @@ const Rooms = () => {
       const optionOnChange = (selectedOption) => {
         setSelectedValue(selectedOption.value);
       };
-
-    const {data:allRooms, isLoading} = useQuery({ queryKey: ['featuredRoom', searchText, selectedValue, priceRange], queryFn: async() =>  {
-        const {data} = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/all-rooms?search=${searchText}&sort=${selectedValue}&range=${priceRange}`)
+    //   Loaded data with query 
+    const {data:count} = useQuery({queryKey: ['count'], queryFn: async () =>  {
+        const {data} = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/rooms`)
+        return data
+    }})
+    
+    const {data:allRooms, isLoading} = useQuery({ queryKey: ['featuredRoom', searchText, selectedValue, priceRange, currentPage], queryFn: async() =>  {
+        const {data} = await axios.get(
+            `${import.meta.env.VITE_BASE_URL}/api/all-rooms?search=${searchText}&sort=${selectedValue}&range=${priceRange}&page=${currentPage}&size=${itemsPerPage}`
+        )
         return data
     } })
 
+    // Pagination 
+    const itemsPerPage = 5;
+    const numberOfPage = Math.ceil(count?.length/itemsPerPage) || 2;
+    const pages = [...Array(numberOfPage).keys()]
+
+    const handlePrevPage = () =>  {
+        if(currentPage > 0) {
+            setCurrentPage(currentPage - 1 )
+        }
+    }
+    const handleNextPage = () =>  {
+        if(currentPage < pages.length - 1) {
+            setCurrentPage(currentPage + 1 )
+        }
+    }
     // console.log(priceRange)
     if(isLoading) return <LoadingSpinner/>
 
     return (
-        <div className="min-h-screen bg-[#f2f4f8]">
+        <div className="min-h-screen bg-[#f2f4f8] dark:bg-secondary-black">
             {/* Helmet  */}
             <Helmet>
                 <title>StayRooms | All Rooms </title>
@@ -50,19 +75,22 @@ const Rooms = () => {
                 <meta name="author" content="https://stay-rooms-bd.web.app" />
             </Helmet>
             {/* Card  */}
-            <div className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
+            <div>
+                <PageTitleSection title={"All Rooms - Explore Our Spaces"} path={"all available rooms"}/>
+            </div>
+            <div className="max-w-7xl mx-auto px-4 xl:px-0 my-10">
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-6">
                     <aside className="col-span-1 md:col-span-2 lg:col-span-1">
                         {/* Tool Bar  */}
                         <div className={`w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 gap-6 lg:space-y-4"}`}>
-                            <div className="p-6 rounded w-full bg-base-100 border border-gray-100">
-                                <h3 className="text-lg font-medium  text-secondary-black">Search by Title</h3>
+                            <div className="p-6 rounded w-full bg-white border border-gray-100  shadow dark:shadow-md">
+                                <h3 className="text-lg font-medium  text-secondary-black ">Search by Title</h3>
                                 <div className="divider my-3"></div>
                                 <div className="relative my-2">
                                     <input onBlur={(e) =>  setSearchText(e.target.value)}
                                     id="search" type="search" name="search" placeholder="Search here" aria-label="Search content"
-                                    className="peer relative h-12 w-full rounded border border-slate-200 px-4 pr-12 text-slate-500 outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-primary/50 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400" />
+                                    className="peer relative h-12 w-full rounded border border-slate-200 px-4 pr-12 text-slate-500 outline-none transition-all bg-white dark:bg-white autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-primary/50 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400" />
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                     className="absolute right-4 top-3 h-6 w-6 cursor-pointer stroke-slate-400 peer-disabled:cursor-not-allowed" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" aria-label="Search icon"
                                     role="graphics-symbol">
@@ -71,26 +99,26 @@ const Rooms = () => {
                                 </div>
                                 <button className="px-5 mt-4 py-2 bg-primary text-white rounded shadow-xl border border-primary hover:bg-secondary-black hover:border-secondary-black duration-500 flex items-center gap-2 font-medium tracking-wide">Search </button>
                             </div>
-                            <div className="p-6 lg:my-0 lg:flex-1 bg-base-100 border border-gray-100 rounded">
-                                <h3 className="text-lg font-medium  text-secondary-black">Filter by Room Availablity</h3>
+                            <div className="p-6 lg:my-0 lg:flex-1 bg-white border border-gray-100 rounded ">
+                                <h3 className="text-lg font-medium  text-secondary-black ">Filter by Room Availablity</h3>
                                 <div className="divider my-3"></div>
                                 <div>
                                 <div className={` text-lg flex gap-1 flex-wrap xl:flex-col xl:flex-nowrap`}>
                                     <div className="cursor-pointer my-4 space-y-4">
                                         <label className="flex gap-2 items-center">
                                             <input type="checkbox" className="checkbox checkbox-info" />
-                                            <span className="label-text">Available Room</span>
+                                            <span className="label-text text-secondary-black ">Available Room</span>
                                         </label>
                                         <label className="flex gap-2 items-center">
                                             <input type="checkbox" className="checkbox checkbox-info" />
-                                            <span className="label-text">Featured Room</span>
+                                            <span className="label-text text-secondary-black ">Featured Room</span>
                                         </label>
                                     </div>
                                     
                                 </div>
                                 </div>
                             </div>
-                            <div className="p-6 h-full lg:my-0 lg:flex-1 bg-base-100 border border-gray-100 rounded min-h-52">
+                            <div className="p-6 h-full lg:my-0 lg:flex-1 bg-white border border-gray-100 rounded min-h-52">
                                 <div>
                                     <label className="block text-lg font-medium  text-secondary-black my-2">
                                     Sort By Price/Rating
@@ -104,7 +132,7 @@ const Rooms = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="p-6 h-full lg:my-0 lg:flex-1 bg-base-100 border border-gray-100 rounded min-h-52">
+                            <div className="p-6 h-full lg:my-0 lg:flex-1 bg-white border border-gray-100 rounded min-h-52">
                                 <div>
                                     <label className="block text-lg font-medium  text-secondary-black my-2">
                                     Sort By Price/Rating
@@ -119,7 +147,7 @@ const Rooms = () => {
                     </aside>
                     <section className="col-span-2">
                         {/* Room Card Grid  */}
-                        <div className="mb-4 p-3 rounded-md flex justify-between items-center bg-base-100">
+                        <div className="mb-4 p-3 rounded-md flex justify-between items-center bg-white text-secondary-black">
                             <Link to={"/"}>
                                 <button className="px-8 py-3 relative shadow-lg before:absolute flex items-center gap-2
                                     before:top-0 before:left-0 before:w-0 before:h-0 before:border-l-[4px] before:border-t-[4px] before:border-transparent 
@@ -151,7 +179,18 @@ const Rooms = () => {
             
                         </div>
                         }
-                        
+                        {/* Pagination  */}
+                        <div className="flex justify-center items-center my-10 gap-4">
+                            <button onClick={handlePrevPage} className="flex items-center gap-2 bg-primary text-white py-1.5 px-4 font-medium rounded hover:bg-secondary-black duration-300 dark:hover:bg-white dark:hover:text-secondary-black"><BsArrowLeft /> Prev</button>
+                            <div className="flex items-center gap-4">
+                                {
+                                    pages?.map(page =>  <button onClick={() => setCurrentPage(page) } key={page} className={`px-4 py-1 hover:bg-blue-700 duration-300 rounded text-white font-semibold ${currentPage ===  page? "bg-primary": "bg-gray-400"}`}>
+                                            {page+1}
+                                        </button>)
+                                }
+                            </div>
+                            <button onClick={handleNextPage} className="flex items-center gap-2 bg-primary text-white py-1.5 px-4 font-medium rounded hover:bg-secondary-black duration-300 dark:hover:bg-white dark:hover:text-secondary-black">Next <BsArrowRight /> </button>
+                        </div>
                         
                     </section>
                 </div>

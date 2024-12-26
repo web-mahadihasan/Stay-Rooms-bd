@@ -55,8 +55,11 @@ const Carousel = () =>  {
               />
             </li>
             <li className="border bg-gray-100 min-h-[680px] w-full">
-              <Slider2
+              <Slider1
                 image={bgimg2}
+                title={"For Luxury, Find Your."}
+                subtitle={"Perfect Room Anytime"}
+                description={"Save time and money with StayRooms. Book your dream room now and enjoy your stay, stress-free."}
               />
             </li>
             <li className="border bg-gray-100 min-h-[680px] w-full">

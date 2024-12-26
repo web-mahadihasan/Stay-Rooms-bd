@@ -41,12 +41,12 @@ const Slider1 = ({ image, title, subtitle, description}) => {
           <br />
           <motion.div animate={{ y: [50, 0],  transition: { duration: 1, ease: "linear",} }} 
           className="flex justify-center">
-              <Link to={"/rooms"} className="px-8 bg-base-100 py-3 relative shadow-lg before:absolute flex items-center gap-2
+              <Link to={"/rooms"} className="px-8 py-3 relative shadow-lg before:absolute flex items-center gap-2
                 before:top-0 before:left-0 before:w-0 before:h-0 before:border-l-[4px] before:border-t-[4px] before:border-transparent 
                 hover:before:w-full hover:before:h-full hover:before:border-primary hover:before:transition-all hover:before:duration-500 
                 after:border-r-[4px] after:border-b-[4px] after:border-transparent hover:after:border-primary 
                 after:absolute after:bottom-0 after:right-0 after:w-0 
-                after:h-0 hover:after:w-full hover:after:h-full rounded hover:before:rounded hover:after:rounded border border-primary hover:after:transition-all hover:after:duration-500">
+                after:h-0 hover:after:w-full bg-white text-secondary-black font-medium hover:after:h-full rounded hover:before:rounded hover:after:rounded border border-primary hover:after:transition-all hover:after:duration-500">
               <span>Book a Room</span>
               <span><HiOutlineArrowRight /></span>
               </Link>

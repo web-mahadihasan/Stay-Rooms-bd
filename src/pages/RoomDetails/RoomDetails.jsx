@@ -23,6 +23,7 @@ import Select from 'react-select'
 import { Rating } from "@smastrom/react-rating"
 import LeafletMaps from "../../components/common/LeafletMaps"
 import { Helmet } from "react-helmet"
+import PageTitleSection from "../../components/common/PageTitleSection"
 
 const RoomDetails = () => {
     const {user} = useAuth()
@@ -142,6 +143,9 @@ const RoomDetails = () => {
                 <meta name="keywords" content="hotel booking, travel destinations, affordable stays, luxurious rooms, vacation packages, best travel deals" />
                 <meta name="author" content="https://stay-rooms-bd.web.app" />
             </Helmet>
+            <div>
+                <PageTitleSection title={"Room Details - A Closer Look at Comfort"} path={"room details"}/>
+            </div>
             <div className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
                 <div className="md:grid grid-cols-3 grid-rows-2 gap-6 h-auto md:h-[500px]">
                     <div className="col-span-2 row-span-2 h-full w-full relative">
@@ -151,28 +155,28 @@ const RoomDetails = () => {
                     <img src="https://triprex.b-cdn.net/wp-content/uploads/2024/02/Room-02-1.webp" alt="" className="col-span-1 w-full h-full rounded-lg" />
                     <img src="https://triprex.b-cdn.net/wp-content/uploads/2024/02/room-05.webp" alt="" className="col-span-1 w-full h-full rounded-lg" />
                 </div>
-                <div className="lg:grid grid-cols-3 gap-4">
+                <div className="lg:grid grid-cols-3 gap-4 mt-10">
                     <div className="col-span-2">
                         <div className="flex items-center justify-between">
-                            <h2 className="text-3xl font-extrabold my-6 text-primary-black tracking-wide">{title}</h2>
+                            <h2 className="text-3xl font-extrabold my-6 text-primary-black dark:text-white dark:text-white tracking-wide">{title}</h2>
                             {
                                 averageReview?.length > 0 ? <div className="flex items-center gap-2 px-4"> 
                                     <div style={{ maxWidth: 120, width: '100%' }} className="">
                                         <Rating readOnly value={averageReview} key={averageReview} />
                                     </div>
-                                    <h3 className="text-xl font-bold text-secondary-black">{averageReview?.length > 0 && averageReview}</h3>
+                                    <h3 className="text-xl font-bold text-secondary-black dark:text-white dark:text-white">{averageReview?.length > 0 && averageReview}</h3>
                             </div> : <p className="px-6 text-xl font-medium text-red-500">No review yet 😣</p>
                             }
                         </div>
                         <h3 className="text-2xl font-extrabold text-primary">$ {price} / <span className="text-lg font-medium">Per Night</span></h3>
-                        <p className="text-light-black leading-8 my-6">{description}</p>
+                        <p className="text-light-black dark:text-white/85 leading-8 my-6">{description}</p>
                         <div className="my-6">
-                            <h3 className="text-2xl font-bold text-secondary-black my-3">Children and extra beds.</h3>
-                            <p className="text-light-black">Children are welcome Kids stay free! Children stay free when using existing bedding; children may not be eligible for complimentary breakfast Rollaway/extra beds are available for $ 10 per day.</p>                        
+                            <h3 className="text-2xl font-bold text-secondary-black dark:text-white dark:text-white my-3">Children and extra beds.</h3>
+                            <p className="text-light-black dark:text-white/85">Children are welcome Kids stay free! Children stay free when using existing bedding; children may not be eligible for complimentary breakfast Rollaway/extra beds are available for $ 10 per day.</p>                        
                         </div>
                         <div className="mt-6">
-                            <h3 className="text-2xl font-bold text-secondary-black my-3">Facilities</h3>
-                            <div className="space-y-2 text-lg text-light-black">
+                            <h3 className="text-2xl font-bold text-secondary-black dark:text-white dark:text-white my-3">Facilities</h3>
+                            <div className="space-y-2 text-lg text-light-black dark:text-white/85">
                                 {
                                     facilities?.map((item, idx)=>  <li key={idx} className="list-none flex items-center gap-2">
                                         <img src={check} alt="" />
@@ -182,12 +186,12 @@ const RoomDetails = () => {
                             </div>
                         </div>
                         <div className="mt-6">
-                            <h3 className="text-2xl font-bold text-secondary-black my-3">Highlights</h3>
+                            <h3 className="text-2xl font-bold text-secondary-black dark:text-white dark:text-white my-3">Highlights</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                                 {
-                                    highlightFacilities.map((facilities, idx) =>  <div key={idx} className="flex cursor-pointer items-center gap-2 py-4 rounded border px-6 border-primary/20">
+                                    highlightFacilities.map((facilities, idx) =>  <div key={idx} className="flex cursor-pointer items-center gap-2 py-4 rounded border px-6 border-primary/20 dark:border-white/85">
                                         <img src={facilities.icon} alt="" className="w-6"/>
-                                        <p className="text-secondary-black">{facilities.name}</p>
+                                        <p className="text-secondary-black dark:text-white dark:text-white">{facilities.name}</p>
                                     </div> )
                                 }
                             </div>
@@ -203,11 +207,11 @@ const RoomDetails = () => {
                         <div>
                             <div className="flex items-center justify-between p-4 bg-[#f5f6f9] rounded mt-8">
                                 <div>
-                                    <h5 className="text-lg font-medium">By {reviewData?.length} reviewer(s)</h5>
+                                    <h5 className="text-lg font-medium text-light-black">By {reviewData?.length} reviewer(s)</h5>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <h5 className="font-medium">Sort by</h5>
-                                    <div>
+                                    <h5 className="font-medium text-light-black">Sort by</h5>
+                                    <div className="text-light-black">
                                         <Select
                                         options={options}
                                         name="visaType"
@@ -220,7 +224,7 @@ const RoomDetails = () => {
                             {/* Review content */}
                             {
                                 reviewData?.map(review =>  <div key={review?._id} className="bg-[#f5f6f9] px-6 py-8 rounded my-6 flex items-center gap-6">
-                                    <div className="w-[25%]">
+                                    <div className="w-[35%]">
                                         <img src={review?.img} alt="" className="border border-gray-400  mx-auto w-20 h-20 rounded-full"/>
                                         <h6 className="text-lg font-bold text-light-black my-2 text-center">{review?.userName}</h6>
                                     </div>
@@ -229,10 +233,10 @@ const RoomDetails = () => {
                                             <div style={{ maxWidth: 150, width: '100%' }} className="">
                                                 <Rating readOnly value={review?.rating} key={review?.rating} />
                                             </div>
-                                                <p className="text-xl font-bold">{review?.rating} / <span className="text-lg text-light-black">5</span></p>
+                                                <p className="text-xl font-bold text-primary-black">{review?.rating} / <span className="text-lg text-light-black ">5</span></p>
                                         </div>
-                                        <h4 className="text-xl font-bold text-primary-black">{review?.reviewTitle}</h4>
-                                        <p className="max-w-[90%]  text-light-black">{review?.feedback}</p>
+                                        <h4 className="text-xl font-bold text-primary-black ">{review?.reviewTitle}</h4>
+                                        <p className="max-w-[90%]  text-light-black ">{review?.feedback}</p>
                                         <p className="flex items-center gap-2 text-lg text-light-black">
                                             <span><IoCalendarOutline size={22} className="text-primary"/></span>
                                             <span>{review?.reviewTime}</span>
@@ -253,8 +257,8 @@ const RoomDetails = () => {
                             style={{background: "linear-gradient(125deg, rgba(99, 171, 69, 0.1) 0%, rgba(251, 176, 59, 0.1) 100%)",}}
                         > 
                             
-                            <h3 className="text-2xl font-bold text-primary-black">Book Your Room</h3>
-                            <p className="text-light-black">Reserve your ideal Room early for a hassle-free trip, secure comfort and convenience!</p>
+                            <h3 className="text-2xl font-bold text-primary-black dark:text-white dark:text-white">Book Your Room</h3>
+                            <p className="text-light-black dark:text-white/85">Reserve your ideal Room early for a hassle-free trip, secure comfort and convenience!</p>
                             <button onClick={()=> document.getElementById('my_modal_4').showModal()} className="px-5 py-2 bg-primary text-white rounded shadow-xl border border-primary hover:bg-secondary-black hover:border-secondary-black duration-500 flex items-center gap-2 font-medium tracking-wider">Book Now <BsArrowUpRightCircle size={22} /> </button>
                         </div>
 

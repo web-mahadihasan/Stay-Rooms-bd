@@ -55,14 +55,14 @@ const BookingTableRow = ({bookedRoomData, onCancellation, onUpdate}) => {
     }
 
     return (
-        <tr className="">
+        <tr className=" rounded-md dark:text-white border-white/65">
         {/* <th>
         <label>
             <input type="checkbox" className="checkbox" />
         </label>
         </th> */}
         <td>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 ">
             <div className="avatar">
                 <div className="mask rounded-md h-[150px] w-[200px]">
                     <img
@@ -71,17 +71,17 @@ const BookingTableRow = ({bookedRoomData, onCancellation, onUpdate}) => {
                 </div>
             </div>
             <div>
-                <div className="font-bold text-xl text-primary-black">{title}</div>
-                <div className="font-bold text-xl text-primary mt-1"><span className="text-light-black">Price: </span>$ {price}</div>
+                <div className="font-bold text-xl text-primary-black dark:text-white">{title}</div>
+                <div className="font-bold text-xl text-primary mt-1"><span className="text-light-black dark:text-white/85">Price: </span>$ {price}</div>
             </div>
         </div>
         </td>
         <td className="text-base text-light-black font-medium">
-            <p><span className="text-lg text-primary-black">Booked By:</span> {bookingName}</p>
-            <p><span className="text-lg text-primary-black">Email:</span> {bookingEmail}</p>
+            <p className="text-light-black dark:text-white/85"><span className="text-lg text-primary-black dark:text-white">Booked By:</span> {bookingName}</p>
+            <p className="text-light-black dark:text-white/85"><span className="text-lg text-primary-black dark:text-white">Email:</span> {bookingEmail}</p>
         <br />
         </td>
-        <td className="text-base font-normal text-light-black">
+        <td className="text-base font-normal text-light-black dark:text-white/85">
             <p>{startDate}</p>
             <p className="text-center">-</p>
             <p>{endDate}</p>

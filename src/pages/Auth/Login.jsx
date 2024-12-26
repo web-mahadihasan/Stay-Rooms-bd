@@ -54,16 +54,16 @@ const Login = () => {
         <div className="w-full min-h-screen">
             <div className="max-w-6xl mx-auto px-4 xl:px-0 flex items-center justify-between flex-col md:flex-row min-h-screen gap-8">
                 <div className="flex-1 text-center space-y-2 order-2 md:order-1">
-                    <p className="font-semibold text-primary-dark">Welcomoe Back</p>
-                    <h3 className="text-4xl font-bold text-primary-black">Members Login</h3>
-                    <p className="font-medium text-light-black">Access to all features. No credit card required.</p>
+                    <p className="font-semibold text-primary-dark dark:text-white">Welcomoe Back</p>
+                    <h3 className="text-4xl font-bold text-primary-black dark:text-white">Members Login</h3>
+                    <p className="font-medium text-light-black dark:text-white/85 dark:text-white/85">Access to all features. No credit card required.</p>
 
                     <div className="pt-6">
-                        <button onClick={handleGoogleLogin} className="w-full lg:w-3/4 mx-auto flex items-center justify-center p-2 border border-primary rounded-md gap-3 font-medium text-primary-black">
+                        <button onClick={handleGoogleLogin} className="w-full lg:w-3/4 mx-auto flex items-center justify-center p-2 border border-primary rounded-md gap-3 font-medium text-primary-black dark:text-white">
                             <span><FcGoogle size={22} /></span>
                             <span>Login With Google</span>
                         </button>
-                        <div className="divider w-full lg:w-3/4 mx-auto my-5 text-sm text-light-black">OR Login With Email</div>
+                        <div className="divider w-full lg:w-3/4 mx-auto my-5 text-sm text-light-black dark:text-white/85 dark:text-white/85">OR Login With Email</div>
                          {/* Error  */}
                         {error?.invalid && (
                             <p className="text-base text-red-500 text-center font-base">
@@ -74,13 +74,13 @@ const Login = () => {
                         <form onSubmit={handleEmailLogin} className="space-y-3">
                             {/* Email  */}
                             <div className="w-full lg:w-3/4 mx-auto">
-                                <label className="block text-base text-left mb-1 font-medium text-light-black">Email</label>
+                                <label className="block text-base text-left mb-1 font-medium text-light-black dark:text-white/85 dark:text-white/85">Email</label>
                                 <input
                                 id="email" type="email" name="email" required placeholder="john@example.com"
                                 className="w-full h-11 px-4 text-base transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white focus:border-primary/40 focus:outline-none bg-white bg-opacity-90"/>
                             </div>
                             <div className="w-full lg:w-3/4 mx-auto relative">
-                                <label className="block text-base text-left mb-1 font-medium text-light-black">Password</label>
+                                <label className="block text-base text-left mb-1 font-medium text-light-black dark:text-white/85 dark:text-white/85">Password</label>
                                 <input
                                 id="password" type={showPassword? "text": "password"} name="password" required placeholder="●●●●●●"
                                 className="w-full h-11 px-4 text-base transition-all  border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white focus:border-primary/40 focus:outline-none bg-white bg-opacity-90"/>
@@ -101,7 +101,7 @@ const Login = () => {
                             </div>
                         </form>
                         <div className="my-4">
-                            <p className="font-medium text-light-black">Don't have an Account? <Link to={"/auth/register"} className="text-blue-600 hover:text-primary-black duration-300">Create one</Link></p>
+                            <p className="font-medium text-light-black dark:text-white/85 dark:text-white/85">Don't have an Account? <Link to={"/auth/register"} className="text-blue-600 hover:text-primary-black dark:text-white dark:hover:text-primary duration-300">Create one</Link></p>
                         </div>
                     </div>
                 </div>

@@ -41,7 +41,7 @@ const UserReviews = ({allReviews}) => {
   return (
     <>
       {/*<!-- Component: Card Carousel --> */}
-      <div className="glide-06 relative w-full bg-white overflow-hidden rounded">
+      <div className="glide-06 relative w-full  overflow-hidden rounded">
         {/*    <!-- Slides --> */}
         <div className="overflow-hidden" data-glide-el="track">
             
@@ -51,15 +51,6 @@ const UserReviews = ({allReviews}) => {
                     <ReviewCard review={review}/>
                   </li>)
             }
-          {/* <li className="min-h-[300px] w-full relative ">
-              <ReviewCard />
-            </li>
-          <li className="min-h-[300px] w-full">
-                <ReviewCard />
-            </li>
-          <li className="min-h-[300px] w-full">
-                <ReviewCard />
-            </li> */}
           </ul>
         </div>
         {/*    <!-- Controls --> */}
