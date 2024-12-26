@@ -25,7 +25,8 @@ const MyBooking = () => {
     const [openCalender, setOpenCalender] = useState(false)
     const [updateId, setUpdateId] = useState("")
     const [modalOpen, setModalOpen] = useState(false)
-    
+    const [reviewId, setReviewId] = useState("")
+
     const [range, setRange] = useState([
         {
             startDate: new Date(),
@@ -128,7 +129,38 @@ const MyBooking = () => {
             console.log(error)
         }
     }
+    const openReviewModal = (roomId) =>  {
+        setReviewId(roomId)
+        setModalOpen(true)
+    }
 
+    // Reveiw for a room
+        const handleReviewSubmit = async (rating, title, feedback) =>  {
+            const timestamp = format(new Date(), "Pp")
+            const reviewData = {
+                userName: user?.displayName,
+                userEmail: user?.email,
+                reviewTitle: title,
+                reviewTime: timestamp,
+                img: user?.photoURL,
+                feedback,
+                rating,
+                room_id:reviewId
+            }
+            try {
+                const {data} = await axiosSecured.post(`/reviews`, reviewData)
+                if(data.insertedId){
+                    setModalOpen(false)
+                    Swal.fire({
+                        title: "Review Submitted",
+                        text: "Your review has been submit.",
+                        icon: "success"
+                    });
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        } 
     if(isLoading) return <LoadingSpinner/>
   
     return (    
@@ -152,9 +184,6 @@ const MyBooking = () => {
                 <tr className="text-light-black h-14 rounded-md text-base dark:text-white/85 border-gray-200 ">
                     <th>
                         Room Info
-                    {/* <label>
-                        <input type="checkbox" className="checkbox" />
-                    </label> */}
                     </th>
                     <th>Booking Details</th>
                     <th>Booking Date</th>
@@ -169,6 +198,7 @@ const MyBooking = () => {
                             onCancellation={handleCancellation}
                             onUpdate={updateDataModal}
                             handleReviewModal={setModalOpen}
+                            onOpenReviewModal={openReviewModal}
                             />)
                     }
                
@@ -262,6 +292,12 @@ const MyBooking = () => {
             </div>
             {/* Modal end  */}
             {/* Review Modal  */}
+            <div>
+                <ReviewModal modalOpen={modalOpen} 
+                    setModalOpen={setModalOpen} 
+                    onReviewSubmit={handleReviewSubmit}
+                />
+            </div>
             {/* <ReviewModal modalOpen={modalOpen} setModalOpen={setModalOpen} onReviewSubmit={handleReviewSubmit}/> */}
         </div>
     );
