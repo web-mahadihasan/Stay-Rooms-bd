@@ -125,6 +125,11 @@ const MyBooking = () => {
             await mutateAsync(update)
             queryClient.invalidateQueries({ queryKey: ['mybooking'] })
             updateModalRef.current.close()
+            Swal.fire({
+                title: "Update Successfully",
+                text: "Your Booking Date has been Updated.",
+                icon: "success"
+              });
         } catch (error) {
             console.log(error)
         }
