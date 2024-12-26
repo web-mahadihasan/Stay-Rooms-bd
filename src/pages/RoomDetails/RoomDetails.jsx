@@ -152,8 +152,8 @@ const RoomDetails = () => {
                         <img src={imgUrl} alt="" className="h-full w-full rounded-md" />
                         <p className={`absolute text-lg top-0 left-0  py-1 px-4 rounded-md font-medium text-white ${availability? "bg-green-600" : "bg-orange-600"}`}>{availability ? "Available" : "Unavailable"}</p>
                     </div>
-                    <img src="https://triprex.b-cdn.net/wp-content/uploads/2024/02/Room-02-1.webp" alt="" className="col-span-1 w-full h-full rounded-lg" />
-                    <img src="https://triprex.b-cdn.net/wp-content/uploads/2024/02/room-05.webp" alt="" className="col-span-1 w-full h-full rounded-lg" />
+                    <img src="https://i.ibb.co.com/kG2VhcD/Room-02-1.webp" alt="" className="col-span-1 w-full h-full rounded-lg" />
+                    <img src="https://i.ibb.co.com/qJC6ds5/room-05.webp" alt="" className="col-span-1 w-full h-full rounded-lg" />
                 </div>
                 <div className="lg:grid grid-cols-3 gap-4 mt-10">
                     <div className="col-span-2">
