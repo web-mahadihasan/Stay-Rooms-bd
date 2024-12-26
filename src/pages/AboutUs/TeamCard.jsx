@@ -5,7 +5,7 @@ import { BsLinkedin } from "react-icons/bs";
 
 const TeamCard = ({img, name, title}) => {
     return (
-        <div className="relative group overflow-hidden rounded">
+        <div data-aos="flip-up" className="relative group overflow-hidden rounded">
 {/*  image  */}
                     <img
                         src={img}

@@ -14,10 +14,12 @@ import RoomCardTableView from "../../components/common/RoomCardTableView";
 import { Helmet } from "react-helmet";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import PageTitleSection from "../../components/common/PageTitleSection";
+import FAQ from "../RoomDetails/FAQ";
 
 const Rooms = () => {
     const [searchText, setSearchText] = useState("")
     const {pathname} = useLocation()
+    const faq = useLoaderData()
     const [selectedValue, setSelectedValue] = useState(null);
     const [priceRange, setPriceRange] = useState(null)
     const [tableView, setTableView] = useState(false)
@@ -48,7 +50,7 @@ const Rooms = () => {
     } })
 
     // Pagination 
-    const itemsPerPage = 5;
+    const itemsPerPage = 6;
     const numberOfPage = Math.ceil(count?.length/itemsPerPage) || 2;
     const pages = [...Array(numberOfPage).keys()]
 
@@ -78,7 +80,7 @@ const Rooms = () => {
             <div>
                 <PageTitleSection title={"All Rooms - Explore Our Spaces"} path={"all available rooms"}/>
             </div>
-            <div className="max-w-7xl mx-auto px-4 xl:px-0 my-10">
+            <div className="max-w-7xl mx-auto px-4 xl:px-0 py-10">
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-6">
                     <aside className="col-span-1 md:col-span-2 lg:col-span-1">
@@ -143,6 +145,7 @@ const Rooms = () => {
                                     <PriceRange setPriceRange={setPriceRange}/>
                                 </div>
                             </div>
+                           
                         </div>
                     </aside>
                     <section className="col-span-2">
@@ -193,6 +196,12 @@ const Rooms = () => {
                         </div>
                         
                     </section>
+                    <div className="w-full col-span-3">
+                        {/* <h3></h3> */}
+                        <div className="w-full">
+                            <FAQ faqData={faq} title={"Some freequently asked question get from our user when booking room"}/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

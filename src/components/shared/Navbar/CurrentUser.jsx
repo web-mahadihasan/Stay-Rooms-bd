@@ -23,7 +23,7 @@ const CurrentUser = () => {
                    <span className="text-lg font-medium text-black/80">{user?.displayName}</span>
                    <span className="lowercase">{user?.email}</span>
                  </div>
-                 <Link to={'/my-added-visa'} className="flex items-center px-6 py-2 font-medium text-base text-gray-700 gap-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100">
+                 <Link to={'/my-profile'} className="flex items-center px-6 py-2 font-medium text-base text-gray-700 gap-2 capitalize transition-colors duration-300 transform  hover:bg-gray-100">
                      <RiUserSharedLine size={20}/>
                      <span className="mx-1">
                         <span>My Profile</span>

@@ -2,12 +2,14 @@ import { Outlet, useLocation } from "react-router";
 import Navbar from "../components/shared/Navbar/Navbar";
 import "../styles/App.css"
 import { Toaster } from "react-hot-toast";
-import Footer from "../components/shared/Footer/Footer";
 import AutoShowModal from "../components/common/AutoShowModal";
 import { useEffect, useState } from "react";
 import useAppContext from "../hooks/useAppContext";
 import { LuSunMedium } from "react-icons/lu";
 import { RiMoonClearLine } from "react-icons/ri";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import Footer from "../components/shared/Footer/Footer2";
 
 const MainLayout = () => {
     const [autoShowModal, setAutoShowModal] = useState(false)
@@ -17,6 +19,12 @@ const MainLayout = () => {
     useEffect(() => {
         setAutoShowModal(true);
     }, []);
+    useEffect(() => {
+        AOS.init({
+             duration: 800,
+             once: false,
+           })
+     }, [])
 
     return (
         <div>
@@ -30,7 +38,7 @@ const MainLayout = () => {
                 <button onClick={() => toggleTheme('light')} className="relative w-6 h-6"><LuSunMedium size={20}/>{!isDark && <span className="w-full rounded-full h-full bg-white absolute top-0 right-0"></span>}</button>
             </div>
             {/* Auto Show Modal  */}
-            <div>
+            <div className="z-50">
                 {
                     pathname ===   "/" && <AutoShowModal autoShowModal={autoShowModal} setAutoShowModal={setAutoShowModal}/>
                 }
@@ -39,10 +47,10 @@ const MainLayout = () => {
             <main className="min-h-[calc(100vh-300px)]">
                 <Outlet/>
             </main>
-            
-            <Footer>
+
+            <footer>
                 <Footer/>
-            </Footer>
+            </footer>
         </div>
     );
 };

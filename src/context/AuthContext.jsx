@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from "../config/firebase.init";
 import axios from "axios";
 
@@ -35,7 +35,10 @@ const AuthContext = ({children}) => {
      const logOutUser = () => {
         return signOut(auth);
     }
-
+    // Forgot password
+    const resetPassword = (email) =>  {
+        return sendPasswordResetEmail(auth, email)
+    }
     // on Auth state change 
     useEffect(() =>  {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) =>  {
@@ -64,6 +67,7 @@ const AuthContext = ({children}) => {
         loginWithGoogle,
         updataUser,
         logOutUser,
+        resetPassword,
         user, 
         setUser,
         loading, 

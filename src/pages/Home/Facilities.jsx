@@ -3,7 +3,7 @@ import { FaCarOn } from "react-icons/fa6";
 const Facilities = ({facilites}) => {
     // bg-[#f2f8f9] relative overflow-hidden group cursor-pointer rounded-md before:bg-[#00838d] before:w-[38px] before:h-[38px] before:absolute before:top-0 before:right-0 before:rounded-bl-[35px] before:z-[-1] hover:before:scale-[31] before:transition-all before:ease-out before:duration-[300ms] z-[0]
     return (
-        <div className="w-full bg-[#f2f8f9] relative overflow-hidden group cursor-pointer rounded-md before:bg-[#DDEBED] before:w-[38px] before:h-[38px] before:absolute before:top-0 before:right-0 before:rounded-bl-[35px] before:z-[-1] hover:before:scale-[38] hover:shadow-md group before:transition-all before:ease-out before:duration-[300ms] z-[0]">
+        <div data-aos="zoom-in" className="w-full bg-[#f2f8f9] relative overflow-hidden group cursor-pointer rounded-md before:bg-[#DDEBED] before:w-[38px] before:h-[38px] before:absolute before:top-0 before:right-0 before:rounded-bl-[35px] before:z-[-1] hover:before:scale-[38] hover:shadow-md group before:transition-all before:ease-out before:duration-[300ms] z-[0]">
             <div className="p-5 border flex flex-col items-center justify-center text-center gap-2 py-6 rounded-md">
                 {/* <p><FaCarOn size={64} className="text-primary"/></p> */}
                 <img src={facilites.icon} alt="" />

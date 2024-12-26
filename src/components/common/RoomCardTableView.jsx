@@ -32,7 +32,7 @@ const RoomCardTableView = ({roomData}) => {
             }
     },[totalReview])
     return (
-        <Link to={pathname ===   '/rooms' && `/room-details/${_id}`}>
+        <Link data-aos="fade-up" to={pathname ===   '/rooms' && `/room-details/${_id}`}>
         <div className="rounded-md grid grid-cols-1 md:grid-cols-5 bg-white shadow-sm border hover:shadow-md hover:bg-[#F5F9FF] dark:hover:bg-[#F5F9FF] dark:bg-white">
             <div className="relative col-span-2  overflow-hidden rounded-t-md min-h-full">
                     <img

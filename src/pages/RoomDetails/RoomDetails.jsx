@@ -169,16 +169,16 @@ const RoomDetails = () => {
                             }
                         </div>
                         <h3 className="text-2xl font-extrabold text-primary">$ {price} / <span className="text-lg font-medium">Per Night</span></h3>
-                        <p className="text-light-black dark:text-white/85 leading-8 my-6">{description}</p>
-                        <div className="my-6">
+                        <p data-aos="fade-up" className="text-light-black dark:text-white/85 leading-8 my-6">{description}</p>
+                        <div data-aos="fade-up" className="my-6">
                             <h3 className="text-2xl font-bold text-secondary-black dark:text-white dark:text-white my-3">Children and extra beds.</h3>
                             <p className="text-light-black dark:text-white/85">Children are welcome Kids stay free! Children stay free when using existing bedding; children may not be eligible for complimentary breakfast Rollaway/extra beds are available for $ 10 per day.</p>                        
                         </div>
                         <div className="mt-6">
-                            <h3 className="text-2xl font-bold text-secondary-black dark:text-white dark:text-white my-3">Facilities</h3>
+                            <h3 data-aos="fade-up" className="text-2xl font-bold text-secondary-black dark:text-white dark:text-white my-3">Facilities</h3>
                             <div className="space-y-2 text-lg text-light-black dark:text-white/85">
                                 {
-                                    facilities?.map((item, idx)=>  <li key={idx} className="list-none flex items-center gap-2">
+                                    facilities?.map((item, idx)=>  <li data-aos="fade-up" key={idx} className="list-none flex items-center gap-2">
                                         <img src={check} alt="" />
                                         <span>{item}</span>
                                     </li>)
@@ -186,10 +186,10 @@ const RoomDetails = () => {
                             </div>
                         </div>
                         <div className="mt-6">
-                            <h3 className="text-2xl font-bold text-secondary-black dark:text-white dark:text-white my-3">Highlights</h3>
+                            <h3 data-aos="fade-up" className="text-2xl font-bold text-secondary-black dark:text-white dark:text-white my-3">Highlights</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                                 {
-                                    highlightFacilities.map((facilities, idx) =>  <div key={idx} className="flex cursor-pointer items-center gap-2 py-4 rounded border px-6 border-primary/20 dark:border-white/85">
+                                    highlightFacilities.map((facilities, idx) =>  <div data-aos="fade-up" key={idx} className="flex cursor-pointer items-center gap-2 py-4 rounded border px-6 border-primary/20 dark:border-white/85">
                                         <img src={facilities.icon} alt="" className="w-6"/>
                                         <p className="text-secondary-black dark:text-white dark:text-white">{facilities.name}</p>
                                     </div> )
@@ -205,7 +205,7 @@ const RoomDetails = () => {
 
                         {/* User Review  */}
                         <div>
-                            <div className="flex items-center justify-between p-4 bg-[#f5f6f9] rounded mt-8">
+                            <div data-aos="fade-up" className="flex items-center justify-between p-4 bg-[#f5f6f9] rounded mt-8">
                                 <div>
                                     <h5 className="text-lg font-medium text-light-black">By {reviewData?.length} reviewer(s)</h5>
                                 </div>
@@ -222,8 +222,9 @@ const RoomDetails = () => {
                                 </div>
                             </div>
                             {/* Review content */}
-                            {
-                                reviewData?.map(review =>  <div key={review?._id} className="bg-[#f5f6f9] px-6 py-8 rounded my-6 flex items-center gap-6">
+                            {   
+                                reviewData?.length > 0 ?
+                                reviewData?.map(review =>  <div data-aos="fade-up" key={review?._id} className="bg-[#f5f6f9] px-6 py-8 rounded my-6 flex items-center gap-6">
                                     <div className="w-[35%]">
                                         <img src={review?.img} alt="" className="border border-gray-400  mx-auto w-20 h-20 rounded-full"/>
                                         <h6 className="text-lg font-bold text-light-black my-2 text-center">{review?.userName}</h6>
@@ -242,7 +243,7 @@ const RoomDetails = () => {
                                             <span>{review?.reviewTime}</span>
                                         </p>
                                     </div>
-                                </div>)
+                                </div>) : <h3 className="text-2xl font-bold text-secondary-black dark:text-white capitalize my-10">No user review </h3>
                             }
 
                         </div>
@@ -264,7 +265,7 @@ const RoomDetails = () => {
 
                         {/* FAQ Section */}
                         <section>
-                            <FAQ faqData={faq}/>
+                            <FAQ faqData={faq} title={"FAQ - General Question Answer"}/>
                         </section>
                     </aside>
 
@@ -281,9 +282,9 @@ const RoomDetails = () => {
                         "linear-gradient(125deg, rgba(99, 171, 69, 0.1) 0%, rgba(251, 176, 59, 0.1) 100%)",
                     }}
                     >
-                    <div className="modal-box max-w-3xl">
+                    <div className="modal-box max-w-3xl bg-white">
                         <form method="dialog">
-                        <button className="btn btn-sm md:btn-md border border-primary btn-circle right-5 absolute top-4">
+                        <button className="btn btn-sm md:btn-md border border-primary btn-circle right-5 absolute top-4 bg-gray-200 dark:bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-300">
                             <RiCloseLargeLine size={20} />
                         </button>
                         </form>

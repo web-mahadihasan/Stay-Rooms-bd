@@ -94,7 +94,7 @@ const Login = () => {
                                     <input type="checkbox" className="checkbox checkbox-sm mr-2" />
                                     <span className="label-text">Remember me</span>
                                 </label>
-                                <Link>Forgot Password?</Link>
+                                <Link to={"/auth/forgot-password"}>Forgot Password?</Link>
                             </div>
                             <div className="w-full lg:w-3/4 mx-auto">
                                 <button  type="submit" className="w-full p-2 border border-primary bg-primary rounded-md font-medium text-white hover:bg-secondary-black hover:border-secondary-black focus:bg-secondary-black focus:border-secondary-black duration-300 ">Continue with Email</button>

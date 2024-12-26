@@ -14,6 +14,8 @@ import ReviewModal from "../../components/common/ReviewModal";
 import PromotionCrousel from "../../components/common/PromotionCrousel";
 import { Helmet } from "react-helmet";
 import PageTitleSection from "../../components/common/PageTitleSection";
+import RoomCard from "../../components/common/RoomCard";
+import axios from "axios";
 
 const MyBooking = () => {
     const {user} = useAuth()
@@ -40,6 +42,18 @@ const MyBooking = () => {
         return data
     } })
 
+    // Suggestions 
+    const {
+        data: recommended
+      } = useQuery({
+        queryKey: ["recomemded"],
+        queryFn: async () => {
+          const { data } = await axios.get(
+            `${import.meta.env.VITE_BASE_URL}/api/rooms?limit=3`
+          );
+          return data;
+        },
+      });
     // Handle Cancellation 
     const handleCancellation = async (id,roomId, startDate) => {
         const currentDate = new Date();
@@ -131,11 +145,11 @@ const MyBooking = () => {
             </div>
             {/* Table data  */}
             <div className="overflow-x-auto">
-            <div className="overflow-x-auto min-w-[950px] max-w-7xl mx-auto px-4 xl:px-0 my-24">
+            <div className="overflow-x-auto min-w-[950px] max-w-7xl mx-auto px-4 xl:px-0 my-16">
             <table className="table">
                 {/* head */}
-                <thead>
-                <tr className="text-light-black dark:text-white/85">
+                <thead className="bg-gray-300 rounded-md">
+                <tr className="text-light-black h-14 rounded-md text-base dark:text-white/85 border-gray-200 ">
                     <th>
                         Room Info
                     {/* <label>
@@ -145,7 +159,7 @@ const MyBooking = () => {
                     <th>Booking Details</th>
                     <th>Booking Date</th>
                     <th>Actions</th>
-                    {/* <th></th> */}
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody className="">
@@ -159,7 +173,7 @@ const MyBooking = () => {
                     }
                
                 </tbody>
-                <tfoot>
+                <tfoot className="border-gray-200">
                     <tr>
                         <th></th>
                         <th></th>
@@ -183,13 +197,16 @@ const MyBooking = () => {
                         </div>
                 </section>
                 {/* Room booking suggestion  */}
-                <section className="my-24 py-6 ">
-                        <h3 className=" text-left capitalize max-w-7xl mx-auto px-4 xl:px-0 font-extrabold text-2xl md:text-3xl text-primary-black my-3 dark:text-white">
+                <section className="my-24 py-6 max-w-7xl mx-auto px-4 xl:px-0">
+                        <h3 className=" text-left capitalize max-w-7xl mx-auto px-4 xl:px-0 font-extrabold text-2xl md:text-3xl text-primary-black my-3 my-8 dark:text-white">
                             Recommended room only for You
                         </h3>
-                        {/* <div className="my-12">
-                          <PromotionCrousel/>
-                        </div> */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                            {
+                                recommended?.map((room) => (
+                                <RoomCard key={room._id} roomData={room} />
+                            ))}
+                        </div>
                 </section>
             </section>
 

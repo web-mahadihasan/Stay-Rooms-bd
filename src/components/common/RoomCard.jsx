@@ -33,7 +33,7 @@ const RoomCard = ({roomData}) => {
             }
     },[totalReview])
     return (
-        <Link to={pathname ===  "/rooms" && `/room-details/${_id}`}>
+        <Link data-aos="fade-up" to={pathname ===  "/rooms" && `/room-details/${_id}`}>
         <div className="rounded-md card-compact bg-white shadow-sm border hover:shadow-md hover:bg-[#F5F9FF] dark:hover:bg-[#F5F9FF] dark:bg-white">
             <div className="relative  overflow-hidden rounded-t-md">
                 <figure className="rounded-t-md">

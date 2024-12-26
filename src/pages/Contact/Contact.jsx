@@ -29,15 +29,15 @@ const Contact = () => {
                 <div className="max-w-7xl mx-auto px-4 xl:px-0">
                     {/* Contact card  */}
                 <div className="bg-white rounded-md p-0 md:p-6 xl:p-10 shadow-xl relative -top-36 grid grid-cols-1 gap-8 items-center lg:grid-cols-2">
-                    <div>
+                    <div data-aos="fade-left">
                         <img src="https://i.ibb.co.com/kBYHnsQ/img-65-550x825.jpg" alt="" className="h-full rounded"/>
                     </div>
                     {/* Contact content  */}
-                    <div className="w-full md:w-[90%] px-4 py-8 mx-auto">
+                    <div data-aos="fade-right" className="w-full md:w-[90%] px-4 py-8 mx-auto">
                         <div>
                             <h3 className="text-3xl font-bold my-8 text-primary-black">Contact Information</h3>
                             <p className="text-light-black/90 font-semibold border-y-2 border-base-300 py-3">Address: 5 Ave lalbagh mor, Rangpur, Bangladesh</p>
-                            <p className="text-light-black/90 font-semibold border-b-2 border-base-300 py-3">5 Ave lalbagh mor, Rangpur, Bangladesh</p>
+                            <p className="text-light-black/90 font-semibold border-b-2 border-base-300 py-3">Phone: +01794943980</p>
                             <p className="text-light-black/90 font-semibold border-b-2 border-base-300 py-3">Email: info@stayrooms.com</p>
                         </div>
                         <div>

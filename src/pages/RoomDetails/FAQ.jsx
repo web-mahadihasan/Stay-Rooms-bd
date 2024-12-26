@@ -1,9 +1,9 @@
 
-const FAQ = ({faqData}) => {
+const FAQ = ({faqData, title}) => {
     return (
         <div className="join join-vertical w-full my-10">
-        <h3 className="p-3  text-secondary-black font-bold text-2xl mb-5">
-            FAQ - General Question Answer
+        <h3 className="p-3  text-secondary-black font-bold text-2xl md:text-3xl mb-5 capitalize">
+            {title}
         </h3>
 
         {/* Defaul Faq  */}
@@ -21,7 +21,7 @@ const FAQ = ({faqData}) => {
         {/* Faq from json data  */}
         {
             faqData?.map((faq, idx) =>  (
-                <div key={idx} className="collapse collapse-arrow join-item border-base-300 border">
+                <div data-aos="fade-up" key={idx} className="collapse collapse-arrow join-item border-base-300 border">
                     <input type="radio" name="my-accordion-4" />
                     <div className="collapse-title text-titleBlack text-[18px] font-medium ">
                         <span>{idx+1}. </span>

@@ -10,6 +10,8 @@ import PrivateRoute from "./PrivateRoute";
 import About from "../pages/AboutUs/About";
 import Contact from "../pages/Contact/Contact";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import ForgotPassword from "../pages/Auth/ForgotPassword";
+import MyProfile from "../pages/MyProfile/MyProfile";
 
 const Router = createBrowserRouter([
     {
@@ -23,7 +25,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/room-details/:id",
-                element: <PrivateRoute> <RoomDetails/> </PrivateRoute>,
+                element: <RoomDetails/>,
                 loader: () =>  fetch("/faq.json")
             },
             {
@@ -32,7 +34,8 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/rooms",
-                element: <Rooms/>
+                element: <Rooms/>,
+                loader: () =>  fetch("/faq.json")
             },
             {
                 path: "/auth/login",
@@ -43,12 +46,20 @@ const Router = createBrowserRouter([
                 element: <Register/>
             },
             {
+                path: "/auth/forgot-password",
+                element: <ForgotPassword/>
+            },
+            {
                 path: "/about-us",
                 element: <About/>
             },
             {
                 path: "/contact-us",
                 element: <Contact/>
+            },
+            {
+                path: "/my-profile",
+                element: <PrivateRoute><MyProfile/></PrivateRoute>
             }
         ]
     }

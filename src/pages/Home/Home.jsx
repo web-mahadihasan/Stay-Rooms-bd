@@ -19,8 +19,10 @@ import OurSuccess from "../../components/common/OurSuccess";
 import PromotionCrousel from "../../components/common/PromotionCrousel";
 import { useState } from "react";
 import UserReviews from "./UserReviews";
-import RoomCardTableView from "../../components/common/RoomCardTableView";
 import { Helmet } from "react-helmet";
+import { PiToolboxThin } from "react-icons/pi";
+import Select from 'react-select'
+import { TbCategoryPlus } from "react-icons/tb";
 
 const Home = () => {
   const [reviews, setReviews] = useState(false)
@@ -56,7 +58,23 @@ const Home = () => {
       des: "Rest easy knowing your vehicle is safe and secure with our dedicated private parking space, designed for your peace of mind.",
     },
   ];
-
+  const options = [
+    { value: "asc", label: "Sort by Price Ascending" },
+    { value: "dsc", label: "Sort by price Descending" },
+    { value: "top", label: "Sort by Top Rating" },
+    { value: "low", label: "Sort by Low Rating" },
+  ];
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      border: "none",
+      boxShadow: "none", 
+      "&:hover": {
+        border: "none", 
+      },
+      background: "transparent",
+    }),
+  };
   const {
     data: featuredRoom,
     isLoading
@@ -78,7 +96,6 @@ const Home = () => {
     const { data } = await axios.get(`${import.meta.env.VITE_BASE_URL}/all-reviews?sort=${reviews ? "asc" : "dsc"}`);
     return data
   }})
-  console.log(allReviews)
   if (isLoading) return <LoadingSpinner />;
 
   return (
@@ -91,14 +108,35 @@ const Home = () => {
         <meta name="author" content="https://stay-rooms-bd.web.app" />
       </Helmet>
       {/* Banner */}
-      <div>
+      <div className="relative">
         <Carousel />
-      </div>
 
+        {/* Search  */}
+        <div className="py-4 absolute -bottom-14 z-20 right-5 left-5 max-w-7xl mx-auto px-4">
+          <div className="rounded-t-md bg-white/70 w-fit mx-auto h-14 flex items-center justify-center px-8 backdrop-blur-xl">
+              <p className="text-xl font-semibold text-primary">Hotel Room</p>
+          </div>
+          <div className="flex min-h-20 items-center p-3 backdrop-blur-2xl btn-shadow border gap-2 rounded-md bg-white/50 flex-wrap">
+              <div className="flex items-center flex-1 gap-1 rounded-md p-3 bg-gray-100">
+                  <span className="px-2 border-r border-gray-400"> <PiToolboxThin size={22} className="text-primary"/> </span>
+                  <input type="text" name="" id="" className="bg-transparent border-none font-medium outline-none placeholder-primary-dark px-2" placeholder="Room Title"/>
+              </div>
+              <div className="flex items-center flex-1 gap-1 rounded-md p-1 bg-gray-100 z-20">
+                  <span className="px-2 border-r border-gray-300"> <TbCategoryPlus size={22} className="text-primary"/> </span>
+                  <Select options={options} className="w-full border-none outline-none" styles={customStyles}/>
+              </div>
+              <div>
+                  <button className="px-6 py-2 bg-primary border border-primary rounded text-white font-medium">Search</button>
+              </div>
+          </div>
+        </div>
+      </div>
+      {/* Search for home page  */}
+        
       {/* Featured Rooms  */}
       <section className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
         <div className="my-8 flex justify-between items-center">
-          <h3 className="text-2xl font-bold text-primary-black dark:text-white">Explorer Top-rated Featured Rooms</h3>
+          <h3 data-aos="fade-down" className="text-2xl font-bold text-primary-black dark:text-white">Explorer Top-rated Featured Rooms</h3>
           <div>
           <Link to={"/rooms"} className="px-8 py-3 relative shadow-lg before:absolute flex items-center gap-2
             before:top-0 before:left-0 before:w-0 before:h-0 before:border-l-[4px] before:border-t-[4px] before:border-transparent 
@@ -120,7 +158,7 @@ const Home = () => {
       
       {/* Offers and promotion section  */}
       <section className="my-24 bg-[#f9fbfe] py-6">
-        <h3 className="text-center font-extrabold text-4xl text-primary-black my-3 dark:text-white">
+        <h3 data-aos="fade-down" className="text-center font-extrabold text-4xl text-primary-black my-3 dark:text-white">
         Exclusive Offers Promotional Deals
         </h3>
         <div className="my-12">
@@ -130,10 +168,10 @@ const Home = () => {
       
       {/* Facilities */}
       <section className="max-w-7xl mx-auto px-4 xl:px-0 ">
-        <h3 className="text-center font-extrabold text-4xl text-primary-black my-3 dark:text-white">
+        <h3 data-aos="zoom-in" className="text-center font-extrabold text-4xl text-primary-black my-3 dark:text-white">
           Hotel Facilities
         </h3>
-        <p className="text-center text-light-black max-w-2xl mx-auto my-5 mb-10 dark:text-white/80">Experience a variety of thoughtfully designed amenities to ensure your stay is both comfortable and memorable, including swimming pools, fitness centers, exquisite dining options, high-speed Wi-Fi, and personalized services.</p>
+        <p data-aos="zoom-in" className="text-center text-light-black max-w-2xl mx-auto my-5 mb-10 dark:text-white/80">Experience a variety of thoughtfully designed amenities to ensure your stay is both comfortable and memorable, including swimming pools, fitness centers, exquisite dining options, high-speed Wi-Fi, and personalized services.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {Allfacilities.map((facilites, idx) => (
@@ -155,17 +193,16 @@ const Home = () => {
         <p className="text-center text-light-black max-w-2xl mx-auto my-5 mb-10 dark:text-white/85">Discover our location with ease and find us effortlessly. We're here to welcome you—plan your visit today!</p>
 
         <div className="bg-[#f9fbfe] px-8 py-10 grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto gap-8 rounded-md">
-          <div>
+          <div data-aos="fade-left">
             <LeafletContent/>
           </div>
           {/* Maps  */}
-          <div className="h-full min-h-[350px]">
+          <div data-aos="fade-right" className="h-full min-h-[350px]">
               <LeafletMaps  />
           </div>
         </div>
       </section>
 
-        {/* User Review  https://i.ibb.co.com/c8BqM00/add-visa-bg.png*/}
         <section className="w-full bg-[#f7f9ec]/35 py-16 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url(https://i.ibb.co.com/c8BqM00/add-visa-bg.png)`,

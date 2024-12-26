@@ -35,10 +35,10 @@ const About = () => {
             </div>
             <section className="max-w-7xl mx-auto px-4 xl:px-0">
             <section className="shadow-md border bg-white border-gray-100 gap-6 my-24 flex flex-col lg:flex-row items-center justify-between rounded-md">
-                <div className="flex-1 h-full">
+                <div  data-aos="fade-right" className="flex-1 h-full">
                     <img src="https://i.ibb.co.com/7tmP5qk/luxury-hotel.jpg" alt="About bg"className="rounded-md h-full min-h-[470px] w-full" />
                 </div>
-                <div className="flex-1 py-8 px-4">
+                <div  data-aos="fade-left" className="flex-1 py-8 px-4">
                     <h3 className="text-3xl my-6 font-bold text-primary-black">About Us</h3>
                     <p className="text-lg mb-4 text-light-black leading-8">
                     Welcome to StayRooms, your trusted partner for hassle-free hotel room bookings. We specialize in connecting travelers with their perfect stay, offering a seamless, secure, and personalized booking experience.
@@ -69,7 +69,7 @@ const About = () => {
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {
-                            WhyChoose.map((choose, idx) =>  <div key={idx} className="flex p-4 items-center gap-2 border border-[#cce9ff] why-card-shadow cursor-pointer rounded-md hover:-translate-y-2 duration-300">
+                            WhyChoose.map((choose, idx) =>  <div data-aos="flip-left" key={idx} className="flex p-4 items-center gap-2 border border-[#cce9ff] why-card-shadow cursor-pointer rounded-md hover:-translate-y-2 duration-300">
                                 <div className="min-w-[80px] bg-[#cce9ff] p-4 rounded-full">
                                     <img src={choose.icon} alt="" className="mx-auto" />
                                 </div>
