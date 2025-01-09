@@ -10,7 +10,7 @@ const AutoShowModal = ({autoShowModal, setAutoShowModal}) => {
         minutes: 0,
         seconds: 0
     });
-    const targetDate = "2025-01-10T23:59:59"
+    const targetDate = "2025-03-10T23:59:59"
 
     useEffect(() => {
         const calculateTimeLeft = () => {

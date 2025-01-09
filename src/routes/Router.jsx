@@ -25,7 +25,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/room-details/:id",
-                element: <RoomDetails/>,
+                element: <PrivateRoute> <RoomDetails/> </PrivateRoute>,
                 loader: () =>  fetch("/faq.json")
             },
             {
