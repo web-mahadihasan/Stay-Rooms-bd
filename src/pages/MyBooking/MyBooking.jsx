@@ -16,6 +16,7 @@ import { Helmet } from "react-helmet";
 import PageTitleSection from "../../components/common/PageTitleSection";
 import RoomCard from "../../components/common/RoomCard";
 import axios from "axios";
+import { Link } from "react-router";
 
 const MyBooking = () => {
     const {user} = useAuth()
@@ -198,13 +199,13 @@ const MyBooking = () => {
                 </thead>
                 <tbody className="">
                     {
-                        bookedRoom?.map(room =>  <BookingTableRow key={room._id} 
+                        bookedRoom.length > 0?  bookedRoom?.map(room =>  <BookingTableRow key={room._id} 
                             bookedRoomData={room} 
                             onCancellation={handleCancellation}
                             onUpdate={updateDataModal}
                             handleReviewModal={setModalOpen}
                             onOpenReviewModal={openReviewModal}
-                            />)
+                            />) : <h3 className="text-3xl font-semibold col-span-2 text-red-500 my-6">No Rooms Book. Please Booked a Room <Link to={"/rooms"} className="underline text-primary">Book Room</Link> </h3> 
                     }
                
                 </tbody>

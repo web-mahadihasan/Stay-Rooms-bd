@@ -15,7 +15,7 @@ const Login = () => {
     const [error, setError] = useState({})
     const navigate = useNavigate()
     const location = useLocation()
-    const from = location?.state || "/"
+     const from = location?.state ? location.state : "/"
 
     const handleEmailLogin = (e) =>  {
         e.preventDefault()

@@ -43,7 +43,7 @@ const AutoShowModal = ({autoShowModal, setAutoShowModal}) => {
         className={`${
           autoShowModal ? " scale-[1] opacity-100" : " scale-[0] opacity-0"
         } w-full h-screen fixed top-0 left-0 z-50 bg-[#0000002a] flex items-center justify-center transition-all duration-300 `}>
-        <div className="w-[90%] md:p-8 lg:w-[50%] bg-[#ffffff] rounded-lg p-4 ">
+        <div className="w-[90%] md:p-8 lg:w-[80%] xl:w-[50%] bg-[#ffffff] rounded-lg p-4 ">
           
           <div className="relative">
             {/* Close Modal  */}

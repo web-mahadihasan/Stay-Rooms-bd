@@ -4,9 +4,23 @@ import logo from '../../../assets/images/stayroom.png'
 import { motion } from "framer-motion";
 import { Link } from "react-router";
 import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Footer = () => {
 
+    const [newsLetterEmail, setNewsLetterEmail] = useState("")
+
+    const handleNewsLetter =() =>  {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const checkEmail = emailRegex.test(newsLetterEmail)
+        if(!checkEmail){
+            toast.error("Email is invalid! Enter a valid email")
+        }else{
+            toast.success("Successfully subscribe as a Newsletter")
+            setNewsLetterEmail("")
+        }
+    }
     return (
         <motion.footer
         initial={{ backgroundSize: "100% 100%" }}
@@ -50,8 +64,7 @@ const Footer = () => {
                     <div className="flex text-white/85 flex-col gap-[10px]">
                         <Link to={"/rooms"} className="text-[0.9rem] text-text hover:text-white/85 cursor-pointer transition-all duration-200">Rooms</Link>
                         <Link to={"/my-booking"} className="text-[0.9rem] text-text hover:text-white/85 cursor-pointer transition-all duration-200">My Booking</Link>
-                        <Link to={"/contact-us"} className="text-[0.9rem] text-text hover:text-white/85 cursor-pointer transition-all duration-200">Our
-                        Link  Team</Link>
+                        <Link to={"/about-us"} className="text-[0.9rem] text-text hover:text-white/85 cursor-pointer transition-all duration-200">Our Team</Link>
                         <Link to={"/about-us"} className="text-[0.9rem] text-text hover:text-white/85 cursor-pointer transition-all duration-200">About us</Link>
                         <Link className="text-[0.9rem] text-text hover:text-white/85 cursor-pointer transition-all duration-200">Blog</Link>
                         <Link to={"/contact-us"} className="text-[0.9rem] text-text hover:text-white/85 cursor-pointer transition-all duration-200">Contact
@@ -72,14 +85,16 @@ const Footer = () => {
                 <div className="">
                     <h3 className="text-[1.2rem] font-semibold text-text mb-2">Join a
                         Newsletter</h3>
-                    <div className="flex gap-[2px] flex-col text-text relative">
+                    <div className="flex space-y-4 gap-[2px] flex-col text-text relative">
                         <label className="text-[0.9rem]">Your Email</label>
-                        <input type="email"
-                               className="py-3 px-4 w-full pr-[90px] rounded-md border border-primary outline-none"
-                               placeholder="Email address"/>    
-                        <button
-                            className="px-4 h-[67%] rounded-r-md bg-primary text-white absolute top-[24px] right-0">Submit
-                        </button>
+                        <div className="flex border border-primary rounded-md">
+                            <input onChange={(e) =>  setNewsLetterEmail(e.target.value)} value={newsLetterEmail} type="email"
+                                className="py-3 px-4 w-full flex-1 pr-[90px] rounded-md  outline-none"
+                                placeholder="Email address"/>    
+                            <button onClick={handleNewsLetter}
+                                className="py-3 px-4  bg-primary text-white">Submit
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

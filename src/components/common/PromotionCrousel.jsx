@@ -25,7 +25,7 @@ export default function PromotionCrousel() {
         },
         640: {
           perView: 1,
-          gap: 36,
+          // gap: 36,
         },
       },
     }).mount()
@@ -40,10 +40,10 @@ export default function PromotionCrousel() {
       {/*<!-- Component: Testimonial carousel --> */}
       <div className="glide-09 overflow-hidden relative w-full">
         {/* <!-- Slides --> */}
-        <div className="w-[200px] bg-gradient-to-r from-white/10 to-white/80 h-full absolute min-h-[350px] top-0 right-0 z-10 hidden lg:block"></div>
+        <div className="w-[200px] hidden bg-gradient-to-r from-white/10 to-white/80 h-full absolute min-h-[350px] top-0 right-0 z-10 lg:block"></div>
         <div className="w-[200px] bg-gradient-to-r to-white/10 from-white/70 h-full absolute min-h-[350px] top-0 left-0 z-10 hidden lg:block"></div>
         <div data-glide-el="track">
-        <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0">
+        <ul className="whitespace-no-wrap overflow-hidden flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0">
           <li className="h-[250px]">
             
               <PromotionCard heading={"New User Offer on"}

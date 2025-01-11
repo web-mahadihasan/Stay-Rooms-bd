@@ -33,8 +33,8 @@ const RoomCard = ({roomData}) => {
             }
     },[totalReview])
     return (
-        <Link data-aos="fade-up" to={pathname ===  "/rooms" && `/room-details/${_id}`}>
-        <div className="rounded-md card-compact bg-white shadow-sm border hover:shadow-md hover:bg-[#F5F9FF] dark:hover:bg-[#F5F9FF] dark:bg-white">
+        <Link data-aos="fade-up" to={pathname ===  "/rooms" && `/room-details/${_id}`} className="block">
+        <div className="rounded-md grid grid-cols-1 h-full bg-white shadow-sm border hover:shadow-md hover:bg-[#F5F9FF] dark:hover:bg-[#F5F9FF] dark:bg-white">
             <div className="relative  overflow-hidden rounded-t-md">
                 <figure className="rounded-t-md">
                     <img
@@ -43,12 +43,12 @@ const RoomCard = ({roomData}) => {
                 </figure>
                 <p className={`absolute top-0 left-0  p-1 rounded-sm font-medium text-white ${availability? "bg-green-600" : "bg-orange-600"}`}>{availability ? "Available" : "Unavailable"}</p>
             </div>
-            <div>
-                <div className="card-body">
-                    <div className="flex items-center justify-between">
+            <div className="flex flex-col justify-between">
+                <div className="px-4 flex-1 flex flex-col">
+                    <div className="flex flex-wrap items-center justify-between">
                         <h2 className="text-2xl font-extrabold my-6 text-primary-black tracking-wide">{title}</h2>
                         {
-                            averageReview?.length > 0 && <div className="flex items-center gap-2"> 
+                            averageReview?.length > 0 && <div className="flex items-center mb-4 gap-2"> 
                                 <div style={{ maxWidth: 90, width: '100%' }} className="">
                                     <Rating readOnly value={averageReview} key={averageReview} />
                                 </div>
@@ -69,16 +69,18 @@ const RoomCard = ({roomData}) => {
                     </div>
                 </div>
                 <div className="divider"></div>
-                <div className="flex items-center justify-between mb-3 px-3">
-                    <div>
-                        <p className="text-light-black text-sm">1 Night, 2 Adults</p>
-                        <h3 className="flex items-center gap-2">
-                            <span className="text-2xl font-extrabold text-primary">$ {price}</span>
-                            <span className="">$ 120</span>
-                        </h3>
-                    </div>
-                    <div>
-                        <Link to={`/room-details/${_id}`} className="px-5 cursor-pointer py-2 bg-primary text-white rounded shadow-xl border border-primary hover:bg-secondary-black hover:border-secondary-black duration-500 flex items-center gap-2">Book Now <BsArrowRight /> </Link>
+                <div className="justify-end">
+                    <div className="flex items-center justify-between mb-3 px-3">
+                        <div>
+                            <p className="text-light-black text-sm">1 Night, 2 Adults</p>
+                            <h3 className="flex items-center gap-2">
+                                <span className="text-2xl font-extrabold text-primary">$ {price}</span>
+                                <span className="">$ 120</span>
+                            </h3>
+                        </div>
+                        <div>
+                            <Link to={`/room-details/${_id}`} className="px-5 cursor-pointer py-2 bg-primary text-white rounded shadow-xl border border-primary hover:bg-secondary-black hover:border-secondary-black duration-500 flex items-center gap-2">Book Now <BsArrowRight /> </Link>
+                        </div>
                     </div>
                 </div>
             </div>

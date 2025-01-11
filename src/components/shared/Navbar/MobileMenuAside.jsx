@@ -2,31 +2,31 @@ import { RiArrowRightSLine, RiCloseLargeLine } from "react-icons/ri";
 import logo from "../../../assets/images/stayroom.png"
 import { Link, NavLink } from "react-router";
 import { LuPhoneCall } from "react-icons/lu";
-// import NavUserInfo from "../NavUserInfo/NavUserInfo";
-import useAuth from "../../../hooks/useAuth";
 import useAppContext from "../../../hooks/useAppContext";
+import useAuth from "../../../hooks/useAuth";
 
 const MobileMenuAside = () => {
     const {openMenu, setOpenMenu} = useAppContext();
-    const {user} = false;
+    const {user, loginUser} = useAuth()
+    console.log(user)
 
     const navLinks = [
         { "path": "/", "element": "Home" },
         { "path": "/rooms", "element": "Rooms" },
-        { "path": "/my-bookings", "element": "My Bookings" },
+        { "path": "/my-bookings", "element": "My Bookings", "protect": true},
         { "path": "/about-us", "element": "About Us" },
         { "path": "/contact", "element": "Contact" }
       ]
     return (
-        <div className={`absolute lg:hidden z-40 duration-700 min-h-screen ${ openMenu? "top-0 left-0 block" : "-left-[800px] top-0"}`}>
-            <div className="menu flex flex-col justify-between bg-base-200 text-base-content min-h-screen w-80 p-4 overflow-y-scroll">
+        <div className={`absolute lg:hidden z-40 duration-700 min-h-[90vh] bg-white ${ openMenu? "top-0 left-0 block" : "-left-[800px] top-0"}`}>
+            <div className="menu flex flex-col justify-between bg-white dark:bg-[#212529] text-base-content min-h-screen w-80 p-4 overflow-y-scroll">
             {/* Sidebar content here */}
                 <div className="flex items-center justify-between mt-5">
                     <div className="flex items-center gap-2">
                         <Link to={"/"}><img src={logo} alt="Job Peak" className="h-10 md:h-12"/></Link>
                     </div>
                     {/* Menu Close  */}
-                    <button onClick={() => setOpenMenu(false)} className="p-2 border border-black/65 cursor-pointer rounded-full">
+                    <button onClick={() => setOpenMenu(false)} className="p-2 border border-black/65 cursor-pointer rounded-full dark:border-white/85">
                         <RiCloseLargeLine size={22} className=""/>
                     </button>
                 </div>
@@ -35,8 +35,10 @@ const MobileMenuAside = () => {
                 <div className="mt-8">
                     <ul className="flex flex-col gap-1 space-y-2">
                         {
-                            navLinks.map(link =>  <li key={link.element}>
-                                <NavLink to={link.path} className={"font-normal text-[15px] text-[#100C08] uppercase flex justify-between"}>{link.element} <RiArrowRightSLine size={22}/></NavLink>
+                            navLinks.map(link =>  link?.protect ? user &&  <li key={link.element}>
+                                <NavLink to={link.path} className={"font-normal text-[15px] text-[#100C08] dark:text-white uppercase flex justify-between"}>{link.element} <RiArrowRightSLine size={22}/></NavLink>
+                            </li> :  <li key={link.element}>
+                                <NavLink to={link.path} className={"font-normal text-[15px] text-[#100C08] dark:text-white uppercase flex justify-between"}>{link.element} <RiArrowRightSLine size={22}/></NavLink>
                             </li>)
                         }
                     </ul>
@@ -59,7 +61,7 @@ const MobileMenuAside = () => {
                         </div>
                         <div>
                             <p className="font-medium text-base">To More Inquery</p>
-                            <h4 className="text-primary font-semibold text-lg">+1962454121</h4>
+                            <h4 className="text-primary font-semibold text-lg">+8801794943980</h4>
                         </div>
                     </div>
                 </div>

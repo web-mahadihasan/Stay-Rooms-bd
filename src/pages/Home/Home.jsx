@@ -111,7 +111,6 @@ const Home = () => {
       <div className="relative">
         <Carousel />
 
-        {/* Search  */}
         <div className="py-4 absolute -bottom-14 z-20 right-5 left-5 max-w-7xl mx-auto px-4">
           <div className="rounded-t-md bg-white/70 w-fit mx-auto h-14 flex items-center justify-center px-8 backdrop-blur-xl">
               <p className="text-xl font-semibold text-primary">Hotel Room</p>
@@ -136,7 +135,7 @@ const Home = () => {
       {/* Featured Rooms  */}
       <section className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
         <div className="my-8 flex justify-between items-center">
-          <h3 data-aos="fade-down" className="text-2xl font-bold text-primary-black dark:text-white">Explorer Top-rated Featured Rooms</h3>
+          <h3 className="text-xl md:text-2xl font-bold text-primary-black dark:text-white">Explorer Top-rated Featured Rooms</h3>
           <div>
           <Link to={"/rooms"} className="px-8 py-3 relative shadow-lg before:absolute flex items-center gap-2
             before:top-0 before:left-0 before:w-0 before:h-0 before:border-l-[4px] before:border-t-[4px] before:border-transparent 
@@ -157,7 +156,7 @@ const Home = () => {
       </section>
       
       {/* Offers and promotion section  */}
-      <section className="my-24 bg-[#f9fbfe] py-6">
+      <section className="max-w-7xl mx-auto px-4 my-24 bg-[#f9fbfe] py-6 overflow-x-hidden">
         <h3 data-aos="fade-down" className="text-center font-extrabold text-4xl text-primary-black my-3 dark:text-white">
         Exclusive Offers Promotional Deals
         </h3>
@@ -177,16 +176,14 @@ const Home = () => {
           {Allfacilities.map((facilites, idx) => (
             <Facilities key={idx} facilites={facilites} />
           ))}
-          {/* <Facilities/> */}
         </div>
-        {/* our success  */}
         <section className="my-16">
           <OurSuccess/>
         </section>
       </section>
 
       {/* Leaflet maps/Locaions  */}
-      <section className="my-24">
+      <section className="my-24 overflow-x-hidden">
         <h3 className="text-center font-extrabold text-4xl text-primary-black my-3 dark:text-white">
           Our Location - Find Us
         </h3>
@@ -203,7 +200,7 @@ const Home = () => {
         </div>
       </section>
 
-        <section className="w-full bg-[#f7f9ec]/35 py-16 bg-cover bg-center bg-no-repeat"
+        <section className="w-full bg-[#f7f9ec]/35 py-16 bg-cover bg-center bg-no-repeat overflow-x-hidden"
           style={{
             backgroundImage: `url(https://i.ibb.co.com/c8BqM00/add-visa-bg.png)`,
           }}
@@ -227,7 +224,7 @@ const Home = () => {
             </section>
 
       {/* Photo Gallary  */}
-      <section className="max-w-7xl mx-auto px-4 xl:px-0 my-24">
+      <section className="max-w-7xl mx-auto px-4 xl:px-0 my-24 overflow-x-hidden">
         <h3 className="font-extrabold text-4xl text-primary-black my-3 dark:text-white">
           Gallary
         </h3>
