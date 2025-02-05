@@ -1,6 +1,6 @@
 # Stay Rooms BD - Hotel Room Booking Website
 
-![Stay Rooms BD](https://via.placeholder.com/1000x300)
+![Stay Rooms BD](./src/assets/images/stay-rooms.png)
 
 Welcome to **Stay Rooms BD**, your one-stop solution for effortless hotel room bookings. Whether planning a family vacation, a romantic getaway, or a business trip, our platform offers an unparalleled experience for discovering and reserving the perfect hotel room. With an intuitive design and a plethora of features, Stay Rooms BD ensures your booking process is smooth, secure, and enjoyable. Our platform is built to cater to users with different preferences, offering comprehensive room details, easy sorting options, and advanced filters. Explore, book, and manage your stay, all within a few clicks!
 
@@ -108,4 +108,49 @@ For support, questions, or suggestions, please visit our [Contact Us](https://st
   - Filter rooms by price range or search by title.
 - **Unique Design:** A fully responsive and visually appealing user interface.
 
+## Dependencies
+Stay Rooms BD uses several important dependencies for a smooth and interactive experience, including:
+- **React**: For building the user interface.
+- **React Router**: For seamless navigation.
+- **Axios**: For API communication.
+- **AOS Animation, Framer Motion, Lottie Files**: For engaging animations.
+- **Firebase**: For authentication and hosting.
+- **JWT Authentication**: For securing user access.
+- **React Select, React Date Range**: For enhanced UI components.
+- **SweetAlert2, React Hot Toast**: For better user notifications.
+
+---
+
+## Running the Project Locally
+To set up and run Stay Rooms BD locally, follow these steps:
+
+### Prerequisites:
+Ensure you have the following installed on your system:
+- **Node.js (Latest Version)**
+- **Git**
+- **A Code Editor (VS Code recommended)**
+
+### Steps:
+1. **Clone the Repository:**
+   ```sh
+   git clone <repository-url>
+   cd stay-rooms-bd
+   ```
+2. **Install Dependencies:**
+   ```sh
+   npm install
+   ```
+3. **Set Up Environment Variables:**
+   - Create a `.env` file in the root directory.
+   - Add necessary environment variables such as Firebase keys, API URLs, etc.
+
+4. **Start the Development Server:**
+   ```sh
+   npm start
+   ```
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
+
+---
+
 Thank you for choosing Stay Rooms BD for your travel accommodation needs!
+
