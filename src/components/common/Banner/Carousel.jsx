@@ -10,7 +10,7 @@ const Carousel = () =>  {
       focusAt: "center",
       perView: 1,
       autoplay: 5000,
-      animationDuration: 700,
+      animationDuration: 450,
       gap: 24,
       classNames: {
         nav: {

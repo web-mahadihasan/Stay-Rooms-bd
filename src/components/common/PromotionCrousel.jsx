@@ -53,7 +53,7 @@ export default function PromotionCrousel() {
               />
             </li>
           <li className="h-[250px]">
-              <PromotionCard heading={"December Delights!"} 
+              <PromotionCard heading={"February Delights!"} 
               offtext={"FLAT 20% OFF"} 
               coupon={"FESTIVE20"} 
               des={"Book your stay this festive season and celebrate"} date={"5th Jan 2025 (T&Cs apply)"}
@@ -69,9 +69,9 @@ export default function PromotionCrousel() {
               />
             </li> 
             <li className="h-[250px]">
-              <PromotionCard heading={"New Year’s Countdown"} 
-              offtext={"Get 30% OFF"} 
-              coupon={"NEWYEAR30"} 
+              <PromotionCard heading={"EID Special Countdown"} 
+              offtext={"Get 15% OFF"} 
+              coupon={"EIDSPECIAL15"} 
               des={"Ring in the New Year with incredible savings"} date={"10th Feb 2025 (T&Cs apply)"}
               bgTo={"#91fff9"} bgFrom={"#2273ef"}
               />

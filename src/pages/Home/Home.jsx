@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import LeafletMaps from "../../components/common/LeafletMaps";
 import { HiOutlineArrowRight } from "react-icons/hi";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import LeafletContent from "../../components/common/LeafletContent";
 import HomeGallary from "../../components/common/HomeGallary";
 import Carousel from "../../components/common/Banner/Carousel";
@@ -26,6 +26,9 @@ import { TbCategoryPlus } from "react-icons/tb";
 
 const Home = () => {
   const [reviews, setReviews] = useState(false)
+  const [sortValue, setSortValue] = useState("")
+  const [searchValue, setSearchValue] = useState("")
+  const navigate = useNavigate()
   const Allfacilities = [
     {
       icon: pickup,
@@ -96,6 +99,19 @@ const Home = () => {
     const { data } = await axios.get(`${import.meta.env.VITE_BASE_URL}/all-reviews?sort=${reviews ? "asc" : "dsc"}`);
     return data
   }})
+
+  const optionOnChange = (selectedOption) => {
+    setSortValue(selectedOption.value);
+  };
+  const handleSearch = () => {
+    console.log(searchValue, sortValue)
+    if(searchValue || sortValue){
+      navigate("/rooms", {state:{search: searchValue, sort:sortValue}})
+    }else{
+      navigate()
+    }
+  }
+
   if (isLoading) return <LoadingSpinner />;
 
   return (
@@ -118,14 +134,14 @@ const Home = () => {
           <div className="flex min-h-20 items-center p-3 backdrop-blur-2xl btn-shadow border gap-2 rounded-md bg-white/50 flex-wrap">
               <div className="flex items-center flex-1 gap-1 rounded-md p-3 bg-gray-100">
                   <span className="px-2 border-r border-gray-400"> <PiToolboxThin size={22} className="text-primary"/> </span>
-                  <input type="text" name="" id="" className="bg-transparent border-none font-medium outline-none placeholder-primary-dark px-2" placeholder="Room Title"/>
+                  <input type="text" onChange={(e)=> setSearchValue(e.target.value)} value={searchValue} name="" id="" className="bg-transparent border-none font-medium outline-none placeholder-primary-dark px-2" placeholder="Room Title"/>
               </div>
               <div className="flex items-center flex-1 gap-1 rounded-md p-1 bg-gray-100 z-20">
                   <span className="px-2 border-r border-gray-300"> <TbCategoryPlus size={22} className="text-primary"/> </span>
-                  <Select options={options} className="w-full border-none outline-none" styles={customStyles}/>
+                  <Select options={options} onChange={optionOnChange} className="w-full border-none outline-none" styles={customStyles}/>
               </div>
               <div>
-                  <button className="px-6 py-2 bg-primary border border-primary rounded text-white font-medium">Search</button>
+                  <button onClick={handleSearch} className="px-6 py-2 bg-primary border border-primary rounded text-white font-medium">Search</button>
               </div>
           </div>
         </div>

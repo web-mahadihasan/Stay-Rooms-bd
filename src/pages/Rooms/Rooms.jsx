@@ -5,7 +5,7 @@ import RoomCard from "../../components/common/RoomCard";
 import { Link, useLoaderData } from "react-router";
 import { FaListUl } from "react-icons/fa6";
 import { AiOutlineAppstore } from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import Select from 'react-select'
 import { HiOutlineArrowLeft } from "react-icons/hi";
@@ -18,13 +18,20 @@ import FAQ from "../RoomDetails/FAQ";
 
 const Rooms = () => {
     const [searchText, setSearchText] = useState("")
-    const {pathname} = useLocation()
+    const location = useLocation()
     const faq = useLoaderData()
     const [selectedValue, setSelectedValue] = useState(null);
     const [priceRange, setPriceRange] = useState(null)
     const [tableView, setTableView] = useState(false)
     const [currentPage, setCurrentPage] = useState(0)
-   
+    useEffect(()=>{
+        if(location?.state?.search){
+            setSearchText(location.state.search)
+        }
+        if(location?.state?.sort){
+            setSelectedValue(location.state.sort)
+        }
+    },[location.state.search, location.state.sort])
     const options = [
         { value: "asc", label: "Sort by Price Ascending" },
         { value: "dsc", label: "Sort by price Descending" },

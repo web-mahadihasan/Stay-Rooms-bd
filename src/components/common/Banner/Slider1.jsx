@@ -16,7 +16,7 @@ const Slider1 = ({ image, title, subtitle, description}) => {
     }, []);
 
   return (
-    <motion.div key={sliderKey}
+    <motion.div 
       initial={{ backgroundSize: "100% 100%" }}
       animate={{ backgroundSize: "120% 120%" }}  
       transition={{
