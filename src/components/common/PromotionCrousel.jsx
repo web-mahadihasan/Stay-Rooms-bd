@@ -37,7 +37,6 @@ export default function PromotionCrousel() {
 
   return (
     <>
-      {/*<!-- Component: Testimonial carousel --> */}
       <div className="glide-09 overflow-hidden relative w-full">
         {/* <!-- Slides --> */}
         <div className="w-[200px] hidden bg-gradient-to-r from-white/10 to-white/80 h-full absolute min-h-[350px] top-0 right-0 z-10 lg:block"></div>
@@ -61,7 +60,7 @@ export default function PromotionCrousel() {
               />
             </li>      
             <li className="h-[250px]">
-              <PromotionCard heading={"New Year’s Countdown"} 
+              <PromotionCard heading={"New Year’s Offers"} 
               offtext={"Get 30% OFF"} 
               coupon={"NEWYEAR30"} 
               des={"Ring in the New Year with incredible savings"} date={"10th Feb 2025 (T&Cs apply)"}
