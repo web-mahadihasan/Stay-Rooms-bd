@@ -60,7 +60,7 @@ export default function PromotionCrousel() {
               />
             </li>      
             <li className="h-[250px]">
-              <PromotionCard heading={"New Year’s Offer"} 
+              <PromotionCard heading={"New Year’s Offers"} 
               offtext={"Get 30% OFF"} 
               coupon={"NEWYEAR30"} 
               des={"Ring in the New Year with incredible savings"} date={"10th Feb 2025 (T&Cs apply)"}
