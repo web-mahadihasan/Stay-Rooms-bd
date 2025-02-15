@@ -24,7 +24,7 @@ const Rooms = () => {
     const [priceRange, setPriceRange] = useState(null)
     const [tableView, setTableView] = useState(false)
     const [currentPage, setCurrentPage] = useState(0)
-    console.log(location)
+    
     useEffect(()=>{
         if(location.state){
             setSearchText(location.state.search)
