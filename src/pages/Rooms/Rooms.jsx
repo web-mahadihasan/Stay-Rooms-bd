@@ -27,12 +27,14 @@ const Rooms = () => {
     
     useEffect(()=>{
         if(location.state){
-            setSearchText(location.state.search)
+            if(location.state.search){
+                setSearchText(location.state.search)
+            }
+            if(location.state.sort){
+                setSelectedValue(location.state.sort)
+            }
         }
-        if(location.state){
-            setSelectedValue(location.state.sort)
-        }
-    },[location.state.search, location.state.sort])
+    },[location.state])
     const options = [
         { value: "asc", label: "Sort by Price Ascending" },
         { value: "dsc", label: "Sort by price Descending" },
