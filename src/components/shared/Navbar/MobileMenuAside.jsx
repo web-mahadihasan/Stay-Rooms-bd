@@ -8,7 +8,6 @@ import useAuth from "../../../hooks/useAuth";
 const MobileMenuAside = () => {
     const {openMenu, setOpenMenu} = useAppContext();
     const {user, loginUser} = useAuth()
-    console.log(user)
 
     const navLinks = [
         { "path": "/", "element": "Home" },

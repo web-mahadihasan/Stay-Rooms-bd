@@ -24,11 +24,12 @@ const Rooms = () => {
     const [priceRange, setPriceRange] = useState(null)
     const [tableView, setTableView] = useState(false)
     const [currentPage, setCurrentPage] = useState(0)
+    console.log(location)
     useEffect(()=>{
-        if(location?.state?.search){
+        if(location.state){
             setSearchText(location.state.search)
         }
-        if(location?.state?.sort){
+        if(location.state){
             setSelectedValue(location.state.sort)
         }
     },[location.state.search, location.state.sort])
